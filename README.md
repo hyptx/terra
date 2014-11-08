@@ -2,7 +2,7 @@
 
 This theme was built by a developer, for developers. Built for my self to be precise. I will be adding documentation here, stay tuned.
 
-**I do not recommend editing Terra directly.** The Wordpress child theme system is just to useful. If you want to use the Terra Theme system to its fullest, use [Terra Jr](https://github.com/hyptx/terra-jr). Keep the parent theme pristine and do all your customizing in the child.
+**I do not recommend editing Terra directly.** The Wordpress child theme system is just to useful. If you want to use the Terra Theme system to its fullest, install and activate [Terra Jr](https://github.com/hyptx/terra-jr). Keep the parent theme pristine and do all your customizing in the child.
 
 The Terra Jr Theme has and added bonus of a custom post type factory class, amongst other features. Try to keep the versions of Parent and Child the same. They are meant to act as a team!
 
