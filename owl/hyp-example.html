@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<div id="owl">
+	<div><a href="http://hyperspatial.com"><img src="/wp-content/uploads/2012/11/slide1.jpg" /></a></div>
+	<div><img src="/wp-content/uploads/2012/11/slide2.jpg" /></div>
+	<div><img src="/wp-content/uploads/2012/11/slide3.jpg" /></div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery("#owl").owlCarousel({
+		navigation : true,
+		slideSpeed : 300,
+		paginationSpeed : 400,
+		singleItem:true,
+		autoPlay:true     
+		// "singleItem:true" is a shortcut for:
+		// items : 1,
+		// itemsDesktop : false,
+		// itemsDesktopSmall : false,
+		// itemsTablet: false,
+		// itemsMobile : false
+	});
+});
+</script>
+</body>
+</html>
