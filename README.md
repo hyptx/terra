@@ -1,6 +1,6 @@
 #The Terra Theme
 
-This theme was built by a developer, for developers. Built for my self to be precise. I will be adding documentation here, stay tuned.
+This theme was built by a developer, for developers. Built for my self to be precise. I will be adding documentation here, stay tuned. Make sure to get [The Terra Jr Theme](https://github.com/hyptx/terra-jr) as well.
 
 **I do not recommend editing Terra directly.** The Wordpress child theme system is just to useful. If you want to use the Terra Theme system to its fullest, install and activate [Terra Jr](https://github.com/hyptx/terra-jr). Keep the parent theme pristine and do all your customizing in the child.
 
