@@ -11,7 +11,7 @@ The Terra Jr Theme has and added bonus of a custom post type factory class, amon
 * [Latest Terra Release](https://github.com/hyptx/terra/releases/latest)
 * [Latest Terra Jr Release](https://github.com/hyptx/terra-jr/releases/latest)
 
-_Version numbers mirror Twitter Bootstrap's MAJOR.MINOR.PATCH schema. Terra's versioning includes a fourth, representing theme patches: MAJOR.MINOR.PATCH.THEMEPATCH_
+Version numbers mirror Twitter Bootstrap's MAJOR.MINOR.PATCH schema. Terra's versioning includes a fourth, representing theme patches: MAJOR.MINOR.PATCH.THEMEPATCH
 
 ####Theme Features
 
@@ -45,6 +45,15 @@ The Terra Theme does not use the Wordpress theme options system to save options.
 2. Get a copy of [Terra Jr](https://github.com/hyptx/terra-jr/releases/latest) and upload it to your themes directory
 3. Activate Terra Jr
 4. Rock and Roll
+
+####Browser Support
+
+* Chrome
+* Firefox
+* Safari
+* IE8+
+
+Two javascript files are loaded to support IE8, respond.js and html5.js. Respond.js does not parse CDN loaded files, so bootstrap.min.css is loaded locally.
 
 ##CloudFlare
 
