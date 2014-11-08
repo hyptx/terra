@@ -39,13 +39,6 @@ Version numbers mirror Twitter Bootstrap's MAJOR.MINOR.PATCH schema. Terra's ver
 
 The Terra Theme does not use the Wordpress theme options system to save options. I decided that hardcoding the theme options would save on database queries and overhead. All of the theme settings are at the top of the *functions.php* file, in the form of easily understandable constants.
 
-##Installation
-
-1. Get a copy of [Terra](https://github.com/hyptx/terra/releases/latest) and upload it to your themes directory
-2. Get a copy of [Terra Jr](https://github.com/hyptx/terra-jr/releases/latest) and upload it to your themes directory
-3. Activate Terra Jr
-4. Rock and Roll
-
 ####Browser Support
 
 * Chrome
@@ -54,6 +47,13 @@ The Terra Theme does not use the Wordpress theme options system to save options.
 * IE8+
 
 Two javascript files are loaded to support IE8, respond.js and html5.js. Respond.js does not parse CDN loaded files, so bootstrap.min.css is loaded locally.
+
+##Installation
+
+1. Get a copy of [Terra](https://github.com/hyptx/terra/releases/latest) and upload it to your themes directory
+2. Get a copy of [Terra Jr](https://github.com/hyptx/terra-jr/releases/latest) and upload it to your themes directory
+3. Activate Terra Jr
+4. Rock and Roll
 
 ##CloudFlare
 
