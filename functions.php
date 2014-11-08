@@ -28,7 +28,7 @@ ter_define_constants(array(
 'TER_APPLE_TOUCH' => 			false,              					//Value 	= Prefix: 'apple-touch-icon' -144.png,-iphone4.png(114),-ipad.png(72),-iphone.png(57)
 'TER_BOOTSTRAP_VER' =>			'3.3.0',								//Value 	= Which version of Bootstrap you wish to use. 3.3.0 and up do not support IE8
 'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',	//URL		= If you change this, make sure the path to package is the same where enqueued below
-'TER_ERROR_DISPLAY' => 			1,									//Boolean 	= Turn PHP error display on
+'TER_ERROR_DISPLAY' => 			false,									//Boolean 	= Turn PHP error display on
 'TER_EXCERPT' => 				false,                    				//Boolean 	= Show the_excerpt on archive pages not the_content
 'TER_EXCERPT_LEN' => 			40,                    					//Integer	= Number of words in the_excerpt
 'TER_GOOGLE_FONT' =>			'Open+Sans:400,400italic,600,600italic',//Value	 	= Google Font API Family - Value after "?family=" in the URL 'Open+Sans:400',false for none
