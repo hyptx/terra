@@ -4,7 +4,7 @@ function ter_ssl_meta_box(){
     global $post;
 	$disabled_post_types = array('attachment','revision','nav_menu_item'/*,'post'*/);
 	if(in_array(get_post_type($post),$disabled_post_types )) return;	
-	if(TER_SSL == 'https') $checkbox_text = 'Not Secured';
+	if(TER_ACTIVATE_SSL == 'https') $checkbox_text = 'Not Secured';
 	else $checkbox_text = 'Secured';	
 	echo '<div class="misc-pub-section misc-pub-section-last">';
 	wp_nonce_field(plugin_basename(__FILE__),'ter_ssl_nonce');
@@ -14,7 +14,7 @@ function ter_ssl_meta_box(){
 	echo '</label> | <a href="/wp-admin/admin.php?page=ter_help">Remove Security Help</a>';
 	echo '</div>';
 }
-if(TER_SSL) add_action('post_submitbox_misc_actions','ter_ssl_meta_box');
+if(TER_ACTIVATE_SSL) add_action('post_submitbox_misc_actions','ter_ssl_meta_box');
 
 function ter_ssl_save_meta_box($post_id){
     if(!isset($_POST['post_type'])) return $post_id;
@@ -26,17 +26,17 @@ function ter_ssl_save_meta_box($post_id){
 	if($_POST['ter_ssl_meta'] == 'checked') update_post_meta( $post_id, '_ter_ssl_meta', $_POST['ter_ssl_meta'] );
 	else delete_post_meta( $post_id, '_ter_ssl_meta');
 }
-if(TER_SSL) add_action('save_post','ter_ssl_save_meta_box');
+if(TER_ACTIVATE_SSL) add_action('save_post','ter_ssl_save_meta_box');
 
 function ter_ssl_redirect($secure_front_page){
 	if($secure_front_page) ter_ssl_secure_front_page();
 	global $post;
 	$ter_ssl_meta = get_post_meta($post->ID,'_ter_ssl_meta',true);
 	if(!$ter_ssl_meta) return;
-	if(TER_SSL == 'https' && $_SERVER['HTTPS'] == 'on'){ wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],301);	exit; }
-	elseif(TER_SSL == 'http' && $_SERVER['HTTPS'] != 'on'){ wp_redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],301); exit; }
+	if(TER_ACTIVATE_SSL == 'https' && $_SERVER['HTTPS'] == 'on'){ wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],301);	exit; }
+	elseif(TER_ACTIVATE_SSL == 'http' && $_SERVER['HTTPS'] != 'on'){ wp_redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],301); exit; }
 }
-if(TER_SSL) add_action('ter_redirect','ter_ssl_redirect',1,1);
+if(TER_ACTIVATE_SSL) add_action('ter_redirect','ter_ssl_redirect',1,1);
 
 function ter_ssl_secure_front_page(){
 	if(is_front_page() && $_SERVER['HTTPS'] != 'on'){ wp_redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],301); exit; }

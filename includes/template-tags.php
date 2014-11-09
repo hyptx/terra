@@ -2,7 +2,7 @@
 
 /* Back to Top */
 if(!function_exists('ter_back_to_top')):
-function ter_back_to_top($offset = 220, $duration = 500){
+function ter_back_to_top($offset = 1000, $duration = 500){
 	if(!TER_ACTIVATE_BACK_TO_TOP) return;
 	?>
 	<a href="#" class="back-to-top rounded-6 text-center"><b class="back-to-top-caret"></b><br>TOP</a>
@@ -306,7 +306,7 @@ endif;
 /* Title Format */
 if(!function_exists('ter_title')):
 function ter_title(){
-	if(TER_TITLE_FORMAT == 'yoast') wp_title('');
+	if(TER_TITLE_FORMAT_DEFAULT == 'yoast') wp_title('');
 	else{ wp_title('|',true,'right'); bloginfo('name'); }
 }
 endif;
