@@ -9,14 +9,14 @@
 <title><?php ter_title() ?></title>
 <meta charset="<?php bloginfo('charset') ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="<?php echo TER_GRAPHICS ?>favicon.png">
+<link rel="shortcut icon" href="<?php echo TER_ICONS ?>favicon-32x32.png" type="image/x-icon">
 <?php ter_apple_touch_icons() ?>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo('pingback_url') ?>">
 <!-- Uncomment meta to Use - This removes IPhone phone formatting -->
 <!--<meta name="format-detection" content="telephone=no">-->
 <!-- Uncomment meta to Use - Force rendering in IE, this does not validate, but is recommended on bootstrap http://getbootstrap.com/getting-started/ -->
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <?php if(is_singular() && get_option('thread_comments')) wp_enqueue_script('comment-reply') ?>
 <?php wp_head() ?>
 <!--[if lt IE 9]>

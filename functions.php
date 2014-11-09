@@ -1,31 +1,36 @@
-<?php
-/* Define Constants - Do Not Modify */
+<?php /* <~~~~~~~< Parent Theme >~~~~~~~> */
+
+/* Define Constants Function - DO NOT MODIFY >~~~~~~~> */
+
 if(!function_exists('ter_define_constants')): function ter_define_constants($constants){ foreach($constants as $key => $value) if(!defined($key)) define($key,$value); } endif;
+$ter_dir = get_bloginfo('template_directory');//Parent theme is always 'template_directory'
 
-/* Parent theme root dir */
-$dir = get_bloginfo('template_directory');
+/* <~~~~~~~< END of DO NOT MODIFY */
 
-/* Directory Constants */
+/* Parent Theme Directories >~~~~~~~> */
+
 ter_define_constants(array(
-	'TERRA' => 			$dir . '/',
-	'TER_BOOTSTRAP' => 	$dir . '/bootstrap/',
-	'TER_CSS' => 		$dir . '/css/',
-	'TER_GRAPHICS' => 	$dir . '/graphics/',
+	'TERRA' => 			$ter_dir . '/',
+	'TER_BOOTSTRAP' => 	$ter_dir . '/bootstrap/',
+	'TER_CSS' => 		$ter_dir . '/css/',
+	'TER_GRAPHICS' => 	$ter_dir . '/graphics/',
+	'TER_ICONS' =>		$ter_dir . '/icons/',
 	'TER_INCLUDES' => 	dirname(__FILE__) . '/includes/',
-	'TER_JS' => 		$dir . '/js/',	
-	'TER_SLIDER' => 	$dir . '/owl/'
+	'TER_JS' => 		$ter_dir . '/js/',
+	'TER_SLIDER' => 	$ter_dir . '/owl/'
 ));
 
-/* Theme Option Constants - Change theme settings here */
+/* Theme Options - Change theme settings here >~~~~~~~> */
+
 ter_define_constants(array(
 	'TER_ACTIVATE_BACK_TO_TOP' =>	false,             						//Boolean 	= Activate back to top button
 	'TER_ACTIVATE_BRANDING' => 		false,									//Boolean	= Activate Terra's default branding
 	'TER_ACTIVATE_SLIDER' => 		false,									//Boolean	= Activate Terra's default slider
 	'TER_ACTIVATE_SKROLLR' => 		false,									//Boolean	= Activate Terra's default parallax skrollr
-	'TER_ACTIVATE_WAYPOINTS' => 	false,									//Boolean	= Activate Waypoints JS, needed for CTA Sidebar
+	'TER_ACTIVATE_WAYPOINTS' => 	false,									//Boolean	= Activate Waypoints JS, needed for CTA Sidebar	
 	'TER_ADMIN_BAR' => 				'editor',								//Options 	= 'all','admin','editor','none' - Show adminbar when user is logged in
-	'TER_ADMIN_BAR_LOGIN' => 		false,              					//Boolean 	= true,false - Show adminbar when logged out
-	'TER_APPLE_TOUCH' => 			false,              					//Value 	= Prefix: 'apple-touch-icon' -144.png,-iphone4.png(114),-ipad.png(72),-iphone.png(57)
+	'TER_ADMIN_BAR_LOGIN' => 		false,              					//Boolean 	= true,false - Show adminbar when logged out	
+	'TER_APPLE_TOUCH' => 			false,              					//Value 	= Prefix: 'apple-touch-icon' -144.png,-iphone4.png(114),-ipad.png(72),-iphone.png(57)	
 	'TER_BOOTSTRAP_VER' =>			'3.3.0',								//Value 	= Which version of Bootstrap you wish to use. 3.3.0 and up do not support IE8
 	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',	//URL		= If you change this, make sure the path to package is the same where enqueued below
 	'TER_ERROR_DISPLAY' => 			false,									//Boolean 	= Turn PHP error display on
@@ -36,19 +41,20 @@ ter_define_constants(array(
 	'TER_HEADER_HOME_LINK' =>		'title',								//Options	= 'logo','title','title-desc',''
 	'TER_MAX_IMAGE_SIZE_KB' =>		1024,									//Integer	= This will prevent uploads to media library greater than this value
 	'TER_JQUERY' => 				'1.9.1',								//Value 	= '1.7.2' Which version of jQuery to load from CDN, blank for default WP
-	'TER_LOGO' => 					TER_GRAPHICS . 'logo.png',				//URL 		= Location of logo image
+	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',			//URL 		= Location of logo image
 	'TER_POST_FORMATS' => 			'gallery,image,video',					//CSL 		= Enter a comma separated list of post formats to register
 	'TER_PRIMARY_CLASS' => 			'col-sm-8',         					//CSS 		= Primary container class
 	'TER_SECONDARY' => 				'right',                   				//Options 	= 'left','right','none' - Sidebar Layout
 	'TER_SECONDARY_CLASS' => 		'col-sm-4',         					//CSS		= Secondary container class
 	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',			//CSL 		= Comma separated list of sidebars - Add ',CTA Sidebar' for CTA Sidebar
 	'TER_SITE_MOVED' => 			false,									//CSL 		= Value, enter a post ID for the site moved page
-	'TER_SSL' => 					false,									//Value		= 'https' or 'http' - Value represents if the site will be mostly secure or not
-	'TER_TEMPLATE_COMMENTS' => 		true,									//Boolean	= Html comments to aid in template location
+	'TER_SSL' => 					false,									//Value		= 'https' or 'http' - Value represents if the site will be mostly secure or not	
 	'TER_TITLE_FORMAT' => 			'standard',								//Options 	= 'standard','yoast'. Wordpress SEO plugin needs yoast setting
 ));
 
-/* Includes ~~~~~~~~~~~~~ */
+/* END <~~~~~~~< Theme Options */
+
+/* Includes >~~~~~~~> */
 require(TER_INCLUDES . 'template-tags.php');
 require(TER_INCLUDES . 'walkers.php');
 require(TER_INCLUDES . 'admin.php');
@@ -59,7 +65,7 @@ if(TER_ACTIVATE_SLIDER) require(TER_INCLUDES . 'slider.php');
 if(TER_SSL) require(TER_INCLUDES . 'ssl.php');
 //if(TER_ACTIVATE_SKROLLR) require(TER_INCLUDES . 'skrollr.php'); //Future use
 
-/* Action & Filter Callbacks ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Action & Filter Callbacks >~~~~~~~> */
 
 if(!function_exists('terra_setup')): 
 function terra_setup(){
@@ -93,7 +99,7 @@ function ter_remove_dashboard_meta(){
 }
 endif;
 
-if(!function_exists('ter_admin_favicon')): function ter_admin_favicon(){ echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon.png">'; } endif;
+if(!function_exists('ter_admin_favicon')): function ter_admin_favicon(){ echo '<link rel="shortcut icon" href="' . TER_ICONS . 'favicon-32x32.png">'; } endif;
 
 if(!function_exists('ter_admin_footer')): function ter_admin_footer(){ echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>'; } endif;
 
@@ -147,7 +153,7 @@ endif;
 
 if(!function_exists('ter_custom_excerpt_more')): function ter_custom_excerpt_more($output){ if(has_excerpt() && ! is_attachment()) $output .= ter_continue_reading_link(); return $output;} endif;
 
-if(!function_exists('ter_custom_login_styles')): function ter_custom_login_styles() { echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo-login.png); width:274px; height:63px!important; background-size:auto}</style>'; } endif;
+if(!function_exists('ter_custom_login_styles')): function ter_custom_login_styles() { echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>'; } endif;
 
 if(!function_exists('ter_custom_login_logo_title')): function ter_custom_login_logo_title(){ return get_bloginfo('site'); } endif;
 
