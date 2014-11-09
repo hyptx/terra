@@ -312,7 +312,7 @@ endif;
 /* Template Comment */
 if(!function_exists('ter_template_comment')):
 function ter_template_comment($file){
-	if(!TER_TEMPLATE_COMMENTS) return;
+	if(!current_user_can('administrator')) return;
 	$template_loc = str_replace(TEMPLATEPATH,'',$file);
 	echo "<!-- Template: $template_loc -->";
 }
