@@ -1,20 +1,5 @@
 <?php /* ~~~~~~~~~~~ Template Tags ~~~~~~~~~~~ */
 
-/* Apple Touch Icons */
-if(!function_exists('ter_apple_touch_icons')):
-function ter_apple_touch_icons(){
-	$icon_file_prefix = TER_APPLE_TOUCH;
-	if(!$icon_file_prefix) return;
-	$icon_location = get_bloginfo('stylesheet_directory') . '/graphics/';
-	?>
-<link rel="apple-touch-icon" sizes="144x144" href="<?php echo $icon_location . TER_APPLE_TOUCH ?>-144.png">
-<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $icon_location . TER_APPLE_TOUCH ?>-iphone4.png">
-<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $icon_location . TER_APPLE_TOUCH ?>-ipad.png">
-<link rel="apple-touch-icon" href="<?php echo $icon_location . TER_APPLE_TOUCH ?>-iphone.png">
-<?php
-}
-endif;
-
 /* Back to Top */
 if(!function_exists('ter_back_to_top')):
 function ter_back_to_top($offset = 220, $duration = 500){

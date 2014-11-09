@@ -14,7 +14,6 @@ ter_define_constants(array(
 	'TER_BOOTSTRAP' => 	$ter_dir . '/bootstrap/',
 	'TER_CSS' => 		$ter_dir . '/css/',
 	'TER_GRAPHICS' => 	$ter_dir . '/graphics/',
-	'TER_ICONS' =>		$ter_dir . '/icons/',
 	'TER_INCLUDES' => 	dirname(__FILE__) . '/includes/',
 	'TER_JS' => 		$ter_dir . '/js/',
 	'TER_SLIDER' => 	$ter_dir . '/owl/'
@@ -25,6 +24,7 @@ ter_define_constants(array(
 ter_define_constants(array(
 	'TER_ACTIVATE_BACK_TO_TOP' =>	false,             						//Boolean 	= Activate back to top button
 	'TER_ACTIVATE_BRANDING' => 		false,									//Boolean	= Activate Terra's default branding
+	'TER_ACTIVATE_FAVICONS' => 		false,									//Boolean	= Activate Terra's favicon system
 	'TER_ACTIVATE_SLIDER' => 		false,									//Boolean	= Activate Terra's default slider
 	'TER_ACTIVATE_SKROLLR' => 		false,									//Boolean	= Activate Terra's default parallax skrollr
 	'TER_ACTIVATE_WAYPOINTS' => 	false,									//Boolean	= Activate Waypoints JS, needed for CTA Sidebar	
@@ -69,7 +69,7 @@ if(TER_SSL) require(TER_INCLUDES . 'ssl.php');
 
 if(!function_exists('terra_setup')): 
 function terra_setup(){
-if(TER_ERROR_DISPLAY){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
+	if(TER_ERROR_DISPLAY){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
 	add_theme_support('automatic-feed-links');
 	add_theme_support('post-thumbnails');
 	register_nav_menu('header',__('Header Menu','terra'));
@@ -92,6 +92,14 @@ if(TER_ERROR_DISPLAY){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_error
 }
 endif;
 
+if(!function_exists('ter_head')): 
+function ter_head(){
+	if(TER_ACTIVATE_FAVICONS) require('favicon.php');
+	else echo '<link rel="shortcut icon" href="' . TER_GRAPHICS .'favicon-32x32.png">';
+	//echo '<meta name="format-detection" content="telephone=no">';//This removes IPhone phone formatting - Future Constant?
+}
+endif;
+
 if(!function_exists('ter_remove_dashboard_meta')):
 function ter_remove_dashboard_meta(){
 	remove_meta_box('dashboard_primary','dashboard','normal'); 
@@ -99,7 +107,7 @@ function ter_remove_dashboard_meta(){
 }
 endif;
 
-if(!function_exists('ter_admin_favicon')): function ter_admin_favicon(){ echo '<link rel="shortcut icon" href="' . TER_ICONS . 'favicon-32x32.png">'; } endif;
+if(!function_exists('ter_admin_favicon')): function ter_admin_favicon(){ echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">'; } endif;
 
 if(!function_exists('ter_admin_footer')): function ter_admin_footer(){ echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>'; } endif;
 
@@ -275,6 +283,7 @@ endif;
 /* Actions & Filters ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 add_action('after_setup_theme','terra_setup');									//Theme Setup
+add_action('ter_head','ter_head');												//WP Head
 add_action('admin_init','ter_remove_dashboard_meta');							//Admin Widgets
 add_action('login_head','ter_admin_favicon');									//Admin Favicon
 add_action('admin_head','ter_admin_favicon');									//Admin Favicon

@@ -1,6 +1,6 @@
 <?php /* ~~~~~~~~~~~ Admin Page ~~~~~~~~~~~ */
 
-function ter_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_ICONS . 'favicon-16x16.png'); }
+function ter_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
 add_action('admin_menu','ter_help_page_menu');
 
 function ter_help_page_html(){?>
