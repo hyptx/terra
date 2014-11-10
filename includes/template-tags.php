@@ -143,7 +143,7 @@ function ter_header_home_link(){?>
 }
 endif;
 
-/* Render Modal
+/* Save Modal
 *  Bootstrap Modal System */
 if(!function_exists('ter_save_modal')):
 function ter_save_modal($atts,$content = null){
