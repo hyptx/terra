@@ -16,6 +16,7 @@ ul,ol{padding-left:30px}
 textarea{position:relative; display:block; z-index:499; min-width:98%; min-height:72px}
 a:hover,a:active,a:focus{text-decoration:none}
 a:focus,.btn:focus{outline:0}
+p:empty{margin:0}
 #page-wrap{position:relative}
 
 /* ~~~~~~ Header ~~~~~~ */
