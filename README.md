@@ -111,12 +111,8 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Value</td>
 		<td>Google Font API Family - Value after &quot;?family=&quot; in the URL. Pass false for default browser fonts.</td>
 	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
+</table>
+<table>
 	<tr>
 		<th>Layout Constants</th>
 		<th>Default Value</th>
@@ -165,12 +161,8 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>CSL</td>
 		<td>Comma separated list of sidebars.  Add ',CTA Sidebar' to activate the CTA Sidebar feature.</td>
 	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
+</table>
+<table>
 	<tr>
 		<th>WP Related Constants</th>
 		<th>Default Value</th>
@@ -213,12 +205,8 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Integer</td>
 		<td>Wordpress media library max upload size in KB.</td>
 	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
+</table>
+<table>
 	<tr>
 		<th>Feature Constants</th>
 		<th>Default Value</th>
@@ -267,12 +255,8 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Boolean</td>
 		<td>Enqueue waypoints.js. Turn this on for the CTA Sidebar feature.</td>
 	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
+</table>
+<table>
 	<tr>
 		<th>Experimental Constants</th>
 		<th>Default Value</th>
@@ -286,3 +270,4 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Enqueue skrollr.js</td>
 	</tr>
 </table>
+
