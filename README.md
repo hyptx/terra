@@ -107,7 +107,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 	
 	<tr>
 		<td>TER_GOOGLE_FONT</td>
-		<td>Open+Sans:400,400italic,600,600italic</td>
+		<td>Open+Sans: 400,400italic,600,600italic</td>
 		<td>Value</td>
 		<td>Google Font API Family - Value after &quot;?family=&quot; in the URL. Pass false for default browser fonts.</td>
 	</tr>
@@ -286,4 +286,3 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Enqueue skrollr.js</td>
 	</tr>
 </table>
-
