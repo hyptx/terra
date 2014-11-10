@@ -143,6 +143,55 @@ function ter_header_home_link(){?>
 }
 endif;
 
+/* Render Modal
+*  Bootstrap Modal System */
+if(!function_exists('ter_save_modal')):
+function ter_save_modal($atts,$content = null){
+	global $ter_modals;
+	if(!$atts['id']){
+		$ter_modals[] = '<div class="alert alert-warning">Please provide an id for this modal.</div>';
+		return;
+	}
+	if($atts['title']) $modal_title = '<h4 class="modal-title" id="' . $atts['id'] . '-label' . '">' . $atts['title'] . '</h4>';
+	if($atts['close_btn']) $close_btn = '<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>';
+	ob_start();
+	?>	 
+	<div class="modal fade" id="<?php echo $atts['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $atts['id'] . '-label' ?>" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<?php echo $modal_title ?>
+				</div>
+				<div class="modal-body"><?php echo do_shortcode($content)?></div>
+				<?php echo $close_btn ?>
+			</div>
+		</div>
+	</div>
+	<?php
+	$ter_modals[] = ob_get_contents();
+	ob_end_clean();
+}
+endif;
+
+/* Render Modals
+*  Bootstrap Modal System */
+if(!function_exists('ter_render_modals')):
+function ter_render_modals(){
+	global $ter_modals;
+	foreach($ter_modals as $modal) echo $modal;
+}
+endif;
+
+/* Render Modal Trigger
+*  Bootstrap Modal System */
+if(!function_exists('ter_render_modal_trigger')):
+function ter_render_modal_trigger($atts,$content = null){
+	if(!$atts['id']) return '<div class="alert alert-warning">Please provide an id for this modal trigger. It should match the id for modal itself.</div>';
+	return '<a href="#" data-toggle="modal" data-target="#' . $atts['id'] . '" class="' . $atts['class'] . '">' . do_shortcode($content) . '</a>';
+}
+endif;
+
 /* Nav Bar
 *  The theme nav system, uses wp menus with fallback to wp_list_pages
 *  Argument1 = Type, use 'slide' for slide out navbar, 'slide-dual' for dual nav

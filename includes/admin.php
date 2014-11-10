@@ -66,6 +66,13 @@ function ter_help_page_html(){?>
         </ul>
 		
 <br>
+<h3>Modal Shortcodes</h3><hr>
+<p>Use these shortcodes to create a bootstrap modal box. Each box must have a corresponding trigger. Choose a unique id name to use to tie the box to its trigger. Remove the title or close_btn attributes if you want to hide those elements.</p>
+<ul>
+	<li><code>[modal id="testmodal" title="Test Modal" close_btn="true"]Modal HTML Content Here[/modal]</code> - This creates the modal box itself. </li>
+	<li><code>[modal-trigger id="testmodal" class="btn btn-ter"]Open Test Modal[/modal-trigger]</code> - Remove class attribute to use a plain link. </li>
+</ul>
+<br>
 <h3>Layout Shortcodes</h3><hr>
 <p>Use these shortcodes within your posts and pages to aid in laying out your html. Simply copy and paste one of the examples below into the Wordpress editor. Make sure to paste it into the HTML editor, not the Visual editor.</p>
 <p>The layout shortcodes add a div element with the class of &quot;tsc&quot; within said element. If you need to pad or margin the elements target .tsc to do so. Padding or margining the parent div created by the shortcode will break the layout.</p>
