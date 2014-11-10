@@ -19,7 +19,7 @@ ter_define_constants(array(
 /* Theme Options - Change theme settings here >~~~~~~~> */
 
 ter_define_constants(array(
-		/* System */
+	/* System */
 	'TER_ERROR_DISPLAY_ON' => 		false,
 	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
 	'TER_JQUERY_VERSION' => 		'1.9.1',
