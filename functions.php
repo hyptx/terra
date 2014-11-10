@@ -19,39 +19,37 @@ ter_define_constants(array(
 /* Theme Options - Change theme settings here >~~~~~~~> */
 
 ter_define_constants(array(
-	/* System */
-	'TER_ERROR_DISPLAY' => 			false,									//Boolean 	= Turn PHP error display on
-	'TER_JQUERY' => 				'1.9.1',								//Value 	= '1.7.2' Which version of jQuery to load from CDN, blank for default WP
-	'TER_BOOTSTRAP_VER' =>			'3.3.0',								//Value 	= Which version of Bootstrap you wish to use. 3.3.0 and up do not support IE8
-	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',	//URL		= If you change this, make sure the path to package is the same where enqueued below
-	'TER_GOOGLE_FONT' =>			'Open+Sans:400,400italic,600,600italic',//Value	 	= Google Font API Family - Value after "?family=" in the URL 'Open+Sans:400',false for none
-	'TER_MAX_IMAGE_SIZE_KB' =>		1024,									//Integer	= This will prevent uploads to media library greater than this value
-	
+		/* System */
+	'TER_ERROR_DISPLAY_ON' => 		false,
+	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
+	'TER_JQUERY_VERSION' => 		'1.9.1',
+	'TER_BOOTSTRAP_VERSION' => 		'3.3.0',	
+	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
 	/* Layout */
-	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',		//URL 		= Location of logo image
-	'TER_HEADER_HOME_LINK' =>		'title',								//Options	= Branding area: 'logo','title','title-desc',''
-	'TER_FULL_WIDTH_CLASS' =>		'col-sm-12',         					//CSS	 	= Full width container class
-	'TER_PRIMARY_CLASS' => 			'col-sm-8',         					//CSS 		= Primary container class
-	'TER_SECONDARY_CLASS' => 		'col-sm-4',         					//CSS		= Secondary container class
-	'TER_SECONDARY' => 				'right',                   				//Options 	= 'left','right','none' - Sidebar Layout
-	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',			//CSL 		= Comma separated list of sidebars - Add ',CTA Sidebar' for CTA Sidebar
-	
+	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',
+	'TER_HEADER_HOME_LINK' => 		'title',
+	'TER_FULL_WIDTH_CLASS' => 		'col-sm-12',
+	'TER_PRIMARY_CLASS' => 			'col-sm-8',
+	'TER_SECONDARY_CLASS' => 		'col-sm-4',
+	'TER_SECONDARY' => 				'right',
+	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',	
 	/* Wordpress */
-	'TER_ADMIN_BAR' => 				'editor',								//Options 	= 'all','admin','editor','none' - Show adminbar when user is logged in
-	'TER_ADMIN_BAR_LOGIN' => 		false,              					//Boolean 	= true,false - Show adminbar when logged out	
-	'TER_EXCERPT' => 				false,                    				//Boolean 	= Show the_excerpt on archive pages not the_content
-	'TER_EXCERPT_LEN' => 			40,                    					//Integer	= Number of words in the_excerpt
-	'TER_TITLE_FORMAT_DEFAULT' => 	false,									//Boolean 	= Set true for Wordpress SEO plugin	
-	
+	'TER_ADMIN_BAR' => 				'editor',
+	'TER_ADMIN_BAR_LOGIN' => 		false,
+	'TER_EXCERPT' => 				false,
+	'TER_EXCERPT_LEN' => 			40,
+	'TER_TITLE_FORMAT_DEFAULT' => 	false,
+	'TER_MAX_IMAGE_SIZE_KB' => 		1024,	
 	/* Features */
-	'TER_ACTIVATE_BACK_TO_TOP' =>	false,             						//Boolean 	= Back to top button feature	
-	'TER_ACTIVATE_BRANDING' => 		false,									//Boolean	= Logo and hover text branding feature
-	'TER_ACTIVATE_FAVICONS' => 		false,									//Boolean	= Favicon system - Use http://realfavicongenerator.net/
-	'TER_ACTIVATE_SITE_MOVED' => 	false,									//PostID	= Site moved page id - Use for IP changes in DNS
-	'TER_ACTIVATE_SSL' => 			false,									//Value		= For mixed content: 'https' or 'http' - Value represents if the site will be mostly secure or not
-	'TER_ACTIVATE_SLIDER' => 		false,									//Boolean	= Owl slider feature
-	'TER_ACTIVATE_SKROLLR' => 		false,									//Boolean	= Parallax skrollr (Experimental)
-	'TER_ACTIVATE_WAYPOINTS' => 	false,									//Boolean	= Waypoints JS, needed for CTA Sidebar	
+	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
+	'TER_ACTIVATE_BRANDING' => 		false,
+	'TER_ACTIVATE_FAVICONS' => 		false,
+	'TER_ACTIVATE_SITE_MOVED' => 	false,
+	'TER_ACTIVATE_SSL' => 			false,
+	'TER_ACTIVATE_SLIDER' => 		false,
+	'TER_ACTIVATE_WAYPOINTS' => 	false,	
+	/* Experimental */
+	'TER_ACTIVATE_SKROLLR' => 		false
 ));
 
 /* END <~~~~~~~< Theme Options */
@@ -71,7 +69,7 @@ if(TER_ACTIVATE_SSL) require(TER_INCLUDES . 'ssl.php');
 
 if(!function_exists('terra_setup')): 
 function terra_setup(){
-	if(TER_ERROR_DISPLAY){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
+	if(TER_ERROR_DISPLAY_ON){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
 	add_theme_support('automatic-feed-links');
 	add_theme_support('post-thumbnails');
 	register_nav_menu('header',__('Header Menu','terra'));
@@ -109,9 +107,17 @@ function ter_remove_dashboard_meta(){
 }
 endif;
 
-if(!function_exists('ter_admin_favicon')): function ter_admin_favicon(){ echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">'; } endif;
+if(!function_exists('ter_admin_favicon')):
+function ter_admin_favicon(){
+	echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">';
+}
+endif;
 
-if(!function_exists('ter_admin_footer')): function ter_admin_footer(){ echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>'; } endif;
+if(!function_exists('ter_admin_footer')):
+function ter_admin_footer(){
+	echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>';
+}
+endif;
 
 if(!function_exists('ter_add_home_link')):
 function ter_add_home_link($items){
@@ -136,40 +142,102 @@ function ter_admin_bar(){
 	if($hide_bar) return false;
 	else return true;
 }
-function ter_hide_admin_bar(){ echo '<style type="text/css">.show-admin-bar{display:none;}</style>'; }
+function ter_hide_admin_bar(){
+	echo '<style type="text/css">.show-admin-bar{display:none;}</style>';
+}
 endif;
 
-if(!function_exists('ter_admin_bar_login')): function ter_admin_bar_login($wp_admin_bar){ if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) $wp_admin_bar->add_menu(array('title' => __('Log In'),'href' => wp_login_url())); } endif;
+if(!function_exists('ter_admin_bar_login')):
+function ter_admin_bar_login($wp_admin_bar){
+	if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) $wp_admin_bar->add_menu(array('title' => __('Log In'),'href' => wp_login_url()));
+}
+endif;
 
-if(!function_exists('ter_admin_bar_remove_wp')): function ter_admin_bar_remove_wp(){ global $wp_admin_bar; $wp_admin_bar->remove_menu('wp-logo'); } endif;
+if(!function_exists('ter_admin_bar_remove_wp')):
+function ter_admin_bar_remove_wp(){
+	global $wp_admin_bar;
+	$wp_admin_bar->remove_menu('wp-logo');
+}
+endif;
 
-if(!function_exists('ter_auto_excerpt_more')): function ter_auto_excerpt_more($more){ return ' &hellip;' . ter_continue_reading_link(); } endif;
+if(!function_exists('ter_auto_excerpt_more')):
+function ter_auto_excerpt_more($more){
+	return ' &hellip;' . ter_continue_reading_link();
+}
+endif;
 
 if(!function_exists('ter_filter_next_post_sort')):
-function ter_filter_next_post_sort($sort){ $sort = "ORDER BY p.post_title ASC LIMIT 1"; return $sort; }
+function ter_filter_next_post_sort($sort){
+	$sort = "ORDER BY p.post_title ASC LIMIT 1";
+	return $sort;
+}
 endif;
 
 if(!function_exists('ter_filter_next_post_where')):
-function ter_filter_next_post_where($where){ global $post,$wpdb; return $wpdb->prepare("WHERE p.post_title > '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title); }
+function ter_filter_next_post_where($where){
+	global $post,$wpdb;
+	return $wpdb->prepare("WHERE p.post_title > '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
+}
 endif;
  
 if(!function_exists('ter_filter_previous_post_sort')):
-function ter_filter_previous_post_sort($sort){ $sort = "ORDER BY p.post_title DESC LIMIT 1"; return $sort; }
+function ter_filter_previous_post_sort($sort){
+	$sort = "ORDER BY p.post_title DESC LIMIT 1";
+	return $sort;
+}
 endif;
 
 if(!function_exists('ter_filter_previous_post_where')):
-function ter_filter_previous_post_where($where){ global $post,$wpdb; return $wpdb->prepare("WHERE p.post_title < '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title); }
+function ter_filter_previous_post_where($where){
+	global $post,$wpdb;
+	return $wpdb->prepare("WHERE p.post_title < '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
+}
 endif;
 
-if(!function_exists('ter_custom_excerpt_more')): function ter_custom_excerpt_more($output){ if(has_excerpt() && ! is_attachment()) $output .= ter_continue_reading_link(); return $output;} endif;
+if(!function_exists('ter_custom_excerpt_more')):
+function ter_custom_excerpt_more($output){
+	if(has_excerpt() && ! is_attachment()) $output .= ter_continue_reading_link();
+	return $output;
+}
+endif;
 
-if(!function_exists('ter_custom_login_styles')): function ter_custom_login_styles() { echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>'; } endif;
+if(!function_exists('ter_custom_login_styles')):
+function ter_custom_login_styles(){
+	echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>';
+}
+endif;
 
-if(!function_exists('ter_custom_login_logo_title')): function ter_custom_login_logo_title(){ return get_bloginfo('site'); } endif;
+if(!function_exists('ter_custom_login_logo_title')):
+function ter_custom_login_logo_title(){
+	return get_bloginfo('site');
+}
+endif;
 
-if(!function_exists('ter_custom_login_logo_url')): function ter_custom_login_logo_url() { return get_bloginfo('url'); } endif;
+if(!function_exists('ter_custom_login_logo_url')):
+function ter_custom_login_logo_url(){
+	return get_bloginfo('url');
+}
+endif;
 
-if(!function_exists('ter_excerpt_length')): function ter_excerpt_length($length){ return TER_EXCERPT_LEN; } endif;
+if(!function_exists('ter_site_map_post_type')):
+function ter_site_map_post_type($dont_show_array = array('')){	
+	$post_types = get_post_types(array('public' => true,'_builtin' => false));
+	foreach($post_types as $post_type){
+		if(in_array($post_type,$dont_show_array)) continue;
+		$post_type_object = get_post_type_object($post_type);
+		echo '<h3>' . $post_type_object->label . '</h3>';
+		echo '<ul>';
+		wp_list_pages('post_type=' . $post_type . '&depth=0&title_li=');
+		echo '</ul>';
+	}
+}
+endif;
+
+if(!function_exists('ter_excerpt_length')):
+function ter_excerpt_length($length){
+	return TER_EXCERPT_LEN;
+}
+endif;
 
 if(!function_exists('ter_page_nav_filter')):
 function ter_page_nav_filter($menu){
@@ -222,7 +290,7 @@ function ter_enqueue_styles(){
 	}
 	elseif(TER_GOOGLE_FONT){ wp_enqueue_style('terra_font','//fonts.googleapis.com/css?family=' . TER_GOOGLE_FONT);	}
 	if($ie8) wp_enqueue_style('ter_bootstrap',TER_BOOTSTRAP . 'css/bootstrap.min.css');
-	else wp_enqueue_style('ter_bootstrap',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VER . '/css/bootstrap.min.css');
+	else wp_enqueue_style('ter_bootstrap',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/css/bootstrap.min.css');
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.css');
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css_theme',TER_CDN_URL . 'owl-carousel/1.3.2/owl.theme.css');
 }
@@ -238,12 +306,12 @@ endif;
 if(!function_exists('ter_enqueue_js')):
 function ter_enqueue_js(){
 	if(is_admin()) return;
-	if(TER_JQUERY){
+	if(TER_JQUERY_VERSION){
 		wp_deregister_script('jquery');
-		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY . '/jquery.min.js');
+		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY_VERSION . '/jquery.min.js');
 	}
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VER . '/js/bootstrap.min.js',array('jquery'));
+	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'));
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'));
 	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.27/skrollr.min.js',array('jquery'));
 	if(TER_ACTIVATE_WAYPOINTS) wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/2.0.5/waypoints.min.js',array('jquery'));
@@ -284,32 +352,32 @@ endif;
 
 /* Actions & Filters >~~~~~~~> */
 
-add_action('after_setup_theme','terra_setup');									//Theme Setup
-add_action('ter_head','ter_head');												//WP Head
-add_action('admin_init','ter_remove_dashboard_meta');							//Admin Widgets
-add_action('login_head','ter_admin_favicon');									//Admin Favicon
-add_action('admin_head','ter_admin_favicon');									//Admin Favicon
-add_filter('admin_footer_text','ter_admin_footer');								//Admin Footer
-add_filter('wp_list_pages','ter_add_home_link');								//Add Home Link
-add_filter('show_admin_bar','ter_admin_bar');									//Admin Bar
-add_action('admin_bar_menu','ter_admin_bar_login');								//Login Admin Bar
-add_action('wp_before_admin_bar_render','ter_admin_bar_remove_wp');				//Admin Bar no WP
-add_filter('excerpt_more','ter_auto_excerpt_more');								//Auto Excerpt More
-add_filter('get_the_excerpt','ter_custom_excerpt_more');						//Excerpt More
-add_action('login_enqueue_scripts','ter_custom_login_styles');					//Login Logo - Overwritten in child theme
-add_filter('login_headertitle','ter_custom_login_logo_title');					//Login Logo Title
-add_filter('login_headerurl','ter_custom_login_logo_url');						//Login Url
-add_filter('excerpt_length','ter_excerpt_length');								//Excerpt Length
-add_filter('wp_page_menu','ter_page_nav_filter',10);							//Page Nav Filter
-add_action('widgets_init','ter_register_sidebars');								//Sidebars
-add_action('wp_print_styles','ter_enqueue_styles',100);							//Enqueue Styles
-add_action('wp_print_styles','ter_enqueue_parent_theme_styles',101);			//Enqueue Parent Styles
-add_action('wp_print_scripts','ter_enqueue_js',100);							//Enqueue Js
-add_action('wp_print_styles','ter_add_stylesheet',102);							//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
-add_action('wp_print_scripts','ter_add_script',101);							//Add Script - Add to top of page template-> $ter_add_script = array('test');
-add_filter('prepend_attachment','ter_prepend_attachment');						//Attachment Page - Set image size
-add_filter('wp_handle_upload_prefilter','ter_limit_image_uploads');				//Limit uploaded image size
-if(TER_ACTIVATE_SITE_MOVED) add_action('admin_notices','ter_site_moved_notice'); 		//Site moved notice and redirect admin notice
-if(TER_ACTIVATE_SITE_MOVED) add_action('ter_redirect','ter_site_moved_redirect',10,1);	//Site moved notice and redirect
-add_filter('the_content','ter_ssl_content_filter');
+add_action('after_setup_theme','terra_setup');//Theme Setup
+add_action('ter_head','ter_head');//WP Head
+add_action('admin_init','ter_remove_dashboard_meta');//Admin Widgets
+add_action('login_head','ter_admin_favicon');//Admin Favicon
+add_action('admin_head','ter_admin_favicon');//Admin Favicon
+add_filter('admin_footer_text','ter_admin_footer');//Admin Footer
+add_filter('wp_list_pages','ter_add_home_link');//Add Home Link
+add_filter('show_admin_bar','ter_admin_bar');//Admin Bar
+add_action('admin_bar_menu','ter_admin_bar_login');//Login Admin Bar
+add_action('wp_before_admin_bar_render','ter_admin_bar_remove_wp');//Admin Bar no WP
+add_filter('excerpt_more','ter_auto_excerpt_more');//Auto Excerpt More
+add_filter('get_the_excerpt','ter_custom_excerpt_more');//Excerpt More
+add_action('login_enqueue_scripts','ter_custom_login_styles');//Login Logo - Overwritten in child theme
+add_filter('login_headertitle','ter_custom_login_logo_title');//Login Logo Title
+add_filter('login_headerurl','ter_custom_login_logo_url');//Login Url
+add_filter('excerpt_length','ter_excerpt_length');//Excerpt Length
+add_filter('wp_page_menu','ter_page_nav_filter',10);//Page Nav Filter
+add_action('widgets_init','ter_register_sidebars');//Sidebars
+add_action('wp_print_styles','ter_enqueue_styles',100);//Enqueue Styles
+add_action('wp_print_styles','ter_enqueue_parent_theme_styles',101);//Enqueue Parent Styles
+add_action('wp_print_scripts','ter_enqueue_js',100);//Enqueue Js
+add_action('wp_print_styles','ter_add_stylesheet',102);//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
+add_action('wp_print_scripts','ter_add_script',101);//Add Script - Add to top of page template-> $ter_add_script = array('test');
+add_filter('prepend_attachment','ter_prepend_attachment');//Attachment Page - Set image size
+add_filter('wp_handle_upload_prefilter','ter_limit_image_uploads');//Limit uploaded image size
+if(TER_ACTIVATE_SITE_MOVED) add_action('admin_notices','ter_site_moved_notice');//Site moved notice and redirect admin notice
+if(TER_ACTIVATE_SITE_MOVED) add_action('ter_redirect','ter_site_moved_redirect',10,1);//Site moved notice and redirect
+add_filter('the_content','ter_ssl_content_filter');//SSL Feature
 ?>

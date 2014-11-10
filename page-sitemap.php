@@ -10,12 +10,9 @@
 				<?php get_template_part('content','page') ?>
 				<h3><?php _e('Pages','terra') ?></h3>
 				<ul><?php wp_list_pages('depth=0&title_li=') ?></ul>
+				<?php ter_site_map_post_type() ?>
 				<h3><?php _e('Posts','terra') ?></h3>
 				<ul><?php wp_list_categories('title_li=&hierarchical=0&show_count=1') ?></ul>
-				<!-- Add a custom post type to your sitemap
-				<h3><?php //_e('CUSTOMPOSTNAME','terra') ?></h3>
-				<ul><?php //wp_list_pages('post_type=CUSTOMPOSTTYPE&depth=0&title_li=') ?></ul>
-				-->
 				<h3><?php _e('Archives','terra') ?></h3>
 				<ul><?php wp_get_archives('type=monthly&limit=12') ?></ul>
 			</div><!-- /#content -->

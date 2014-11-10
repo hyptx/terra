@@ -1,0 +1,214 @@
+<table>
+	<tr>
+		<th>System Constants</th>
+		<th>Default Value</th>
+		<th>Useage</th>
+		<th width="300">Description</th>
+	</tr>
+	<tr>
+		<td>TER_ERROR_DISPLAY</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Turn PHP error display on. For debugging use only.</td>
+	</tr>
+	<tr>
+		<td>TER_CDN_URL</td>
+		<td>//cdnjs.cloudflare.com/ajax/libs/</td>
+		<td>URL</td>
+		<td>Location of the CDN library. If you change this, check that the new package location is the same as cdnjs.com</td>
+	</tr>
+	<tr>
+		<td>TER_JQUERY</td>
+		<td>1.9.1</td>
+		<td>Value</td>
+		<td>Which version of jQuery to load from the CDN. Pass false to load the Wordpress default jQuery verison.</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>TER_BOOTSTRAP_VERSION</td>
+		<td>3.3.0</td>
+		<td>Value</td>
+		<td>Which version of Bootstrap to load from the CDN.</td>
+	</tr>
+	
+	<tr>
+		<td>TER_GOOGLE_FONT</td>
+		<td>Open+Sans:400,400italic,600,600italic</td>
+		<td>Value</td>
+		<td>Google Font API Family - Value after &quot;?family=&quot; in the URL. Pass false for default browser fonts.</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<th>Layout Constants</th>
+		<th>Default Value</th>
+		<th>Useage</th>
+		<th width="300">Description</th>
+	</tr>
+	<tr>
+		<td>TER_LOGO</td>
+		<td>terra/graphics/logo.png</td>
+		<td>URL</td>
+		<td>Location of logo image used in header and for the login page.</td>
+	</tr>
+	<tr>
+		<td>TER_HEADER_HOME_LINK</td>
+		<td>title</td>
+		<td>Option</td>
+		<td> Header home link options: logo, title, title-desc</td>
+	</tr>
+	<tr>
+		<td>TER_FULL_WIDTH_CLASS</td>
+		<td>col-sm-12</td>
+		<td>CSS</td>
+		<td>Bootstrap grid - Full width container class.</td>
+	</tr>
+	<tr>
+		<td>TER_PRIMARY_CLASS</td>
+		<td>col-sm-8</td>
+		<td>CSS</td>
+		<td>Bootstrap grid - Primary container class.</td>
+	</tr>
+	<tr>
+		<td>TER_SECONDARY_CLASS</td>
+		<td>col-sm-4</td>
+		<td>CSS</td>
+		<td>Bootstrap grid - Secondary container class.</td>
+	</tr>
+	<tr>
+		<td>TER_SECONDARY</td>
+		<td>right</td>
+		<td>Option</td>
+		<td> Sidebar Layout options: left, right, none</td>
+	</tr>
+	<tr>
+		<td>TER_SIDEBARS</td>
+		<td>Blog Sidebar,Page Sidebar</td>
+		<td>CSL</td>
+		<td>Comma separated list of sidebars.  Add ',CTA Sidebar' to activate the CTA Sidebar feature.</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<th>WP Related Constants</th>
+		<th>Default Value</th>
+		<th>Useage</th>
+		<th width="300">Description</th>
+	</tr>
+	<tr>
+		<td>TER_ADMIN_BAR</td>
+		<td>editor</td>
+		<td>Option</td>
+		<td> Show adminbar when  user  is logged in: all, admin, editor, none</td>
+	</tr>
+	<tr>
+		<td>TER_ADMIN_BAR_LOGIN</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td> Show adminbar when logged out .</td>
+	</tr>
+	<tr>
+		<td>TER_EXCERPT</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Show the Wordpress excerpt on archive pages not the content.</td>
+	</tr>
+	<tr>
+		<td>TER_EXCERPT_LEN</td>
+		<td>40</td>
+		<td>Integer</td>
+		<td>Number of words in the Wordpress excerpt</td>
+	</tr>
+	<tr>
+		<td>TER_TITLE_FORMAT_DEFAULT</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Title defaults to wp_title(''). Set to true for Wordpress SEO plugin support</td>
+	</tr>
+	<tr>
+		<td>TER_MAX_IMAGE_SIZE_KB</td>
+		<td>1024</td>
+		<td>Integer</td>
+		<td>Wordpress media library max upload size in KB.</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<th>Feature Constants</th>
+		<th>Default Value</th>
+		<th>Useage</th>
+		<th width="300">Description</th>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_BACK_TO_TOP</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Back to top button feature.</td>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_BRANDING</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Logo/Branding with hover text  feature</td>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_FAVICONS</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Favicon feature - Use markup and images from: http://realfavicongenerator.net/</td>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_SITE_MOVED</td>
+		<td>false</td>
+		<td>PostID</td>
+		<td>Enter a page ID to act as the site moved warning page. Use for IP/DNS changes.</td>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_SSL</td>
+		<td> false</td>
+		<td>Value</td>
+		<td> For mixed content: 'https' or 'http' - Value represents if the site will be mostly secure or non-secure</td>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_SLIDER</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Owl slider feature</td>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_WAYPOINTS</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Enqueue waypoints.js. Turn this on for the CTA Sidebar feature.</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<th>Experimental Constants</th>
+		<th>Default Value</th>
+		<th>Useage</th>
+		<th width="300">Description</th>
+	</tr>
+	<tr>
+		<td>TER_ACTIVATE_SKROLLR</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Enqueue skrollr.js</td>
+	</tr>
+</table>
