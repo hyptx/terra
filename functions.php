@@ -160,6 +160,10 @@ function ter_admin_bar_remove_wp(){
 }
 endif;
 
+if(!function_exists('ter_help_page_menu')):
+function ter_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
+endif;
+
 if(!function_exists('ter_auto_excerpt_more')):
 function ter_auto_excerpt_more($more){
 	return ' &hellip;' . ter_continue_reading_link();
@@ -358,6 +362,7 @@ add_action('admin_init','ter_remove_dashboard_meta');//Admin Widgets
 add_action('login_head','ter_admin_favicon');//Admin Favicon
 add_action('admin_head','ter_admin_favicon');//Admin Favicon
 add_filter('admin_footer_text','ter_admin_footer');//Admin Footer
+add_action('admin_menu','ter_help_page_menu');//Admin Help Page
 add_filter('wp_list_pages','ter_add_home_link');//Add Home Link
 add_filter('show_admin_bar','ter_admin_bar');//Admin Bar
 add_action('admin_bar_menu','ter_admin_bar_login');//Login Admin Bar

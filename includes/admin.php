@@ -1,8 +1,4 @@
 <?php /* ~~~~~~~~~~~ Admin Page ~~~~~~~~~~~ */
-
-function ter_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
-add_action('admin_menu','ter_help_page_menu');
-
 function ter_help_page_html(){?>
 	<style type="text/css">
 	pre {
@@ -14,7 +10,7 @@ function ter_help_page_html(){?>
 	}
 	</style>
 	<div class="wrap">
-    	<h2>Terra Help</h2>
+    	<h2>Theme Help</h2>
 
 		<?php global $ter_child_help ?>
 		<?php if($ter_child_help): ?>
