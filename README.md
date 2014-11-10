@@ -71,7 +71,8 @@ if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') $_SERVER['HTTPS'] = 'on';
 ##Theme Config
 
 The theme is configurable by modifying this set of constants. It is located in *functions.php*
-<table width="100%" border="1" cellpadding="5">
+
+<table>
 	<tr>
 		<th>System Constants</th>
 		<th>Default Value</th>
