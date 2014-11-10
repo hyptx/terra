@@ -72,13 +72,12 @@ if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') $_SERVER['HTTPS'] = 'on';
 
 The theme is configurable by modifying this set of constants. It is located in *functions.php*
 
-<div style="font-size:12px">
 <table>
 	<tr>
 		<th>System Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th>Description</th>
+		<th width="300">Description</th>
 	</tr>
 	<tr>
 		<td>TER_ERROR_DISPLAY</td>
@@ -122,7 +121,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Layout Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th>Description</th>
+		<th width="300">Description</th>
 	</tr>
 	<tr>
 		<td>TER_LOGO</td>
@@ -176,7 +175,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>WP Related Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th>Description</th>
+		<th width="300">Description</th>
 	</tr>
 	<tr>
 		<td>TER_ADMIN_BAR</td>
@@ -224,7 +223,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Feature Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th>Description</th>
+		<th width="300">Description</th>
 	</tr>
 	<tr>
 		<td>TER_ACTIVATE_BACK_TO_TOP</td>
@@ -278,7 +277,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Experimental Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th>Description</th>
+		<th width="300">Description</th>
 	</tr>
 	<tr>
 		<td>TER_ACTIVATE_SKROLLR</td>
@@ -286,6 +285,4 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Boolean</td>
 		<td>Enqueue skrollr.js</td>
 	</tr>
-
 </table>
-</div>
