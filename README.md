@@ -77,7 +77,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>System Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th width="300">Description</th>
+		<th>Description</th>
 	</tr>
 	<tr>
 		<td>TER_ERROR_DISPLAY</td>
@@ -103,8 +103,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>3.3.0</td>
 		<td>Value</td>
 		<td>Which version of Bootstrap to load from the CDN.</td>
-	</tr>
-	
+	</tr>	
 	<tr>
 		<td>TER_GOOGLE_FONT</td>
 		<td>Open+Sans: 400,400italic,600,600italic</td>
@@ -117,7 +116,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Layout Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th width="300">Description</th>
+		<th>Description</th>
 	</tr>
 	<tr>
 		<td>TER_LOGO</td>
@@ -167,7 +166,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>WP Related Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th width="300">Description</th>
+		<th>Description</th>
 	</tr>
 	<tr>
 		<td>TER_ADMIN_BAR</td>
@@ -211,7 +210,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Feature Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th width="300">Description</th>
+		<th>Description</th>
 	</tr>
 	<tr>
 		<td>TER_ACTIVATE_BACK_TO_TOP</td>
@@ -261,7 +260,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Experimental Constants</th>
 		<th>Default Value</th>
 		<th>Useage</th>
-		<th width="300">Description</th>
+		<th>Description</th>
 	</tr>
 	<tr>
 		<td>TER_ACTIVATE_SKROLLR</td>
