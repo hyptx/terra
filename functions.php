@@ -16,7 +16,7 @@ ter_define_constants(array(
 	'TER_SLIDER' => 	$ter_dir . '/owl/'
 ));
 
-/* Theme Options - See: https://github.com/hyptx/terra/blob/v3.3.0.2/README.md >~~~~~~~> */
+/* Theme Options - See: https://github.com/hyptx/terra/blob/v3.3.0.2/README.md#theme-config >~~~~~~~> */
 
 ter_define_constants(array(
 	/* System */
