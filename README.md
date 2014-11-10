@@ -286,3 +286,4 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Enqueue skrollr.js</td>
 	</tr>
 </table>
+
