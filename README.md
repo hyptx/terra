@@ -96,22 +96,26 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>1.9.1</td>
 		<td>Value</td>
 		<td>Which version of jQuery to load from the CDN. Pass false to load the Wordpress default jQuery verison.</td>
-		<td>&nbsp;</td>
 	</tr>
 	<tr>
 		<td>TER_BOOTSTRAP_VERSION</td>
 		<td>3.3.0</td>
 		<td>Value</td>
 		<td>Which version of Bootstrap to load from the CDN.</td>
-	</tr>	
+	</tr>
+	
 	<tr>
 		<td>TER_GOOGLE_FONT</td>
 		<td>Open+Sans: 400,400italic,600,600italic</td>
 		<td>Value</td>
 		<td>Google Font API Family - Value after &quot;?family=&quot; in the URL. Pass false for default browser fonts.</td>
 	</tr>
-</table>
-<table>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
 	<tr>
 		<th>Layout Constants</th>
 		<th>Default Value</th>
@@ -160,8 +164,12 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>CSL</td>
 		<td>Comma separated list of sidebars.  Add ',CTA Sidebar' to activate the CTA Sidebar feature.</td>
 	</tr>
-</table>
-<table>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
 	<tr>
 		<th>WP Related Constants</th>
 		<th>Default Value</th>
@@ -204,8 +212,12 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Integer</td>
 		<td>Wordpress media library max upload size in KB.</td>
 	</tr>
-</table>
-<table>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
 	<tr>
 		<th>Feature Constants</th>
 		<th>Default Value</th>
@@ -254,8 +266,12 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Boolean</td>
 		<td>Enqueue waypoints.js. Turn this on for the CTA Sidebar feature.</td>
 	</tr>
-</table>
-<table>
+	<tr>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
 	<tr>
 		<th>Experimental Constants</th>
 		<th>Default Value</th>
@@ -269,4 +285,3 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Enqueue skrollr.js</td>
 	</tr>
 </table>
-
