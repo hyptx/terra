@@ -179,6 +179,7 @@ endif;
 if(!function_exists('ter_render_modals')):
 function ter_render_modals(){
 	global $ter_modals;
+	if(!$ter_modals) return;
 	foreach($ter_modals as $modal) echo $modal;
 }
 endif;
