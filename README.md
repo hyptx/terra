@@ -204,7 +204,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>TER_TITLE_FORMAT_DEFAULT</td>
 		<td>false</td>
 		<td>Boolean</td>
-		<td>Title defaults to wp_title(''). Set to true for Wordpress SEO plugin support</td>
+		<td>Change pretty page title to wp_title(''). Set to true for Wordpress SEO plugin support</td>
 	</tr>
 	<tr>
 		<td>TER_MAX_IMAGE_SIZE_KB</td>
