@@ -112,7 +112,11 @@ function ter_cta_sidebar($delay = 2000,$animation_speed = 500){
 endif;
 
 /* Continue Reading Link */
-if(!function_exists('ter_continue_reading_link')): function ter_continue_reading_link(){ return ' <a href="'. esc_url(get_permalink()) . '">' . __( '<span class="meta-nav">Read More</span>','terra') . '</a>'; } endif;
+if(!function_exists('ter_continue_reading_link')):
+function ter_continue_reading_link(){
+	return ' <a href="'. esc_url(get_permalink()) . '">' . __( '<span class="meta-nav">Read More</span>','terra') . '</a>';
+}
+endif;
 
 /* Get Sidebar
 *  Sidebar Switching Routine
@@ -356,7 +360,7 @@ endif;
 /* Title Format */
 if(!function_exists('ter_title')):
 function ter_title(){
-	if(TER_TITLE_FORMAT_DEFAULT == 'yoast') wp_title('');
+	if(TER_TITLE_FORMAT_DEFAULT == true) wp_title('');
 	else{ wp_title('|',true,'right'); bloginfo('name'); }
 }
 endif;

@@ -92,8 +92,8 @@ function terra_setup(){
 }
 endif;
 
-if(!function_exists('ter_head')): 
-function ter_head(){
+if(!function_exists('ter_add_favicons')): 
+function ter_add_favicons(){
 	if(TER_ACTIVATE_FAVICONS) require('favicon.php');
 	else echo '<link rel="shortcut icon" href="' . TER_GRAPHICS .'favicon-32x32.png">';
 	//echo '<meta name="format-detection" content="telephone=no">';//This removes IPhone phone formatting - Future Constant?
@@ -357,7 +357,7 @@ endif;
 /* Actions & Filters >~~~~~~~> */
 
 add_action('after_setup_theme','terra_setup');//Theme Setup
-add_action('ter_head','ter_head');//WP Head
+add_action('ter_head','ter_add_favicons');//WP Head
 add_action('admin_init','ter_remove_dashboard_meta');//Admin Widgets
 add_action('login_head','ter_admin_favicon');//Admin Favicon
 add_action('admin_head','ter_admin_favicon');//Admin Favicon
