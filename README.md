@@ -55,6 +55,11 @@ Two javascript files are loaded to support IE8, respond.js and html5.js. Respond
 3. Activate Terra Jr
 4. Rock and Roll
 
+
+##Hacks
+
+Remove IPhone phone formatting: ```<meta name="format-detection" content="telephone=no">```
+
 ##CloudFlare
 
 If you want to use the theme with CloudFlare's flexible SSL, it's easy, and free. You will need to secure your Wordpress admin area so that the wp admin bar stays secure on the front end. Add the following two lines toward the top of your *wp-config.php* file. 
@@ -286,6 +291,3 @@ The theme is configurable by modifying this set of constants. It is located in *
 	</tr>
 </table>
 
-##Hacks
-
-Remove IPhone phone formatting: ```<meta name="format-detection" content="telephone=no">';```
