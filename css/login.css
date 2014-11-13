@@ -1,0 +1,7 @@
+body.login{background:#333}
+body.login div#login h1 a{background-image:url(../graphics/logo.png); width:254px; height:44px; background-size:auto}
+body.login form{background:#BAB3AB; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px}
+body.login form .button.button-primary{height:32px; background:#59AB68; border-color:#488854; opacity:.9}
+body.login form .button.button-primary:hover{background:#59AB68; border-color:#488854; opacity:1}
+.login label{color:#333}
+.login #nav a:hover,.login #nav a:active,.login #nav a:focus,.login #backtoblog a:hover,.login #backtoblog a:active,.login #backtoblog a:focus{color:#fff}

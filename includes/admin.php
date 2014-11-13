@@ -73,6 +73,12 @@ function ter_help_page_html(){?>
 	<li><code>[modal-trigger id="testmodal" class="btn btn-ter"]Open Test Modal[/modal-trigger]</code> - Remove class attribute to use a plain link. </li>
 </ul>
 <br>
+<h3>PDF Embed Shortcode</h3><hr>
+<p>Shorcode specifically meant for embedding a .pdf file. Height defaults to 500 and must be set to a pixel height.</p>
+<ul>
+	<li><code>[embed-pdf url="http://terra.hyptx.com/wp-content/uploads/2014/11/pdf-sample.pdf" height="500"]</code> - Enter the url of your .pdf document. </li>
+</ul>
+<br>
 <h3>Layout Shortcodes</h3><hr>
 <p>Use these shortcodes within your posts and pages to aid in laying out your html. Simply copy and paste one of the examples below into the Wordpress editor. Make sure to paste it into the HTML editor, not the Visual editor.</p>
 <p>The layout shortcodes add a div element with the class of &quot;tsc&quot; within said element. If you need to pad or margin the elements target .tsc to do so. Padding or margining the parent div created by the shortcode will break the layout.</p>

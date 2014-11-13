@@ -5,6 +5,7 @@ function ter_one_third($atts,$content = null){ return '<div class="col-sm-4"><di
 function ter_one_half($atts,$content = null){ return '<div class="col-sm-6"><div class="tsc">' . do_shortcode($content) . '</div></div>'; }
 function ter_two_thirds($atts,$content = null){ return '<div class="col-sm-8"><div class="tsc">' . do_shortcode($content) . '</div></div>'; }
 function ter_tsc_grid($atts,$content = null){ return '<div class="col-sm-' . $atts['col'] . '"><div class="tsc">' . do_shortcode($content) . '</div></div>'; }
+
 /* Buttons ~~> */
 function ter_button($atts,$content = null){ return ter_print_button($atts,$content); }
 function ter_button_cta($atts,$content = null){ return ter_print_button($atts,$content,true); }
@@ -19,9 +20,22 @@ function ter_print_button($atts,$content = null,$cta = false){
 	else $class .= ' btn-ter';
 	return '<a href="' . $atts['href'] . '"' . $target . ' class="' . $class . '">' . do_shortcode($content) . $caret . '</a>';
 }
+
 /* Modal ~~> */
 function ter_modal($atts,$content = null){ ter_save_modal($atts,$content,true); }
 function ter_modal_trigger($atts,$content = null){ return ter_render_modal_trigger($atts,$content); }
+
+/* Embed PDF ~~> */
+function ter_embed_pdf($atts,$content = null){
+	if(!$atts['height']) $atts['height'] = '500'; 
+	return '
+	<div class="ter-embed margin-bottom">
+		<object data="' . $atts['url'] . '" type="application/pdf" width="100%" height="' . $atts['height'] . '">
+			<p>It appears your Web browser is not configured to display PDF files. <a href="' . $atts['url'] . '">Download the PDF file instead</a></p>
+		</object>
+	</div>
+	';
+}
 
 /* Shortcodes ~~> */
 add_shortcode('row','ter_row');
@@ -33,7 +47,9 @@ add_shortcode('button','ter_button');
 add_shortcode('button-cta','ter_button_cta');
 add_shortcode('modal','ter_modal');
 add_shortcode('modal-trigger','ter_modal_trigger');
+add_shortcode('embed-pdf','ter_embed_pdf');
 
+/* Shortcode Content Filter ~~> */
 function ter_shortcode_content_filter($content){
     global $ter_child_shortcodes_for_filter;	
 	$shortcode_array = array('row','one-third','one-half','two-thirds','grid','modal','modal-trigger');

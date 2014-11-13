@@ -1,6 +1,6 @@
 <?php /* Parent Theme */
 
-/* Define Constants Function - DO NOT MODIFY >~~~~~~~> */
+/* Define Constants Function - DO NOT MODIFY >~~~~~~~~> */
 if(!function_exists('ter_define_constants')): function ter_define_constants($constants){ foreach($constants as $key => $value) if(!defined($key)) define($key,$value); } endif;
 $ter_dir = get_bloginfo('template_directory');//Parent theme is always 'template_directory'
 /* <~~~~~~~< END of DO NOT MODIFY */
@@ -16,8 +16,7 @@ ter_define_constants(array(
 	'TER_SLIDER' => 	$ter_dir . '/owl/'
 ));
 
-/* Theme Options - See: https://github.com/hyptx/terra/blob/v3.3.0.4/README.md#theme-config >~~~~~~~> */
-
+/* Theme Options - See: https://github.com/hyptx/terra/blob/v3.3.0.4/README.md#theme-config >~~~~~~~~> */
 ter_define_constants(array(
 	/* System */
 	'TER_ERROR_DISPLAY_ON' => 		false,
@@ -34,12 +33,14 @@ ter_define_constants(array(
 	'TER_SECONDARY' => 				'right',
 	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',	
 	/* Wordpress */
+	'TER_ADD_HOME_LINK' => 			false,
 	'TER_ADMIN_BAR' => 				'editor',
 	'TER_ADMIN_BAR_LOGIN' => 		false,
 	'TER_EXCERPT' => 				false,
 	'TER_EXCERPT_LEN' => 			40,
 	'TER_TITLE_FORMAT_DEFAULT' => 	false,
-	'TER_MAX_IMAGE_SIZE_KB' => 		1024,	
+	'TER_MAX_IMAGE_SIZE_KB' => 		1024,
+	'TER_WP_POST_FORMATS' => 		false,
 	/* Features */
 	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
 	'TER_ACTIVATE_BRANDING' => 		false,
@@ -51,10 +52,9 @@ ter_define_constants(array(
 	/* Experimental */
 	'TER_ACTIVATE_SKROLLR' => 		false
 ));
+/* END <~~~~~~~~< Theme Options */
 
-/* END <~~~~~~~< Theme Options */
-
-/* Includes ~~> */
+/* Includes ~~~~> */
 require(TER_INCLUDES . 'template-tags.php');
 require(TER_INCLUDES . 'walkers.php');
 require(TER_INCLUDES . 'admin.php');
@@ -65,8 +65,7 @@ if(TER_ACTIVATE_SLIDER) require(TER_INCLUDES . 'slider.php');
 if(TER_ACTIVATE_SSL) require(TER_INCLUDES . 'ssl.php');
 //if(TER_ACTIVATE_SKROLLR) require(TER_INCLUDES . 'skrollr.php'); //Experimental
 
-/* Action & Filter Callbacks >~~~~~~~> */
-
+/* Setup ~~> */
 if(!function_exists('terra_setup')): 
 function terra_setup(){
 	if(TER_ERROR_DISPLAY_ON){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
@@ -84,41 +83,15 @@ function terra_setup(){
 	remove_action('wp_head','start_post_rel_link',10,0);
 	remove_action('wp_head','parent_post_rel_link',10,0);
 	remove_action('wp_head','adjacent_posts_rel_link',10,0);
-	remove_filter('the_content', 'wptexturize');
-	remove_filter('comment_text', 'wptexturize');
-	remove_filter('the_excerpt', 'wptexturize');
-	//add_theme_support('post-formats',explode(',','gallery,image,video')); //Uncomment to create post formats
-	//remove_filter('wp_list_pages','ter_add_home_link'); //Uncomment to remove home link from sitemap
+	remove_filter('the_content','wptexturize');
+	remove_filter('comment_text','wptexturize');
+	remove_filter('the_excerpt','wptexturize');
+	if(TER_WP_POST_FORMATS) add_theme_support('post-formats',explode(',',TER_WP_POST_FORMATS));
 }
 endif;
+add_action('after_setup_theme','terra_setup');
 
-if(!function_exists('ter_add_favicons')): 
-function ter_add_favicons(){
-	if(TER_ACTIVATE_FAVICONS) require('favicon.php');
-	else echo '<link rel="shortcut icon" href="' . TER_GRAPHICS .'favicon-32x32.png">';
-	//echo '<meta name="format-detection" content="telephone=no">';//This removes IPhone phone formatting - Future Constant?
-}
-endif;
-
-if(!function_exists('ter_remove_dashboard_meta')):
-function ter_remove_dashboard_meta(){
-	remove_meta_box('dashboard_primary','dashboard','normal'); 
-	remove_meta_box('dashboard_quick_press','dashboard','side');
-}
-endif;
-
-if(!function_exists('ter_admin_favicon')):
-function ter_admin_favicon(){
-	echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">';
-}
-endif;
-
-if(!function_exists('ter_admin_footer')):
-function ter_admin_footer(){
-	echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>';
-}
-endif;
-
+/* Add Home Link to wp_list_pages ~~> */
 if(!function_exists('ter_add_home_link')):
 function ter_add_home_link($items){
 	if(is_front_page()) $current = ' current_page_item';
@@ -127,10 +100,36 @@ function ter_add_home_link($items){
     return $items;
 }
 endif;
+if(TER_ADD_HOME_LINK) add_filter('wp_list_pages','ter_add_home_link');
 
+/* Add Script
+*  Add to top of any page template-> $ter_add_script = array('test'); ~~> */
+if(!function_exists('ter_add_script')):
+function ter_add_script(){
+	if(is_admin()) return;
+	global $ter_add_script;
+	if(!$ter_add_script) return;
+    foreach($ter_add_script as $script)	wp_enqueue_script('ter_script_' . $script, TER_JS . $script . '.js');
+}
+endif;
+add_action('wp_print_scripts','ter_add_script',101);
+
+/* Add Stylesheet
+*  Add to top of any page template-> $ter_add_stylesheet = array('test'); ~~> */
+if(!function_exists('ter_add_stylesheet')):
+function ter_add_stylesheet(){
+	if(is_admin()) return;
+	global $ter_add_stylesheet;
+	if(!$ter_add_stylesheet) return;
+    foreach($ter_add_stylesheet as $stylesheet)	wp_enqueue_style('ter_style_' . $stylesheet, TER_CSS . $stylesheet . '.css');
+}
+endif;
+add_action('wp_print_styles','ter_add_stylesheet',102);//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
+
+/* Admin Bar System ~~> */
 if(!function_exists('ter_admin_bar')):
 function ter_admin_bar(){
-	if(TER_ADMIN_BAR != 'all') add_action('admin_print_scripts-profile.php','ter_hide_admin_bar');
+	if(TER_ADMIN_BAR != 'all') add_action('admin_print_scripts-profile.php','ter_admin_bar_hide');
 	if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) return true;
 	switch(TER_ADMIN_BAR){
 		case 'all': $hide_bar = false; break;
@@ -142,147 +141,65 @@ function ter_admin_bar(){
 	if($hide_bar) return false;
 	else return true;
 }
-function ter_hide_admin_bar(){
+add_filter('show_admin_bar','ter_admin_bar');
+
+/* Admin Bar Hide ~~> */
+function ter_admin_bar_hide(){
 	echo '<style type="text/css">.show-admin-bar{display:none;}</style>';
 }
 endif;
+//Action call in ter_admin_bar()
 
-if(!function_exists('ter_admin_bar_login')):
-function ter_admin_bar_login($wp_admin_bar){
+/* Admin Bar Login Link ~~> */
+if(!function_exists('ter_admin_bar_login_link')):
+function ter_admin_bar_login_link($wp_admin_bar){
 	if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) $wp_admin_bar->add_menu(array('title' => __('Log In'),'href' => wp_login_url()));
 }
 endif;
+add_action('admin_bar_menu','ter_admin_bar_login_link');
 
+/* Admin Bar Remove WP Logo ~~> */
 if(!function_exists('ter_admin_bar_remove_wp')):
 function ter_admin_bar_remove_wp(){
 	global $wp_admin_bar;
 	$wp_admin_bar->remove_menu('wp-logo');
 }
 endif;
+add_action('wp_before_admin_bar_render','ter_admin_bar_remove_wp');
 
-if(!function_exists('ter_help_page_menu')):
-function ter_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
-endif;
-
-if(!function_exists('ter_auto_excerpt_more')):
-function ter_auto_excerpt_more($more){
-	return ' &hellip;' . ter_continue_reading_link();
+/* Admin Favicon ~~> */
+if(!function_exists('ter_admin_favicon')):
+function ter_admin_favicon(){
+	echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">';
 }
 endif;
+add_action('login_head','ter_admin_favicon');
+add_action('admin_head','ter_admin_favicon');
 
-if(!function_exists('ter_filter_next_post_sort')):
-function ter_filter_next_post_sort($sort){
-	$sort = "ORDER BY p.post_title ASC LIMIT 1";
-	return $sort;
+/* Admin Footer ~~> */
+if(!function_exists('ter_admin_footer')):
+function ter_admin_footer(){
+	echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>';
 }
 endif;
+add_filter('admin_footer_text','ter_admin_footer');
 
-if(!function_exists('ter_filter_next_post_where')):
-function ter_filter_next_post_where($where){
-	global $post,$wpdb;
-	return $wpdb->prepare("WHERE p.post_title > '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
+/* Admin Help Page Menu ~~> */
+if(!function_exists('ter_admin_help_page_menu')):
+function ter_admin_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
+endif;
+add_action('admin_menu','ter_admin_help_page_menu');
+
+/* Admin Remove Dashboard Meta ~~> */
+if(!function_exists('ter_admin_remove_dashboard_meta')):
+function ter_admin_remove_dashboard_meta(){
+	remove_meta_box('dashboard_primary','dashboard','normal'); 
+	remove_meta_box('dashboard_quick_press','dashboard','side');
 }
 endif;
- 
-if(!function_exists('ter_filter_previous_post_sort')):
-function ter_filter_previous_post_sort($sort){
-	$sort = "ORDER BY p.post_title DESC LIMIT 1";
-	return $sort;
-}
-endif;
+add_action('admin_init','ter_admin_remove_dashboard_meta');
 
-if(!function_exists('ter_filter_previous_post_where')):
-function ter_filter_previous_post_where($where){
-	global $post,$wpdb;
-	return $wpdb->prepare("WHERE p.post_title < '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
-}
-endif;
-
-if(!function_exists('ter_custom_excerpt_more')):
-function ter_custom_excerpt_more($output){
-	if(has_excerpt() && ! is_attachment()) $output .= ter_continue_reading_link();
-	return $output;
-}
-endif;
-
-if(!function_exists('ter_custom_login_styles')):
-function ter_custom_login_styles(){
-	echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>';
-}
-endif;
-
-if(!function_exists('ter_custom_login_logo_title')):
-function ter_custom_login_logo_title(){
-	return get_bloginfo('site');
-}
-endif;
-
-if(!function_exists('ter_custom_login_logo_url')):
-function ter_custom_login_logo_url(){
-	return get_bloginfo('url');
-}
-endif;
-
-if(!function_exists('ter_site_map_post_type')):
-function ter_site_map_post_type($dont_show_array = array('')){	
-	$post_types = get_post_types(array('public' => true,'_builtin' => false));
-	foreach($post_types as $post_type){
-		if(in_array($post_type,$dont_show_array)) continue;
-		$post_type_object = get_post_type_object($post_type);
-		echo '<h3>' . $post_type_object->label . '</h3>';
-		echo '<ul>';
-		wp_list_pages('post_type=' . $post_type . '&depth=0&title_li=');
-		echo '</ul>';
-	}
-}
-endif;
-
-if(!function_exists('ter_excerpt_length')):
-function ter_excerpt_length($length){
-	return TER_EXCERPT_LEN;
-}
-endif;
-
-if(!function_exists('ter_page_nav_filter')):
-function ter_page_nav_filter($menu){
-	$replace = array('<div class="menu">','</div>','<ul>','</ul>');
-	$menu = str_replace($replace,'',$menu); 
-	return $menu;
-}
-endif;
-
-if(!function_exists('ter_register_sidebars')):
-function ter_register_sidebars(){
-	$sidebars = explode(',',TER_SIDEBARS);
-	foreach($sidebars as $sidebar){
-		register_sidebar(array('name'=> $sidebar,'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-inner">','after_widget' => '</div></div>','before_title' => '<h3>','after_title' => '</h3>',));
-	}
-}
-endif;
-
-if(!function_exists('ter_site_moved_notice')):
-function ter_site_moved_notice(){
-    echo '<div class="error"><p><strong>Site Moved: ' . get_bloginfo('url') .' has moved to a new location, new IP address and or a new web server. Any edits made to posts here will not be reflected in the current/live website.</strong></p></div>';
-}
-endif;
-
-if(!function_exists('ter_site_moved_redirect')):
-function ter_site_moved_redirect(){
-	global $post;
-	if($post->ID == TER_ACTIVATE_SITE_MOVED) return;
-	$redirect_url = get_permalink(TER_ACTIVATE_SITE_MOVED);
-	wp_redirect($redirect_url,301);
-	exit;
-}
-endif;
-
-if(!function_exists('ter_ssl_content_filter')):
-function ter_ssl_content_filter($content){
-	if(isset($_SERVER['HTTPS'])) $content = str_replace('http://' . $_SERVER['SERVER_NAME'],'https://' . $_SERVER['SERVER_NAME'],$content);
-	return $content;
-}
-endif;
-
+/* Enqueue Styles ~~> */
 if(!function_exists('ter_enqueue_styles')):
 function ter_enqueue_styles(){
 	if(is_admin()) return;
@@ -299,14 +216,18 @@ function ter_enqueue_styles(){
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css_theme',TER_CDN_URL . 'owl-carousel/1.3.2/owl.theme.css');
 }
 endif;
+add_action('wp_print_styles','ter_enqueue_styles',100);
 
+/* Enqueue Parent Theme Styles ~~> */
 if(!function_exists('ter_enqueue_parent_theme_styles')):
 function ter_enqueue_parent_theme_styles(){
 	if(is_admin()) return;	
 	wp_enqueue_style('terra',TERRA . 'style.css',array('ter_bootstrap'));
 }
 endif;
+add_action('wp_print_styles','ter_enqueue_parent_theme_styles',101);
 
+/* Enqueue Javascript ~~> */
 if(!function_exists('ter_enqueue_js')):
 function ter_enqueue_js(){
 	if(is_admin()) return;
@@ -322,29 +243,43 @@ function ter_enqueue_js(){
 	wp_enqueue_script('ter_js',TER_JS . 'scripts.js',array('jquery'));
 }
 endif;
+add_action('wp_print_scripts','ter_enqueue_js',100);
 
-if(!function_exists('ter_add_stylesheet')):
-function ter_add_stylesheet(){
-	if(is_admin()) return;
-	global $ter_add_stylesheet;
-	if(!$ter_add_stylesheet) return;
-    foreach($ter_add_stylesheet as $stylesheet)	wp_enqueue_style('ter_style_' . $stylesheet, TER_CSS . $stylesheet . '.css');
+/* Excerpt Length ~~> */
+if(!function_exists('ter_excerpt_length')):
+function ter_excerpt_length($length){
+	return TER_EXCERPT_LEN;
 }
 endif;
+add_filter('excerpt_length','ter_excerpt_length');
 
-if(!function_exists('ter_add_script')):
-function ter_add_script(){
-	if(is_admin()) return;
-	global $ter_add_script;
-	if(!$ter_add_script) return;
-    foreach($ter_add_script as $script)	wp_enqueue_script('ter_script_' . $script, TER_JS . $script . '.js');
+/* Excerpt More ~~> */
+if(!function_exists('ter_excerpt_more')):
+function ter_excerpt_more($output){
+	if(has_excerpt() && ! is_attachment()) $output .= ter_continue_reading_link();
+	return $output;
 }
 endif;
+add_filter('get_the_excerpt','ter_excerpt_more');
 
-if(!function_exists('ter_prepend_attachment')):
-function ter_prepend_attachment($p){ return '<p class="attachment">' . wp_get_attachment_link(0,'full',false) . '</p>'; }
+/* Excerpt More Auto ~~> */
+if(!function_exists('ter_excerpt_more_auto')):
+function ter_excerpt_more_auto($more){
+	return ' &hellip;' . ter_continue_reading_link();
+}
 endif;
+add_filter('excerpt_more','ter_excerpt_more_auto');
 
+/* Favicons ~~> */
+if(!function_exists('ter_favicons')): 
+function ter_favicons(){
+	if(TER_ACTIVATE_FAVICONS) require('favicon.php');
+	else echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">';
+}
+endif;
+add_action('ter_head','ter_favicons');
+
+/* Limit Image Uploads ~~> */
 if(!function_exists('ter_limit_image_uploads')):
 function ter_limit_image_uploads($file){
 	$error_message = 'KB is to large. Please reduce the file size of your image to ' . TER_MAX_IMAGE_SIZE_KB . 'KB or less. Hosting space is limited and uploading large images will slow down your page loads. Use a tool such as http://toki-woki.net/p/Shrink-O-Matic/ to help you to resize your images. Target size: Width 1024px, file size 100KB-200KB';
@@ -353,36 +288,138 @@ function ter_limit_image_uploads($file){
 	return $file;	
 }
 endif;
+add_filter('wp_handle_upload_prefilter','ter_limit_image_uploads');
 
-/* Actions & Filters >~~~~~~~> */
+/* Login Logo Title ~~> */
+if(!function_exists('ter_login_logo_title')):
+function ter_login_logo_title(){
+	return get_bloginfo('site');
+}
+endif;
+add_filter('login_headertitle','ter_login_logo_title');
 
-add_action('after_setup_theme','terra_setup');//Theme Setup
-add_action('ter_head','ter_add_favicons');//WP Head
-add_action('admin_init','ter_remove_dashboard_meta');//Admin Widgets
-add_action('login_head','ter_admin_favicon');//Admin Favicon
-add_action('admin_head','ter_admin_favicon');//Admin Favicon
-add_filter('admin_footer_text','ter_admin_footer');//Admin Footer
-add_action('admin_menu','ter_help_page_menu');//Admin Help Page
-add_filter('wp_list_pages','ter_add_home_link');//Add Home Link
-add_filter('show_admin_bar','ter_admin_bar');//Admin Bar
-add_action('admin_bar_menu','ter_admin_bar_login');//Login Admin Bar
-add_action('wp_before_admin_bar_render','ter_admin_bar_remove_wp');//Admin Bar no WP
-add_filter('excerpt_more','ter_auto_excerpt_more');//Auto Excerpt More
-add_filter('get_the_excerpt','ter_custom_excerpt_more');//Excerpt More
-add_action('login_enqueue_scripts','ter_custom_login_styles');//Login Logo - Overwritten in child theme
-add_filter('login_headertitle','ter_custom_login_logo_title');//Login Logo Title
-add_filter('login_headerurl','ter_custom_login_logo_url');//Login Url
-add_filter('excerpt_length','ter_excerpt_length');//Excerpt Length
-add_filter('wp_page_menu','ter_page_nav_filter',10);//Page Nav Filter
-add_action('widgets_init','ter_register_sidebars');//Sidebars
-add_action('wp_print_styles','ter_enqueue_styles',100);//Enqueue Styles
-add_action('wp_print_styles','ter_enqueue_parent_theme_styles',101);//Enqueue Parent Styles
-add_action('wp_print_scripts','ter_enqueue_js',100);//Enqueue Js
-add_action('wp_print_styles','ter_add_stylesheet',102);//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
-add_action('wp_print_scripts','ter_add_script',101);//Add Script - Add to top of page template-> $ter_add_script = array('test');
-add_filter('prepend_attachment','ter_prepend_attachment');//Attachment Page - Set image size
-add_filter('wp_handle_upload_prefilter','ter_limit_image_uploads');//Limit uploaded image size
-if(TER_ACTIVATE_SITE_MOVED) add_action('admin_notices','ter_site_moved_notice');//Site moved notice and redirect admin notice
-if(TER_ACTIVATE_SITE_MOVED) add_action('ter_redirect','ter_site_moved_redirect',10,1);//Site moved notice and redirect
-add_filter('the_content','ter_ssl_content_filter');//SSL Feature
+/* Login Logo URL ~~> */
+if(!function_exists('ter_login_logo_url')):
+function ter_login_logo_url(){
+	return get_bloginfo('url');
+}
+endif;
+add_filter('login_headerurl','ter_login_logo_url');
+
+/* Login Styles ~~> */
+if(!function_exists('ter_login_styles')):
+function ter_login_styles(){
+	wp_enqueue_style('ter_login_css',TER_CSS . 'login.css');
+	//Inline Option to save a CSS file load:
+	//echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>';
+}
+endif;
+add_action('login_enqueue_scripts','ter_login_styles');
+
+/* Page Nav Filter ~~> */
+if(!function_exists('ter_page_nav_filter')):
+function ter_page_nav_filter($menu){
+	$replace = array('<div class="menu">','</div>','<ul>','</ul>');
+	$menu = str_replace($replace,'',$menu); 
+	return $menu;
+}
+endif;
+add_filter('wp_page_menu','ter_page_nav_filter',10);
+
+/* Prepend Attachment ~~> */
+if(!function_exists('ter_prepend_attachment')):
+function ter_prepend_attachment($p){ return '<p class="attachment">' . wp_get_attachment_link(0,'full',false) . '</p>'; }
+endif;
+add_filter('prepend_attachment','ter_prepend_attachment');
+
+/* Register Sidebars ~~> */
+if(!function_exists('ter_register_sidebars')):
+function ter_register_sidebars(){
+	$sidebars = explode(',',TER_SIDEBARS);
+	foreach($sidebars as $sidebar){
+		register_sidebar(array('name'=> $sidebar,'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-inner">','after_widget' => '</div></div>','before_title' => '<h3>','after_title' => '</h3>',));
+	}
+}
+endif;
+add_action('widgets_init','ter_register_sidebars');
+
+/* Site Map Add Post Types ~~> */
+if(!function_exists('ter_site_map_add_post_types')):
+function ter_site_map_add_post_types(){	
+	$post_types = get_post_types(array('public' => true,'_builtin' => false));
+	foreach($post_types as $post_type){
+		$post_type_object = get_post_type_object($post_type);
+		echo '<h3>' . $post_type_object->label . '</h3>';
+		echo '<ul>';
+		wp_list_pages('post_type=' . $post_type . '&depth=0&title_li=');
+		echo '</ul>';
+	}
+}
+endif;
+add_action('ter_site_map_extra_post_types','ter_site_map_add_post_types');
+
+/* Site Moved Notice ~~> */
+if(!function_exists('ter_site_moved_notice')):
+function ter_site_moved_notice(){
+    echo '<div class="error"><p><strong>Site Moved: ' . get_bloginfo('url') .' has moved to a new location, new IP address and or a new web server. Any edits made to posts here will not be reflected in the current/live website.</strong></p></div>';
+}
+endif;
+if(TER_ACTIVATE_SITE_MOVED) add_action('admin_notices','ter_site_moved_notice');
+
+/* Site Moved Redirect ~~> */
+if(!function_exists('ter_site_moved_redirect')):
+function ter_site_moved_redirect(){
+	global $post;
+	if($post->ID == TER_ACTIVATE_SITE_MOVED) return;
+	$redirect_url = get_permalink(TER_ACTIVATE_SITE_MOVED);
+	wp_redirect($redirect_url,301);
+	exit;
+}
+endif;
+if(TER_ACTIVATE_SITE_MOVED) add_action('ter_redirect','ter_site_moved_redirect',10,1);
+
+/* SSL Content Filter ~~> */
+if(!function_exists('ter_ssl_content_filter')):
+function ter_ssl_content_filter($content){
+	if(isset($_SERVER['HTTPS'])) $content = str_replace('http://' . $_SERVER['SERVER_NAME'],'https://' . $_SERVER['SERVER_NAME'],$content);
+	return $content;
+}
+endif;
+add_filter('the_content','ter_ssl_content_filter');
+
+
+/* Filters for continuous nav system, all action calls in template-tags.php >~~~~~~~~> */
+
+/* Filter Next Post Sort ~~> */
+if(!function_exists('ter_filter_next_post_sort')):
+function ter_filter_next_post_sort($sort){
+	$sort = "ORDER BY p.post_title ASC LIMIT 1";
+	return $sort;
+}
+endif;
+
+/* Filter Next Post Where ~~> */
+if(!function_exists('ter_filter_next_post_where')):
+function ter_filter_next_post_where($where){
+	global $post,$wpdb;
+	return $wpdb->prepare("WHERE p.post_title > '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
+}
+endif;
+
+/* Filter Previous Post Sort ~~> */
+if(!function_exists('ter_filter_previous_post_sort')):
+function ter_filter_previous_post_sort($sort){
+	$sort = "ORDER BY p.post_title DESC LIMIT 1";
+	return $sort;
+}
+endif;
+
+/* Filter Previous Post Where ~~> */
+if(!function_exists('ter_filter_previous_post_where')):
+function ter_filter_previous_post_where($where){
+	global $post,$wpdb;
+	return $wpdb->prepare("WHERE p.post_title < '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
+}
+endif;
+/* <~~~~~~~~< END Filters for continuous nav system */
 ?>

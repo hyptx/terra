@@ -13,7 +13,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo('pingback_url') ?>">
 <?php if(is_singular() && get_option('thread_comments')) wp_enqueue_script('comment-reply') ?>
-<?php do_action('ter_add_favicons') ?>
+<?php do_action('ter_head') ?>
 <?php wp_head() ?>
 <!--[if lt IE 9]>
 	<script src="<?php echo TER_JS ?>html5.js" type="text/javascript"></script>

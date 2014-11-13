@@ -10,7 +10,7 @@
 				<?php get_template_part('content','page') ?>
 				<h3><?php _e('Pages','terra') ?></h3>
 				<ul><?php wp_list_pages('depth=0&title_li=') ?></ul>
-				<?php ter_site_map_post_type() ?>
+				<?php do_action('ter_site_map_extra_post_types') ?>
 				<h3><?php _e('Posts','terra') ?></h3>
 				<ul><?php wp_list_categories('title_li=&hierarchical=0&show_count=1') ?></ul>
 				<h3><?php _e('Archives','terra') ?></h3>
