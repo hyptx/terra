@@ -224,6 +224,12 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Wordpress media library max upload size in KB.</td>
 	</tr>
 	<tr>
+		<td>TER_WP_POST_FORMATS</td>
+		<td>false</td>
+		<td>CSL</td>
+		<td>Turn on support in theme, templates include: 'gallery,image,video'</td>
+	</tr>
+	<tr>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
