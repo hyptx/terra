@@ -181,6 +181,12 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Useage</th>
 		<th>Description</th>
 	</tr>
+		<tr>
+		<td>TER_ADD_HOME_LINK</td>
+		<td>false</td>
+		<td>Boolean</td>
+		<td>Adds a link home to wp_list_pages. Useful if static home page and you want a link on sitemap</td>
+	</tr>
 	<tr>
 		<td>TER_ADMIN_BAR</td>
 		<td>editor</td>
