@@ -285,3 +285,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Enqueue skrollr.js</td>
 	</tr>
 </table>
+
+##Hacks
+
+Remove IPhone phone formatting: ```<meta name="format-detection" content="telephone=no">';```
