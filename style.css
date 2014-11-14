@@ -9,7 +9,6 @@ License: GNU General Public License
 Tags: html5,core theme,responsive,bootstrap
 */
 
-/* ~~~~~~ Main ~~~~~~ */
 body{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight:400}
 h1,h2,h3,h4,h5,h6,b,strong{font-weight:600}
 ul,ol{padding-left:30px}
@@ -19,13 +18,13 @@ a:focus,.btn:focus{outline:0}
 p:empty{margin:0}
 #page-wrap{position:relative}
 
-/* ~~~~~~ Header ~~~~~~ */
+/* Header ~~~~> */
 #branding h2,#branding h3,#branding .searchform{margin:12px 0}
 #branding h2{font-size:30px; line-height:30px}
 #branding h2 a{color:#666}
 #branding h3{font-size:18px}
 
-/* ~~~~~~ Nav ~~~~~~ */
+/* Nav ~~~~> */
 .ter-navbar{margin-bottom:0; z-index:500; background:#f8f8f8; -webkit-border-radius:0; -moz-border-radius:0; border-radius:0}
 .header-navbar{z-index:501}
 .ter-navbar .sub-menu > li > a{display:block}
@@ -56,7 +55,7 @@ p:empty{margin:0}
 .ter-breadcrumbs li{display:inline-block; list-style-type:none}
 .ter-breadcrumbs li a,.ter-breadcrumbs li span{display:inline-block; padding:4px 10px}
 
-/* ~~~~~~ Layout ~~~~~~ */
+/* Layout ~~~~> */
 #primary,#secondary{padding-top:15px; padding-bottom:15px}
 .page-header{margin-top:0; overflow:hidden}
 .entry-header{margin-bottom:20px; overflow:hidden}
@@ -64,7 +63,7 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 .widget{margin-bottom:20px}
 .widget_search .form-group{margin-bottom:4px}
 
-/* ~~~~~~ Footer ~~~~~~ */
+/* Footer ~~~~> */
 #colophon{background:#f8f8f8; margin:0; padding:0; /*margin-bottom:38px*/}/* Uncomment if fixed Footer Nav or static footer nav */
 .footer-nav-row{margin-top:12px; margin-bottom:12px}
 #colophon a{color:#777}
@@ -76,7 +75,7 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 #colophon .menu{margin:0; padding-bottom:20px}
 #copyright{text-align:center; padding:12px 0}
 
-/* ~~~~~~ WP ~~~~~~ */
+/* WP ~~~~> */
 .entry-content img{margin:0 0 10px}
 .alignleft,img.alignleft{float:left; margin-right:10px}
 .alignright,img.alignright{float:right; margin-left:10px}
@@ -87,7 +86,7 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 .gallery-item img{display:inline-block}
 .gallery-caption{font-size:.9em}
 
-/* ~~~~~~ Calendar ~~~~~~ */
+/* Calendar ~~~~> */
 #wp-calendar{width:100%; margin-top:10px}
 #wp-calendar caption {text-align:right; color:#333; font-weight:bold; padding-bottom:3px; margin-bottom:10px; border-bottom:1px solid #333;}
 #wp-calendar thead{font-size:12px}
@@ -101,14 +100,14 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 #wp-calendar tfoot #next{text-align:right}
 #wp-calendar tfoot #prev{padding-top:10px}
 
-/* ~~~~~~ Comments ~~~~~~ */
+/* Comments ~~~~> */
 .comment-heading{margin:16px 0 10px}
 .comment-heading img{margin-right:6px}
 .comment-heading .comment-links{margin-left:6px}
 .commentlist hr{margin-left:-25px}
 .commentlist .children{list-style-type:none}
 
-/* ~~~~~~ Standard Classes ~~~~~~ */
+/* Standard Classes ~~~~> */
 #page .absolute{position:absolute}
 #page .bold{font-weight:bold}
 #page .border{border:1px solid #E0E0E0}
@@ -164,7 +163,7 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 #page .underline{text-decoration:underline}
 #page .underline-row{border-bottom:0px solid #e0e0e0}
 
-/* ~~~~~~ Font Sizes ~~~~~~ */
+/* Font Sizes ~~~~> */
 #page .text-xx-large{font-size:1.5em}
 #page .text-x-large{font-size:1.3em}
 #page .text-large{font-size:1.2em}
@@ -173,11 +172,11 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 #page .text-x-small{font-size:.8em}
 #page .text-xx-small{font-size:.6em}
 
-/* ~~~~~~ Owl ~~~~~~ */
+/* Owl ~~~~> */
 .owl-carousel img{display:inline-block}
 .owl-item{text-align:center}
 
-/* ~~~~~~ GF ~~~~~~ */
+/* GF ~~~~> */
 #page .gform_body input[type="text"],#page .gform_body input[type="email"],#page .gform_body textarea, #page .gform_wrapper .gform_body select{padding:4px; font-size:1em}
 .gform_confirmation_wrapper{padding:1em; margin:1em 0; background:#FC6}
 .gform_wrapper label{font-weight:inherit}
@@ -189,7 +188,7 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 #page .gform_wrapper .gsection{margin-top:36px}
 #page .gform_wrapper table.gfield_list thead th{font-size:.85em}
 
-/* ~~~~~~ Buttons ~~~~~~ */
+/* Buttons ~~~~> */
 .btn-ter{color:#fff; background-color:#B08D72; border-color:#896E5A}
 .btn-ter:hover,.btn-ter:focus,.btn-ter:active,.btn-ter.active{color:#fff; background-color:#9D7C64; border-color:#896E5A}
 .cta-caret{display:inline-block; border-top:6px solid transparent; border-bottom:6px solid transparent; border-left:10px solid; height:0; margin-left:10px; vertical-align:middle; width:0}
@@ -198,35 +197,34 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 .back-to-top img{margin:0}
 .back-to-top-caret{display:inline-block; border-left:10px solid transparent; border-right:10px solid transparent; border-bottom:10px solid; width:0; height:0}
 
-/* ~~~~~~ Branding ~~~~~~ */
+/* Branding ~~~~> */
 #ter-branding-quotes{background:#f8f8f8}
 .ter-branding-quotes{min-height:68px; font-weight:bold; font-style:italic}
 .ter-branding-item img{opacity:.8}
 .ter-branding-item img:hover,.ter-branding-item img:active{opacity:1}
 
-/* ~~~~~~ CTA Sidebar ~~~~~~ */
+/* CTA Sidebar ~~~~> */
 #cta-sidebar{overflow:hidden; width:100%; z-index:500; color:#fff; background:rgba(0,0,0,0.8)}
 #cta-sidebar .glyphicon{float:right; font-size:26px; cursor:pointer}
 #cta-sidebar.sticky{bottom:0; position:fixed}
 
-/* ~~~~~~~~~~~~ Min Width Media Queries ~~~~~~~~~~~~ */
-
+/* Min Width Media Queries >~~~~~~~~> */
 @media (min-width: 480px){
 
 }
 
 @media (min-width: 768px){
-	/* ~~~~~~ GF ~~~~~~ */
+	/* GF ~~~~> */
 	.gform_wrapper .gform_body .gf-half{display:inline-block; clear:none; width:49%}
 	.gform_wrapper .gform_body .gf-half div input{width:100%}
 	
-	/* ~~~~~~ Nav ~~~~~~ */
+	/* Nav ~~~~> */
 	#page{margin:0!important}
 	.ter-navbar .navbar-nav li{font-size:14px}
 	.slide-collapse-nav{position:relative}
 	.slide-collapse,.slide-collapse-ul{width:100%!important}
 	
-	/* ~~~~~~ Layout ~~~~~~ */
+	/* Layout ~~~~> */
 	#primary,#secondary{padding-top:24px; padding-bottom:24px}
 	article{margin-bottom:2em}
 }
@@ -238,28 +236,28 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 @media (min-width: 1200px){
 
 }
+/* <~~~~~~~~< END Min Width Media Queries */
 
-/* ~~~~~~~~~~~~ Max Width Media Queries ~~~~~~~~~~~~ */
-
+/* Max Width Media Queries >~~~~~~~~> */
 @media (max-width: 991px){
 	
 }
 
 @media (max-width: 767px){
-	/* ~~~~~~ Main ~~~~~~ */
+	/* Main ~~~~> */
 	.widget li a{display:block; padding:3px 0}
-	/* ~~~~~~ Nav ~~~~~~ */
+	/* Nav ~~~~> */
 	.slide-collapse-nav{position:static}
 	.slide-collapse{position:absolute; z-index:501; overflow:hidden; width:0; height:100%; top:0; left:0; -webkit-box-shadow:3px -3px 10px #222; -moz-box-shadow:3px -3px 10px #222; box-shadow:3px -3px 10px #222}
 	.slide-collapse .navbar-nav{margin:0}
 	.slide-collapse-ul{min-width:320px}
-	/* ~~~~~~ Footer ~~~~~~ */
+	/* Footer ~~~~> */
 	#colophon .footer-nav-col{margin-bottom:16px}
 	#colophon .footer-nav-row li a{display:block; font-size:16px; padding:8px 0}
 }
 
 @media (max-width: 479px){
-	/* ~~~~~~ GF ~~~~~~ */
+	/* GF ~~~~> */
 	.gform_wrapper .gform_body .gf-half div input{width:99%}
 	#page .gform_body input[type="text"],#page .gform_body textarea,#page .gform_wrapper .gform_body select{width:100%}
 }

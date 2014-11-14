@@ -22,8 +22,8 @@ function ter_print_button($atts,$content = null,$cta = false){
 }
 
 /* Modal ~~> */
-function ter_modal($atts,$content = null){ ter_save_modal($atts,$content,true); }
-function ter_modal_trigger($atts,$content = null){ return ter_render_modal_trigger($atts,$content); }
+function ter_modal($atts,$content = null){ ter_modal_save($atts,$content,true); }
+function ter_modal_trigger($atts,$content = null){ return ter_modal_render_trigger($atts,$content); }
 
 /* Embed PDF ~~> */
 function ter_embed_pdf($atts,$content = null){

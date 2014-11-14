@@ -20,11 +20,11 @@
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</footer>
-		<?php ter_nav('standard','footer','navbar-default navbar-static-bottom') ?>
-		<?php ter_back_to_top(1000,500) ?>
-		<?php ter_render_modals() ?>
+		<?php ter_nav('standard','footer','navbar-default navbar-static-bottom') ?>	
+		<?php ter_back_to_top(1000,500) ?>	
 	</div><!-- /#page -->
 </div><!-- /#page-wrap - Opens in header -->
+<?php do_action('ter_footer') ?>
 <?php wp_footer() ?>
 </body>
 </html>

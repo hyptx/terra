@@ -147,10 +147,10 @@ function ter_header_home_link(){?>
 }
 endif;
 
-/* Save Modal
+/* Modal Save
 *  Bootstrap Modal System */
-if(!function_exists('ter_save_modal')):
-function ter_save_modal($atts,$content = null){
+if(!function_exists('ter_modal_save')):
+function ter_modal_save($atts,$content = null){
 	global $ter_modals;
 	if(!$atts['id']){
 		$ter_modals[] = '<div class="alert alert-warning">Please provide an id for this modal.</div>';
@@ -178,20 +178,10 @@ function ter_save_modal($atts,$content = null){
 }
 endif;
 
-/* Render Modals
+/* Modal Render Trigger
 *  Bootstrap Modal System */
-if(!function_exists('ter_render_modals')):
-function ter_render_modals(){
-	global $ter_modals;
-	if(!$ter_modals) return;
-	foreach($ter_modals as $modal) echo $modal;
-}
-endif;
-
-/* Render Modal Trigger
-*  Bootstrap Modal System */
-if(!function_exists('ter_render_modal_trigger')):
-function ter_render_modal_trigger($atts,$content = null){
+if(!function_exists('ter_modal_render_trigger')):
+function ter_modal_render_trigger($atts,$content = null){
 	if(!$atts['id']) return '<div class="alert alert-warning">Please provide an id for this modal trigger. It should match the id for modal itself.</div>';
 	return '<a href="#" data-toggle="modal" data-target="#' . $atts['id'] . '" class="' . $atts['class'] . '">' . do_shortcode($content) . '</a>';
 }

@@ -29,6 +29,7 @@ Version numbers mirror Twitter Bootstrap's MAJOR.MINOR.PATCH schema. Terra's ver
 * Side slide out header menu
 * SSL switch system to force pages on a secure site to be http, and vice versa
 * PHP based cookie system
+* Gravity Forms style upgrades
 * Owl Slider
 * Apple touch icon support
 * Parallax script, skrollr.js

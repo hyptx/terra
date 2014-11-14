@@ -22,8 +22,9 @@ ter_define_constants(array(
 	'TER_ERROR_DISPLAY_ON' => 		false,
 	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
 	'TER_JQUERY_VERSION' => 		'1.9.1',
-	'TER_BOOTSTRAP_VERSION' => 		'3.3.0',	
-	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
+	'TER_BOOTSTRAP_VERSION' => 		'3.3.0',
+	'TER_BS_IMG_RESPONSIVE' => 		'#article img,.widget img',
+	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',
 	/* Layout */
 	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',
 	'TER_HEADER_HOME_LINK' => 		'title',
@@ -31,7 +32,7 @@ ter_define_constants(array(
 	'TER_PRIMARY_CLASS' => 			'col-sm-8',
 	'TER_SECONDARY_CLASS' => 		'col-sm-4',
 	'TER_SECONDARY' => 				'right',
-	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',	
+	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',
 	/* Wordpress */
 	'TER_ADD_HOME_LINK' => 			false,
 	'TER_ADMIN_BAR' => 				'editor',
@@ -41,6 +42,7 @@ ter_define_constants(array(
 	'TER_TITLE_FORMAT_DEFAULT' => 	false,
 	'TER_MAX_IMAGE_SIZE_KB' => 		1024,
 	'TER_WP_POST_FORMATS' => 		false,
+	'TER_GF_BUTTON_CLASS' =>		'btn btn-info',
 	/* Features */
 	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
 	'TER_ACTIVATE_BRANDING' => 		false,
@@ -279,6 +281,24 @@ function ter_favicons(){
 endif;
 add_action('ter_head','ter_favicons');
 
+/* Gravity Forms Button Class ~~> */
+if(!function_exists('ter_gravity_forms_button_class')):
+function ter_gravity_forms_button_class(){
+	if(!TER_GF_BUTTON_CLASS) return;
+	echo '<script type="text/javascript">jQuery(".gform_wrapper .button").addClass("' . TER_GF_BUTTON_CLASS . '");</script>';
+}
+endif;
+add_action('ter_footer','ter_gravity_forms_button_class');
+
+/* Img Responsive Class ~~> */
+if(!function_exists('ter_img_responsive')): 
+function ter_img_responsive(){
+	if(!TER_BS_IMG_RESPONSIVE) return;
+	echo '<script type="text/javascript">jQuery("' . TER_BS_IMG_RESPONSIVE . '").addClass("img-responsive");</script>';
+}
+endif;
+add_action('ter_footer','ter_img_responsive');
+
 /* Limit Image Uploads ~~> */
 if(!function_exists('ter_limit_image_uploads')):
 function ter_limit_image_uploads($file){
@@ -315,6 +335,16 @@ function ter_login_styles(){
 }
 endif;
 add_action('login_enqueue_scripts','ter_login_styles');
+
+/* Modals Render ~~> */  
+if(!function_exists('ter_modals_render')):
+function ter_modals_render(){
+	global $ter_modals;
+	if(!$ter_modals) return;
+	foreach($ter_modals as $modal) echo $modal;
+}
+endif;
+add_action('ter_footer','ter_modals_render');
 
 /* Page Nav Filter ~~> */
 if(!function_exists('ter_page_nav_filter')):
