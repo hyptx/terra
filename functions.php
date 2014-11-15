@@ -24,7 +24,7 @@ ter_define_constants(array(
 	'TER_JQUERY_VERSION' => 		'1.9.1',
 	'TER_BOOTSTRAP_VERSION' => 		'3.3.0',
 	'TER_BS_IMG_RESPONSIVE' => 		'#article img,.widget img',
-	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',
+	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
 	/* Layout */
 	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',
 	'TER_HEADER_HOME_LINK' => 		'title',
@@ -43,6 +43,7 @@ ter_define_constants(array(
 	'TER_MAX_IMAGE_SIZE_KB' => 		1024,
 	'TER_WP_POST_FORMATS' => 		false,
 	'TER_GF_BUTTON_CLASS' =>		'btn btn-info',
+	'TER_COPYRIGHT' =>				'&copy; ' . date('Y ') . get_bloginfo('name'),
 	/* Features */
 	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
 	'TER_ACTIVATE_BRANDING' => 		false,
@@ -114,7 +115,7 @@ function ter_add_script(){
     foreach($ter_add_script as $script)	wp_enqueue_script('ter_script_' . $script, TER_JS . $script . '.js');
 }
 endif;
-add_action('wp_print_scripts','ter_add_script',101);
+add_action('wp_print_scripts','ter_add_script',105);
 
 /* Add Stylesheet
 *  Add to top of any page template-> $ter_add_stylesheet = array('test'); ~~> */
@@ -126,7 +127,7 @@ function ter_add_stylesheet(){
     foreach($ter_add_stylesheet as $stylesheet)	wp_enqueue_style('ter_style_' . $stylesheet, TER_CSS . $stylesheet . '.css');
 }
 endif;
-add_action('wp_print_styles','ter_add_stylesheet',102);//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
+add_action('wp_print_styles','ter_add_stylesheet',105);//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
 
 /* Admin Bar System ~~> */
 if(!function_exists('ter_admin_bar')):
@@ -201,6 +202,24 @@ function ter_admin_remove_dashboard_meta(){
 endif;
 add_action('admin_init','ter_admin_remove_dashboard_meta');
 
+/* Enqueue Javascript ~~> */
+if(!function_exists('ter_enqueue_scripts')):
+function ter_enqueue_scripts(){
+	if(is_admin()) return;
+	if(TER_JQUERY_VERSION){
+		wp_deregister_script('jquery');
+		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY_VERSION . '/jquery.min.js');
+	}
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'));
+	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'));
+	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.27/skrollr.min.js',array('jquery'));
+	if(TER_ACTIVATE_WAYPOINTS) wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/2.0.5/waypoints.min.js',array('jquery'));
+	wp_enqueue_script('ter_scripts',TER_JS . 'scripts.js',array('jquery'));
+}
+endif;
+add_action('wp_print_scripts','ter_enqueue_scripts',100);
+
 /* Enqueue Styles ~~> */
 if(!function_exists('ter_enqueue_styles')):
 function ter_enqueue_styles(){
@@ -224,28 +243,10 @@ add_action('wp_print_styles','ter_enqueue_styles',100);
 if(!function_exists('ter_enqueue_parent_theme_styles')):
 function ter_enqueue_parent_theme_styles(){
 	if(is_admin()) return;	
-	wp_enqueue_style('terra',TERRA . 'style.css',array('ter_bootstrap'));
+	wp_enqueue_style('ter_styles',TERRA . 'style.css',array('ter_bootstrap'));
 }
 endif;
 add_action('wp_print_styles','ter_enqueue_parent_theme_styles',101);
-
-/* Enqueue Javascript ~~> */
-if(!function_exists('ter_enqueue_js')):
-function ter_enqueue_js(){
-	if(is_admin()) return;
-	if(TER_JQUERY_VERSION){
-		wp_deregister_script('jquery');
-		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY_VERSION . '/jquery.min.js');
-	}
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'));
-	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'));
-	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.27/skrollr.min.js',array('jquery'));
-	if(TER_ACTIVATE_WAYPOINTS) wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/2.0.5/waypoints.min.js',array('jquery'));
-	wp_enqueue_script('ter_js',TER_JS . 'scripts.js',array('jquery'));
-}
-endif;
-add_action('wp_print_scripts','ter_enqueue_js',100);
 
 /* Excerpt Length ~~> */
 if(!function_exists('ter_excerpt_length')):

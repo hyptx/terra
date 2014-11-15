@@ -16,7 +16,7 @@
 					<div class="col-xs-12 col-sm-4 footer-nav-col"><a href="#">Footer 6</a><?php //wp_nav_menu(array('menu' => 'Footer 6')) ?></div>
 				</div><!-- /.row -->
 				<div class="row">
-					<div class="col-md-12"><?php require('copyright.php') ?></div>
+					<div class="col-md-12"><div id="copyright"><?php echo TER_COPYRIGHT ?></div></div>
 				</div><!-- /.row -->
 			</div><!-- /.container -->
 		</footer>
