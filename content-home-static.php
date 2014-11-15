@@ -3,8 +3,8 @@
 	<div class="entry-content">
 		<div class="row">
 			<div class="col-sm-12">
-				<h3><em>front-page.php</em></h3>
-				<p>You have loaded the <em>front-page.php</em> template. This template file is the first loaded by Wordpress when you are on the front page. This template is meant for hard-coded home pages. The content itself is located in the file: <em>content-home-static.php</em></p>
+				<h3><em>content-home-page-static.php</em></h3>
+				<p>This is the <em>content-home-page-static.php</em> template.<p> This file is loaded by <em>front-page.php</em>. <em>front-page.php</em> is the first template loaded by Wordpress when you are on the front page. These templates are for hard-coded home pages.</p>
 			</div>
 		</div>
 	</div><!-- .entry-content --> 
