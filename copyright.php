@@ -1,1 +1,0 @@
-<div id="copyright"><span>&copy; <?php echo date("Y") ?> <?php bloginfo('name') ?></span> - <span>Design by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design</a></span></div>
