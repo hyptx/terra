@@ -23,7 +23,7 @@ ter_define_constants(array(
 	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
 	'TER_JQUERY_VERSION' => 		'1.9.1',
 	'TER_BOOTSTRAP_VERSION' => 		'3.3.0',
-	'TER_BS_IMG_RESPONSIVE' => 		'#article img,.widget img',
+	'TER_BS_IMG_RESPONSIVE' => 		'article img,.widget img',
 	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
 	/* Layout */
 	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',
