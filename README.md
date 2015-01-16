@@ -82,11 +82,11 @@ The theme is configurable by modifying this set of constants. It is located in *
 	<tr>
 		<th>System Constants</th>
 		<th>Default Value</th>
-		<th>Useage</th>
+		<th>Type</th>
 		<th>Description</th>
 	</tr>
 	<tr>
-		<td>TER_ERROR_DISPLAY</td>
+		<td>TER_ERROR_DISPLAY_ON</td>
 		<td>false</td>
 		<td>Boolean</td>
 		<td>Turn PHP error display on. For debugging use only.</td>
@@ -98,7 +98,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Location of the CDN library. If you change this, check that the new package location is the same as cdnjs.com</td>
 	</tr>
 	<tr>
-		<td>TER_JQUERY</td>
+		<td>TER_JQUERY_VERSION</td>
 		<td>1.9.1</td>
 		<td>Value</td>
 		<td>Which version of jQuery to load from the CDN. Pass false to load the Wordpress default jQuery verison.</td>
@@ -108,6 +108,12 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>3.3.0</td>
 		<td>Value</td>
 		<td>Which version of Bootstrap to load from the CDN.</td>
+	</tr>
+		<tr>
+		<td>TER_BS_IMG_RESPONSIVE</td>
+		<td>article img,.widget img</td>
+		<td>jQuery target</td>
+		<td>Applies the CSS Class img-responsive to dom elements</td>
 	</tr>
 	
 	<tr>
@@ -125,7 +131,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 	<tr>
 		<th>Layout Constants</th>
 		<th>Default Value</th>
-		<th>Useage</th>
+		<th>Type</th>
 		<th>Description</th>
 	</tr>
 	<tr>
@@ -179,7 +185,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 	<tr>
 		<th>WP Related Constants</th>
 		<th>Default Value</th>
-		<th>Useage</th>
+		<th>Type</th>
 		<th>Description</th>
 	</tr>
 		<tr>
@@ -231,6 +237,19 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Turn on support in theme, templates include: 'gallery,image,video'</td>
 	</tr>
 	<tr>
+		<td>TER_GF_BUTTON_CLASS</td>
+		<td>btn btn-info</td>
+		<td>CSS Class</td>
+		<td>CSS Class to be applied to Gravity Form buttons</td>
+	</tr>
+	<tr>
+		<td>TER_COPYRIGHT</td>
+		<td>'&copy; ' . date('Y ') . get_bloginfo('name')</td>
+		<td>Value</td>
+		<td>Copyright string for footer</td>
+	</tr>
+
+	<tr>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
@@ -239,7 +258,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 	<tr>
 		<th>Feature Constants</th>
 		<th>Default Value</th>
-		<th>Useage</th>
+		<th>Type</th>
 		<th>Description</th>
 	</tr>
 	<tr>
@@ -293,7 +312,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 	<tr>
 		<th>Experimental Constants</th>
 		<th>Default Value</th>
-		<th>Useage</th>
+		<th>Type</th>
 		<th>Description</th>
 	</tr>
 	<tr>
