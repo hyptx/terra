@@ -132,7 +132,7 @@
 
 		<div
 			class="parallax-image parallax-image-100"
-			style="background-image:url(/wp-content/uploads/2014/07/IMG_3745-w1140.jpg)"
+			style="background-image:url(http://placehold.it/2000x800)"
 			data-anchor-target="#dragons + .gap"
 			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
 			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
@@ -148,7 +148,7 @@
 
 		<div
 			class="parallax-image parallax-image-100"
-			style="background-image:url(/wp-content/uploads/2014/07/2014-07-20-19.16.06-w1140.jpg)"
+			style="background-image:url(http://placehold.it/2000x800)"
 			data-anchor-target="#bacons + .gap"
 			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
 			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
@@ -163,7 +163,7 @@
 
 		<div
 			class="parallax-image parallax-image-50"
-			style="background-image:url(/wp-content/uploads/2014/07/2014-07-15-20.02.01-w1140.jpg)"
+			style="background-image:url(http://placehold.it/2000x800)"
 			data-anchor-target="#kittens + .gap"
 			data-bottom-top="transform: translate3d(0px, -60%, 0px);"
 			data-top-bottom="transform: translate3d(0px, 60%, 0px);"
@@ -174,21 +174,21 @@
 		<div class="header" id="dragons">
 			<h3>Text Area 1 - Header</h3>
 		</div>
-		<div class="gap gap-100" style="background-image:url(/wp-content/uploads/2014/07/IMG_3745-w1140.jpg)"></div>
+		<div class="gap gap-100" style="background-image:url(http://placehold.it/2000x800)"></div>
 		<div class="content" id="bacons">
 		<h3>Text Area 2</h3>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum. Curabitur ut magna sed felis bibendum commodo. Vestibulum semper condimentum tortor. Vivamus tellus velit, dapibus at, tincidunt ac, vestibulum quis, lectus. Nunc tempus nisi a lectus. Donec diam libero, convallis sed, commodo eu, rutrum ut, mauris.
 			
 			<p>Ut vulputate, ligula eu vehicula nonummy, augue dolor commodo sem, at eleifend justo lectus vitae odio. Curabitur sollicitudin, elit in lobortis varius, mauris neque cursus nulla, eget faucibus elit massa quis est. Nam purus. Curabitur convallis pretium dui. Quisque leo arcu, lobortis vitae, luctus non, bibendum nec, dolor. Cras pede. Aliquam erat volutpat. Sed erat dui, mollis vitae, malesuada a, tincidunt a, leo. Suspendisse ultrices, diam vel interdum laoreet, nulla dolor hendrerit diam, ac consequat eros mi eget quam. Cras ligula pede, molestie vitae, lobortis et, iaculis eget, neque.</p>
 		</div>
-		<div class="gap gap-100" style="background-image:url(/wp-content/uploads/2014/07/2014-07-20-19.16.06-w1140.jpg)"></div>
+		<div class="gap gap-100" style="background-image:url(http://placehold.it/2000x800)"></div>
 		<div class="content" id="kittens">
 			<h3>Text Area 3</h3>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum. Curabitur ut magna sed felis bibendum commodo. Vestibulum semper condimentum tortor. Vivamus tellus velit, dapibus at, tincidunt ac, vestibulum quis, lectus. Nunc tempus nisi a lectus. Donec diam libero, convallis sed, commodo eu, rutrum ut, mauris.
 			
 			
 		</div>
-		<div class="gap gap-50" style="background-image:url(/wp-content/uploads/2014/07/2014-07-15-20.02.01-w1140.jpg)"></div>
+		<div class="gap gap-50" style="background-image:url(http://placehold.it/2000x800)"></div>
 		<div class="content" id="done">
 			<h3>Text Area 4</h3>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum. Curabitur ut magna sed felis bibendum commodo. Vestibulum semper condimentum tortor. Vivamus tellus velit, dapibus at, tincidunt ac, vestibulum quis, lectus. Nunc tempus nisi a lectus. Donec diam libero, convallis sed, commodo eu, rutrum ut, mauris.
