@@ -178,7 +178,6 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 
 /* GF ~~~~> */
 #page .gform_body input[type="text"],#page .gform_body input[type="email"],#page .gform_body textarea, #page .gform_wrapper .gform_body select{padding:4px; font-size:1em}
-.gform_confirmation_wrapper{padding:1em; margin:1em 0; background:#FC6}
 .gform_wrapper label{font-weight:inherit}
 .ui-datepicker-header{color:#333!important}
 #page .gfield_list_icons{vertical-align:middle}
