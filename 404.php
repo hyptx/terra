@@ -9,7 +9,7 @@
 						<h1 class="entry-title"><?php _e('Not Found','terra') ?></h1>
 					</header>
 					<div class="entry-content">
-						<p class="alert alert-warning"><?php _e('Sorry, the page you requested cannot be found.','terra') ?></p>
+						<p class="alert alert-warning"><?php _e('<img src="' . TER_GRAPHICS . '404.png" class="inline-block no-margin" alt="404 Unhappy Face Icon"><span class="margin-left">Sorry, the page you requested cannot be found.</span>','terra') ?></p>
 						<p><?php get_search_form() ?></p>
 						<div class="widget">
 							<?php the_widget('WP_Widget_Recent_Posts',array('number' => 10),array('widget_id' => '404')) ?>

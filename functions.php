@@ -47,6 +47,7 @@ ter_define_constants(array(
 	/* Features */
 	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
 	'TER_ACTIVATE_BRANDING' => 		false,
+	'TER_ACTIVATE_CUSTOM_SIDEBAR' =>false,
 	'TER_ACTIVATE_FAVICONS' => 		false,
 	'TER_ACTIVATE_SITE_MOVED' => 	false,
 	'TER_ACTIVATE_SSL' => 			false,
@@ -64,6 +65,7 @@ require(TER_INCLUDES . 'admin.php');
 require(TER_INCLUDES . 'shortcode.php');
 require(TER_INCLUDES . 'cookie.php');
 if(TER_ACTIVATE_BRANDING) require(TER_INCLUDES . 'branding.php');
+if(TER_ACTIVATE_CUSTOM_SIDEBAR) require(TER_INCLUDES . 'custom-sidebar.php');
 if(TER_ACTIVATE_SLIDER) require(TER_INCLUDES . 'slider.php');
 if(TER_ACTIVATE_SSL) require(TER_INCLUDES . 'ssl.php');
 //if(TER_ACTIVATE_SKROLLR) require(TER_INCLUDES . 'skrollr.php'); //Experimental

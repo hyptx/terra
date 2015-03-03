@@ -134,7 +134,8 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 #page .margin-top{margin-top:1em}
 #page .noborder{border:0}
 #page .none{display:none}
-#page .nopadding{padding:0}
+#page .no-margin{margin:0}
+#page .no-padding{padding:0}
 #page .normal{font-weight:normal}
 #page .ov-hidden{overflow:hidden}
 #page .pad-half{padding:.5em}
