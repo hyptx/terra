@@ -342,8 +342,8 @@ endif;
 if(!function_exists('ter_template_comment')):
 function ter_template_comment($file){
 	if(!current_user_can('administrator')) return;
-	$template_loc = str_replace(TEMPLATEPATH,'',$file);
-	echo "<!-- Template: $template_loc -->";
+	$template_loc = explode('themes',$file);
+	echo '<!-- Template: ' . $template_loc[1] . ' -->';
 }
 endif;
 
