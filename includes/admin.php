@@ -22,7 +22,7 @@ function ter_help_page_html(){?>
 
 		<br>  	
 <h3>Custom Shortcodes</h3><hr>
-<p>These shorcodes are created by your child theme. Simply wrap your html in the tags: <code>[shortcode-tag]your html is here[/shortcode-tag]</code><br>Make sure to paste it into the HTML editor, not the Visual editor when editing your content.</p>
+<p>These shortcodes are created by your child theme. Simply wrap your html in the tags: <code>[shortcode-tag]your html is here[/shortcode-tag]</code><br>Make sure to paste it into the HTML editor, not the Visual editor when editing your content.</p>
 		<?php global $ter_child_shortcodes ?>
 		<?php if($ter_child_shortcodes): ?>
 		<ul>
