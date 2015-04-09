@@ -89,6 +89,7 @@ function terra_setup(){
 	remove_action('wp_head','parent_post_rel_link',10,0);
 	remove_action('wp_head','adjacent_posts_rel_link',10,0);
 	remove_filter('the_content','wptexturize');
+	remove_filter('the_title','wptexturize');
 	remove_filter('comment_text','wptexturize');
 	remove_filter('the_excerpt','wptexturize');
 	if(TER_WP_POST_FORMATS) add_theme_support('post-formats',explode(',',TER_WP_POST_FORMATS));
