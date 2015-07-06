@@ -65,12 +65,14 @@ class TerraOwlSlider{
 	}
 	
 	private function wrap_slide($slide){
-		echo '<div><a href="' . $slide->_terra_slide_url . '"><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '"></a></div>';
+		echo '<div><a href="' . $slide->_terra_slide_url . '"><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '"></a>' . $this->print_slide_html($slide) . '</div>';
 	}
 	
 	private function print_slide($slide){
-		echo '<div><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '"></div>';
+		echo '<div><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '">' . $this->print_slide_html($slide) . '</div>';
 	}
+
+	private function print_slide_html($slide){ if($slide->post_content) return '<div classs="owl-html">' . $slide->post_content . '</div>'; }
 	
 	private function print_slider_js($slider_div_id){?>
 		<script type="text/javascript">
