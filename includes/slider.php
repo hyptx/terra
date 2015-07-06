@@ -72,7 +72,7 @@ class TerraOwlSlider{
 		echo '<div><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '">' . $this->print_slide_html($slide) . '</div>';
 	}
 
-	private function print_slide_html($slide){ if($slide->post_content) return '<div classs="owl-html">' . $slide->post_content . '</div>'; }
+	private function print_slide_html($slide){ if($slide->post_content) return '<div class="owl-html">' . $slide->post_content . '</div>'; }
 	
 	private function print_slider_js($slider_div_id){?>
 		<script type="text/javascript">
