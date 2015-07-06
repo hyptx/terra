@@ -35,7 +35,7 @@ class TerraOwlSlider{
 	
 	private function get_slides(){
 		if($this->_options['tag']) $tax_query = array(array('taxonomy' => 'slide_tags','field' => 'slug','terms' => $this->_options['tag']));
-		$args = array('post_type' => 'terra_slides','showposts' => -1,'order' => 'ASC','tax_query' => $tax_query);
+		$args = array('post_type' => 'terra_slides','showposts' => -1,'order' => 'DESC','tax_query' => $tax_query);
 		$this->_slides = get_posts($args);
 		
 		if(!$this->_slides && $this->_options['tag']) echo '<div class="alert alert-warning">No slides found under ' . $this->_options['tag'] . '</div>';
