@@ -37,6 +37,46 @@ function ter_embed_pdf($atts,$content = null){
 	';
 }
 
+/* Collapse ~~> */
+function ter_btn_collapse($atts,$content = null){
+	$class = 'btn';
+	if($atts['class']) $class .= ' ' . $atts['class'];
+	else $class .= ' btn-ter';
+	return '<a href="#' . $atts['id'] . '" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="' . $atts['id'] . '" class="' . $class . '">' . do_shortcode($content) . '</a>';
+}
+
+function ter_content_collapse($atts,$content = null){
+	return '<div id="' . $atts['id'] . '" class="collapse">' . do_shortcode($content) . '</div>';
+}
+
+/* Accordion ~~> */
+function ter_accordion($atts,$content = null){
+	global $accordion_id;
+	$accordion_id = $atts['id'];
+	return '<div class="panel-group margin-top margin-bottom" id="' . $atts['id'] . '" role="tablist" aria-multiselectable="true">' . do_shortcode($content) . '</div>';
+}
+function ter_accordion_item($atts,$content = null){
+	global $accordion_id;
+	if($atts['state'] == 'open'){
+		$panel_class = 'panel-collapse collapse in';
+		$aria = 'true';
+	} 
+	else{
+		$panel_class = 'panel-collapse collapse';
+		$aria = 'false';
+	} 
+	return '<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="' . $atts['id'] . '-heading">
+	    	<h4 class="panel-title"><a class="block" role="button" data-toggle="collapse" data-parent="#' . $accordion_id . '" href="#' . $atts['id'] . '" aria-expanded="' . $aria . '" aria-controls="' . $atts['id'] . '">
+	          ' . $atts['title'] . '</a></h4>
+	    </div>
+	    <div id="' . $atts['id'] . '" class="' . $panel_class . '" role="tabpanel" aria-labelledby="' . $atts['id'] . '-heading">
+	      <div class="panel-body">' . do_shortcode($content) . '</div>
+	    </div>
+	</div>';
+}
+
+
 /* Shortcodes ~~> */
 add_shortcode('row','ter_row');
 add_shortcode('one-third','ter_one_third');
@@ -48,11 +88,15 @@ add_shortcode('button-cta','ter_button_cta');
 add_shortcode('modal','ter_modal');
 add_shortcode('modal-trigger','ter_modal_trigger');
 add_shortcode('embed-pdf','ter_embed_pdf');
+add_shortcode('button-collapse','ter_btn_collapse');
+add_shortcode('content-collapse','ter_content_collapse');
+add_shortcode('accordion','ter_accordion');
+add_shortcode('accordion-item','ter_accordion_item');
 
 /* Shortcode Content Filter ~~> */
 function ter_shortcode_content_filter($content){
     global $ter_child_shortcodes_for_filter;	
-	$shortcode_array = array('row','one-third','one-half','two-thirds','grid','modal','modal-trigger');
+	$shortcode_array = array('row','one-third','one-half','two-thirds','grid','modal','modal-trigger','button-collapse','content-collapse','accordion','accordion-item');
 	if($ter_child_shortcodes_for_filter) $shortcode_array = array_merge($shortcode_array,$ter_child_shortcodes_for_filter);
     $block = join('|',$shortcode_array);
     $rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);

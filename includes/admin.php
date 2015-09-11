@@ -66,6 +66,24 @@ function ter_help_page_html(){?>
         </ul>
 		
 <br>
+<h3>Collapsible Area Shortcodes</h3><hr>
+<p>Use this shortcode to create a styled button with a content area that is collapsed. The button uses the same class system as the regular shortcode buttons above:</p>
+<ul>
+    <li><code>[button-collapse id="test-collapse"]Trigger Button[/button-collapse]</code></li>
+</ul>
+<p>Use this shortcode to create a the container. Note: You must have matching ID's for this to work:</p>
+<ul>
+    <li><code>[content-collapse id="test-collapse"]This is the collapsible content[/content-collapse]</code></li>
+</ul>
+<br>
+<h3>Accordion Shortcodes</h3><hr>
+<p>Use this shortcode to create an accordion collapsible area. Make sure each individual accordion has its own unique id, as well as each item within it. See each item below, the first is item-1, the second is item-2:</p>
+<p>Each item needs a title as well. Enter the attribute <code>state="open"</code> to set an item as open on page load.</p>
+<ul>
+    <li><code>[accordion id="test-accordion"]<br>[accordion-item id="item-1" title="Item One" state="open"]<br>This is the content for Item One<br>[/accordion-item]<br>[accordion-item id="item-2" title="Item Two"]<br>This is the content for Item Two<br>[/accordion-item]<br>[/accordion]</code></li>
+</ul>
+
+<br>
 <h3>Modal Shortcodes</h3><hr>
 <p>Use these shortcodes to create a bootstrap modal box. Each box must have a corresponding trigger. Choose a unique id name to use to tie the box to its trigger. Remove the title or close_btn attributes if you want to hide those elements.</p>
 <ul>

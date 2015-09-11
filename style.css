@@ -17,6 +17,8 @@ a:hover,a:active,a:focus{text-decoration:none}
 a:focus,.btn:focus{outline:0}
 p:empty{margin:0}
 #page-wrap{position:relative}
+.panel-heading{padding:0;}
+.panel-title a{display: block; padding: 10px 15px;}
 
 /* Header ~~~~> */
 #branding h2,#branding h3,#branding .searchform{margin:12px 0}
