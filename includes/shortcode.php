@@ -53,7 +53,7 @@ function ter_content_collapse($atts,$content = null){
 function ter_accordion($atts,$content = null){
 	global $accordion_id;
 	$accordion_id = $atts['id'];
-	return '<div class="panel-group margin-top margin-bottom" id="' . $atts['id'] . '" role="tablist" aria-multiselectable="true">' . do_shortcode($content) . '</div>';
+	return '<div class="panel-group margin-top margin-bottom accordion" id="' . $atts['id'] . '" role="tablist" aria-multiselectable="true">' . do_shortcode($content) . '</div>';
 }
 function ter_accordion_item($atts,$content = null){
 	global $accordion_id;
