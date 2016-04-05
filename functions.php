@@ -208,7 +208,7 @@ add_action('admin_init','ter_admin_remove_dashboard_meta');
 /* Enqueue Core Styles ~~> */
 if(!function_exists('ter_enqueue_core_styles')):
 function ter_enqueue_core_styles(){
-	if(is_admin() && !is_404()) return; //404 detection for security plugin 404 page
+	if(is_admin() && !is_404()) return;
 	if(preg_match('/(?i)msie [1-8]/',$_SERVER['HTTP_USER_AGENT'])) $ie8 = true;
 	if(TER_GOOGLE_FONT && preg_match('/Open\+Sans/',TER_GOOGLE_FONT)){
 		wp_deregister_style('open-sans');
