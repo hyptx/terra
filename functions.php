@@ -112,7 +112,7 @@ if(TER_ADD_HOME_LINK) add_filter('wp_list_pages','ter_add_home_link');
 *  Add to top of any page template-> $ter_add_script = array('test'); ~~> */
 if(!function_exists('ter_add_script')):
 function ter_add_script(){
-	if(is_admin()) return;
+	if(is_admin() && !is_404()) return;
 	global $ter_add_script;
 	if(!$ter_add_script) return;
     foreach($ter_add_script as $script)	wp_enqueue_script('ter_script_' . $script, TER_JS . $script . '.js');
@@ -124,7 +124,7 @@ add_action('wp_print_scripts','ter_add_script',105);
 *  Add to top of any page template-> $ter_add_stylesheet = array('test'); ~~> */
 if(!function_exists('ter_add_stylesheet')):
 function ter_add_stylesheet(){
-	if(is_admin()) return;
+	if(is_admin() && !is_404()) return;
 	global $ter_add_stylesheet;
 	if(!$ter_add_stylesheet) return;
     foreach($ter_add_stylesheet as $stylesheet)	wp_enqueue_style('ter_style_' . $stylesheet, TER_CSS . $stylesheet . '.css');
@@ -208,7 +208,7 @@ add_action('admin_init','ter_admin_remove_dashboard_meta');
 /* Enqueue Core Styles ~~> */
 if(!function_exists('ter_enqueue_core_styles')):
 function ter_enqueue_core_styles(){
-	if(is_admin()) return;
+	if(is_admin() && !is_404()) return; //404 detection for security plugin 404 page
 	if(preg_match('/(?i)msie [1-8]/',$_SERVER['HTTP_USER_AGENT'])) $ie8 = true;
 	if(TER_GOOGLE_FONT && preg_match('/Open\+Sans/',TER_GOOGLE_FONT)){
 		wp_deregister_style('open-sans');
@@ -227,7 +227,7 @@ add_action('wp_print_styles','ter_enqueue_core_styles',100);
 /* Enqueue Javascript ~~> */
 if(!function_exists('ter_enqueue_scripts')):
 function ter_enqueue_scripts(){
-	if(is_admin()) return;
+	if(is_admin() && !is_404()) return;
 	if(TER_JQUERY_VERSION){
 		wp_deregister_script('jquery');
 		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY_VERSION . '/jquery.min.js');
@@ -246,7 +246,7 @@ add_action('wp_print_scripts','ter_enqueue_scripts',100);
 /* Enqueue Styles ~~> */
 if(!function_exists('ter_enqueue_styles')):
 function ter_enqueue_styles(){
-	if(is_admin()) return;	
+	if(is_admin() && !is_404()) return;	
 	wp_enqueue_style('ter_styles',TERRA . 'style.css',array('ter_bootstrap'));
 }
 endif;
