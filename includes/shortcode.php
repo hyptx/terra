@@ -52,8 +52,8 @@ function ter_content_collapse($atts,$content = null){
 /* Accordion ~~> */
 function ter_accordion($atts,$content = null){
 	global $accordion_id;
-	$accordion_id = $atts['id'];
-	return '<div class="panel-group margin-top margin-bottom accordion" id="' . $atts['id'] . '" role="tablist" aria-multiselectable="true">' . do_shortcode($content) . '</div>';
+	$accordion_id = sanitize_title_with_dashes($atts['id']);
+	return '<div class="panel-group margin-top margin-bottom accordion" id="' . $accordion_id . '" role="tablist" aria-multiselectable="true">' . do_shortcode($content) . '</div>';
 }
 function ter_accordion_item($atts,$content = null){
 	global $accordion_id;
@@ -64,13 +64,14 @@ function ter_accordion_item($atts,$content = null){
 	else{
 		$panel_class = 'panel-collapse collapse';
 		$aria = 'false';
-	} 
+	}
+	$id = sanitize_title_with_dashes($atts['id']);
 	return '<div class="panel panel-default">
-		<div class="panel-heading" role="tab" id="' . $atts['id'] . '-heading">
-	    	<h4 class="panel-title"><a class="block" role="button" data-toggle="collapse" data-parent="#' . $accordion_id . '" href="#' . $atts['id'] . '" aria-expanded="' . $aria . '" aria-controls="' . $atts['id'] . '">
+		<div class="panel-heading" role="tab" id="' . $id . '-heading">
+	    	<h4 class="panel-title"><a class="block" role="button" data-toggle="collapse" data-parent="#' . $accordion_id . '" href="#' . $id . '" aria-expanded="' . $aria . '" aria-controls="' . $id . '">
 	          ' . $atts['title'] . '</a></h4>
 	    </div>
-	    <div id="' . $atts['id'] . '" class="' . $panel_class . '" role="tabpanel" aria-labelledby="' . $atts['id'] . '-heading">
+	    <div id="' . $id . '" class="' . $panel_class . '" role="tabpanel" aria-labelledby="' . $id . '-heading">
 	      <div class="panel-body">' . do_shortcode($content) . '</div>
 	    </div>
 	</div>';

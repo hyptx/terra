@@ -78,10 +78,22 @@ function ter_help_page_html(){?>
 <br>
 <h3>Accordion Shortcodes</h3><hr>
 <p>Use this shortcode to create an accordion collapsible area. Make sure each individual accordion has its own unique id, as well as each item within it. See each item below, the first is item-1, the second is item-2:</p>
+<p>ID data is automatically converted to CSS format, so feel free to use the title for the ID.</p>
 <p>Each item needs a title as well. Enter the attribute <code>state="open"</code> to set an item as open on page load.</p>
-<ul>
-    <li><code>[accordion id="test-accordion"]<br>[accordion-item id="item-1" title="Item One" state="open"]<br>This is the content for Item One<br>[/accordion-item]<br>[accordion-item id="item-2" title="Item Two"]<br>This is the content for Item Two<br>[/accordion-item]<br>[/accordion]</code></li>
-</ul>
+<pre style="border:1px solid #888; padding:1em; background:#eee">
+[accordion id="test-accordion"]
+[accordion-item id="item-1" title="Item One" state="open"]
+
+This is the content for Item One. Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.
+
+[/accordion-item]
+[accordion-item id="item-2" title="Item Two"]
+
+This is the content for Item Two. Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.
+
+[/accordion-item]
+[/accordion]
+</pre>
 
 <br>
 <h3>Modal Shortcodes</h3><hr>
@@ -113,16 +125,22 @@ function ter_help_page_html(){?>
 <pre style="border:1px solid #888; padding:1em; background:#eee">
 [row]
 [one-third]
+
 &lt;h4&gt;one-third&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/one-third]
 [one-third]
+
 &lt;h4&gt;one-third&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/one-third]
 [one-third]
+
 &lt;h4&gt;one-third&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/one-third]
 [/row]
 </pre>
@@ -131,12 +149,16 @@ function ter_help_page_html(){?>
 <pre style="border:1px solid #888; padding:1em; background:#eee">
 [row]
 [one-half]
+
 &lt;h4&gt;one-half&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/one-half]
 [one-half]
+
 &lt;h4&gt;one-half&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/one-half]
 [/row]
 </pre>
@@ -145,12 +167,16 @@ function ter_help_page_html(){?>
 <pre style="border:1px solid #888; padding:1em; background:#eee">
 [row]
 [one-third]
+
 &lt;h4&gt;one-third&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/one-third]
 [two-thirds]
+
 &lt;h4&gt;two-thirds&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/two-thirds]
 [/row]
 </pre>
@@ -159,12 +185,16 @@ function ter_help_page_html(){?>
 <pre style="border:1px solid #888; padding:1em; background:#eee">
 [row]
 [grid col="4"]
+
 &lt;h4&gt;grid col="4"&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/grid]
 [grid col="8"]
+
 &lt;h4&gt;grid col="8"&lt;/h4&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eget nibh. Suspendisse ut ligula ultricies odio rhoncus vestibulum.&lt;/p&gt;
+&lt;p&gt;Always maintain an empty line above and below the content so that Worpress' auto paragraph works properly.&lt;/p&gt;
+
 [/grid]
 [/row]
 </pre>
