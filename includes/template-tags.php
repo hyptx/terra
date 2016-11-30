@@ -98,9 +98,15 @@ function ter_cta_sidebar($delay = 2000,$animation_speed = 500){
 	<script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery('#cta-sidebar').delay(<?php echo $delay?>).show(<?php echo $animation_speed ?>);
-		jQuery('#colophon').waypoint(function(direction){
-			jQuery('#cta-sidebar').toggleClass('sticky');},{offset:function(){ return jQuery.waypoints('viewportHeight') - jQuery(this).outerHeight(); }
-		});		
+		var waypoint = new Waypoint({
+		  	element: document.getElementById('<?php echo $trigger_css_identifyer ?>'),
+		  	handler: function(direction){
+    			jQuery('#cta-sidebar').toggleClass('sticky');
+  			},
+  			offset: function(){
+  				return  Waypoint.viewportHeight() - jQuery('#cta-sidebar').height();
+  			}
+		})	
 	});
 	function terHideCTASidebar(){
 		jQuery('#cta-sidebar').hide(<?php echo $animation_speed ?>);

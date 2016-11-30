@@ -21,8 +21,8 @@ ter_define_constants(array(
 	/* System */
 	'TER_ERROR_DISPLAY_ON' => 		false,
 	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
-	'TER_JQUERY_VERSION' => 		'1.9.1',
-	'TER_BOOTSTRAP_VERSION' => 		'3.3.6',
+	'TER_JQUERY_VERSION' => 		'3.0.0',
+	'TER_BOOTSTRAP_VERSION' => 		'3.3.7',
 	'TER_BS_IMG_RESPONSIVE' => 		'article img,.widget img',
 	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
 	/* Layout */
@@ -236,7 +236,7 @@ function ter_enqueue_scripts(){
 	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'));
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'));
 	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.29/skrollr.min.js',array('jquery'));
-	if(TER_ACTIVATE_WAYPOINTS) wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/2.0.5/waypoints.min.js',array('jquery'));
+	if(TER_ACTIVATE_WAYPOINTS) wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/4.0.1/jquery.waypoints.js',array('jquery'));
 	wp_enqueue_script('ter_scripts',TER_JS . 'scripts.js',array('jquery'));
 }
 endif;
