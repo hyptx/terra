@@ -21,7 +21,7 @@ ter_define_constants(array(
 	/* System */
 	'TER_ERROR_DISPLAY_ON' => 		false,
 	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
-	'TER_JQUERY_VERSION' => 		'3.0.0',
+	'TER_JQUERY_VERSION' => 		'1.9.1',//GF Compatibility issue with 3.0
 	'TER_BOOTSTRAP_VERSION' => 		'3.3.7',
 	'TER_BS_IMG_RESPONSIVE' => 		'article img,.widget img',
 	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
