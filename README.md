@@ -109,6 +109,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Value</td>
 		<td>Which version of Bootstrap to load from the CDN.</td>
 	</tr>
+	<tr>
 		<td>TER_BS_IMG_RESPONSIVE</td>
 		<td>article img,.widget img</td>
 		<td>jQuery target</td>
@@ -187,6 +188,7 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Type</th>
 		<th>Description</th>
 	</tr>
+	<tr>
 		<td>TER_ADD_HOME_LINK</td>
 		<td>false</td>
 		<td>Boolean</td>
@@ -320,4 +322,3 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Enqueue skrollr.js</td>
 	</tr>
 </table>
-
