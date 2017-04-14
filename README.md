@@ -188,7 +188,6 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<th>Type</th>
 		<th>Description</th>
 	</tr>
-		<tr>
 		<td>TER_ADD_HOME_LINK</td>
 		<td>false</td>
 		<td>Boolean</td>
