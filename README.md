@@ -1,4 +1,4 @@
-#The Terra Theme
+# The Terra Theme
 
 This theme was built by a developer, for developers. Built for my self to be precise. I will be adding documentation here, stay tuned. Make sure to get [The Terra Jr Theme](https://github.com/hyptx/terra-jr) as well.
 
@@ -6,14 +6,14 @@ This theme was built by a developer, for developers. Built for my self to be pre
 
 The Terra Jr Theme has and added bonus of a custom post type factory class, amongst other features. Try to keep the versions of Parent and Child the same. They are meant to act as a team!
 
-##Versions
+## Versions
 
 * [Latest Terra Release](https://github.com/hyptx/terra/releases/latest)
 * [Latest Terra Jr Release](https://github.com/hyptx/terra-jr/releases/latest)
 
 Version numbers mirror Twitter Bootstrap's MAJOR.MINOR.PATCH schema. Terra's versioning includes a fourth, representing theme patches: MAJOR.MINOR.PATCH.THEMEPATCH
 
-####Theme Features
+#### Theme Features
 
 * HTML5
 * Responsive
@@ -40,7 +40,7 @@ Version numbers mirror Twitter Bootstrap's MAJOR.MINOR.PATCH schema. Terra's ver
 
 The Terra Theme does not use the Wordpress theme options system to save options. I decided that hardcoding the theme options would save on database queries and overhead. All of the theme settings are at the top of the *functions.php* file, in the form of easily understandable constants.
 
-####Browser Support
+#### Browser Support
 
 * Chrome
 * Firefox
@@ -49,7 +49,7 @@ The Terra Theme does not use the Wordpress theme options system to save options.
 
 Two javascript files are loaded to support IE8, respond.js and html5.js. Respond.js does not parse CDN loaded files, so bootstrap.min.css is loaded locally.
 
-##Installation
+## Installation
 
 1. Get a copy of [Terra](https://github.com/hyptx/terra/releases/latest) and upload it to your themes directory
 2. Get a copy of [Terra Jr](https://github.com/hyptx/terra-jr/releases/latest) and upload it to your themes directory
@@ -57,11 +57,11 @@ Two javascript files are loaded to support IE8, respond.js and html5.js. Respond
 4. Rock and Roll
 
 
-##Hacks
+## Hacks
 
 Remove IPhone phone formatting: ```<meta name="format-detection" content="telephone=no">```
 
-##CloudFlare
+## CloudFlare
 
 If you want to use the theme with CloudFlare's flexible SSL, it's easy, and free. You will need to secure your Wordpress admin area so that the wp admin bar stays secure on the front end. Add the following two lines toward the top of your *wp-config.php* file. 
 
@@ -74,7 +74,7 @@ if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') $_SERVER['HTTPS'] = 'on';
 * [CloudFlare SSL Redirects](https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-HTTPS-traffic-with-Flexible-SSL-and-Apache-)
 * [Wordpress Codex Source](http://codex.wordpress.org/Administration_Over_SSL)
 
-##Theme Config
+## Theme Config
 
 The theme is configurable by modifying this set of constants. It is located in *functions.php*
 
