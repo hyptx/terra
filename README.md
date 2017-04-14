@@ -115,7 +115,6 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>jQuery target</td>
 		<td>Applies the CSS Class img-responsive to dom elements</td>
 	</tr>
-	
 	<tr>
 		<td>TER_GOOGLE_FONT</td>
 		<td>Open+Sans: 400,400italic,600,600italic</td>
@@ -248,7 +247,6 @@ The theme is configurable by modifying this set of constants. It is located in *
 		<td>Value</td>
 		<td>Copyright string for footer</td>
 	</tr>
-
 	<tr>
 		<td>&nbsp;</td>
 		<td>&nbsp;</td>
