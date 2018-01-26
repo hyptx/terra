@@ -11,7 +11,7 @@
     
     <p class="alert alert-info"><strong>Video Post Format:</strong><br />This post format template is just a copy of the <em>content.php</em> file.<br />Please edit the <em>content-video.php</em> file to customize this template.</p>
     
-    <?php if(is_search() || TER_EXCERPT): ?>
+    <?php if(!is_single() && TER_EXCERPT): ?>
     <div class="entry-summary">
         <?php the_excerpt() ?>
     </div><!-- .entry-summary -->
