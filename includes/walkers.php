@@ -3,12 +3,13 @@
 /* TerWalkerNavMenu
 *  Use with wp_nav_menu */
 class TerWalkerNavMenu extends Walker_Nav_Menu{
-	public function start_lvl(&$output,$depth){
+	public function start_lvl(&$output, $depth = 0, $args = array()){
+		$dropdown_menu = '';
 		$indent = str_repeat("\t",$depth);
 		if($depth < 1) $dropdown_menu = ' dropdown-menu';
 		$output .= "\n$indent<ul class=\"sub-menu$dropdown_menu level-" . ($depth + 1) . "\">\n";
 	}
-	public function start_el(&$output,$item,$depth,$args){
+	public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0){
 		global $wp_query;
 		$indent = ($depth) ? str_repeat("\t",$depth) : '';
 		$class_names = $value = '';
@@ -66,12 +67,13 @@ class TerWalkerNavMenu extends Walker_Nav_Menu{
 /* TerWalkerPage
 *  Fallback, use with wp_list_pages */
 class TerWalkerPage extends Walker_Page{
-	function start_lvl(&$output,$depth){
+	function start_lvl(&$output, $depth = 0, $args = array()){
 		$indent = str_repeat("\t",$depth);
 		if($depth < 1) $dropdown_menu = ' dropdown-menu';
 		$output .= "\n$indent<ul class=\"sub-menu$dropdown_menu\">\n";
 	}
-	function start_el(&$output,$page,$depth,$args,$current_page){
+
+	function start_el(&$output,$page,$depth = 0,$args = array(),$current_page = 0){
 		if($depth) $indent = str_repeat("\t", $depth);
 		else $indent = '';
 		extract($args, EXTR_SKIP);

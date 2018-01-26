@@ -1,9 +1,14 @@
 function terClearMe(formfield){ if(formfield.defaultValue==formfield.value) formfield.value = ''; }
 function terSelectAll(id){ document.getElementById(id).focus(); document.getElementById(id).select(); }
 
+//Add function call to footer.php or individual sidebar templates
 function terSidebarResize(){
-	jQuery('#secondary').css('min-height', jQuery('#primary').outerHeight(true) + 'px');
+	if(jQuery(window).width() > 768) jQuery('#secondary').css('min-height', jQuery('#primary').outerHeight(true) + 'px');
 	jQuery(window).resize(function(){
+		if(jQuery(window).width() < 768){
+			jQuery('#secondary').css('min-height','0');
+			return;
+		} 
 		var terWindowHeight = jQuery('#primary').outerHeight(true);
 		jQuery('#secondary').css('min-height', terWindowHeight + 'px');
 	});
@@ -23,4 +28,3 @@ function terNavAnimate(element,location){
 }
 function terScrollFooterNav(location){ if(location == 'footer') jQuery('html,body').animate({scrollTop:0},500); }
 /* <~~~~~~~~< Slide Nav Animation */
-

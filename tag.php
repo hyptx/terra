@@ -10,19 +10,11 @@
 					<h1 class="page-title"><?php single_tag_title() ?></h1>
 				</header><!-- /.page-header -->
 				<?php while(have_posts()): the_post() ?>
-				<?php get_template_part('content',get_post_format()) ?>
+				<?php get_template_part('template-parts/post/content',get_post_format()) ?>
 				<?php endwhile ?>
 				<?php ter_nav_archive() ?>
 				<?php else : ?>
-				<article id="post-0" class="post no-results not-found">
-					<header class="entry-header">
-						<h1 class="entry-title"><?php _e('Nothing Found','terra') ?></h1>
-					</header><!-- /.entry-header -->
-					<div class="entry-content">
-						<p><?php _e('Sorry, no results were found in the requested archive. Searching may help you find a related post.','terra') ?></p>
-						<?php get_search_form() ?>
-					</div><!-- /.entry-content --> 
-				</article><!-- /#post-0 -->
+				<?php get_template_part('template-parts/post/content','not-found') ?>
 				<?php endif ?>
 			</div><!-- /#content --> 
 		</div><!-- /#primary -->

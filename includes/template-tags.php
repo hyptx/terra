@@ -48,6 +48,7 @@ endif;
 /* Breadcrumbs */
 if(!function_exists('ter_breadcrumbs')):
 function ter_breadcrumbs($separator = '>',$before = false,$after = false,$hide_if_no_parent = true){
+	if(!TER_ACTIVATE_BREADCRUMBS) return;
     global $post;
 	if($hide_if_no_parent && !$post->post_parent) return;
 	$ancestors = get_post_ancestors($post->ID);
@@ -76,7 +77,7 @@ function ter_com_callback($comment,$args,$depth){
             	<?php if($comment->comment_approved == '0') : ?>
             	<em><?php _e('Your comment is awaiting moderation.') ?></em><br />
             	<?php endif ?>
-            	<span class="comment-meta commentmetadata"><em><?php echo get_avatar($comment,$size='16',$default='<path_to_url>') ?><?php comment_author_link() ?> - <?php comment_date('F jS, Y') ?> at <?php comment_time() ?></em><span class="comment-links">- <?php edit_comment_link(__('Edit'),'  ','') ?><?php if(current_user_can('edit_pages', $comment->comment_post_ID)): $url = clean_url(wp_nonce_url("/wp-admin/comment.php?action=deletecomment&p=$comment->comment_post_ID&c=$comment->comment_ID","delete-comment_$comment->comment_ID")) ?> | <a href="<?php echo $url ?>" class="delete:the-comment-list:comment-$comment->comment_ID delete" onclick="return confirm('Are you sure you want to delete this comment?');">Delete</a> | <?php endif ?><?php comment_reply_link(array_merge($args, array('depth' => $depth))) ?></span></span>
+            	<span class="comment-meta commentmetadata"><em><?php echo get_avatar($comment,$size='16',$default='mystery') ?><?php comment_author_link() ?> - <?php comment_date('F jS, Y') ?> at <?php comment_time() ?></em><span class="comment-links">- <?php edit_comment_link(__('Edit'),'  ','') ?><?php if(current_user_can('edit_pages', $comment->comment_post_ID)): $url = clean_url(wp_nonce_url("/wp-admin/comment.php?action=deletecomment&p=$comment->comment_post_ID&c=$comment->comment_ID","delete-comment_$comment->comment_ID")) ?> | <a href="<?php echo $url ?>" class="delete:the-comment-list:comment-$comment->comment_ID delete" onclick="return confirm('Are you sure you want to delete this comment?');">Delete</a> | <?php endif ?><?php comment_reply_link(array_merge($args, array('depth' => $depth))) ?></span></span>
         	</div>
         	<div class="comment-content"><?php comment_text() ?></div>
     	</div>
@@ -87,8 +88,9 @@ endif;
 
 /* CTA Sidebar */
 if(!function_exists('ter_cta_sidebar')):
-function ter_cta_sidebar($delay = 2000,$animation_speed = 500){
+function ter_cta_sidebar($delay = 2000,$animation_speed = 500,$trigger_css_identifyer = 'colophon'){
 	global $wp_registered_sidebars,$ter_cookie;
+	$render_sidebar = '';
 	foreach($wp_registered_sidebars as $sidebar) if($sidebar['name'] == 'CTA Sidebar') $render_sidebar = true;
 	if(!$render_sidebar) return;
 	$cookie = $ter_cookie->get_cookie('cta');

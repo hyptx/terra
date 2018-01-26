@@ -7,7 +7,7 @@
 		<div id="primary" class="<?php echo TER_PRIMARY_CLASS ?>">
 			<div id="content" role="main">
 				<?php the_post() ?>
-				<?php get_template_part('content','page') ?>
+				<?php get_template_part('template-parts/page/content','page') ?>
 				<h3><?php _e('Pages','terra') ?></h3>
 				<ul><?php wp_list_pages('depth=0&title_li=') ?></ul>
 				<?php do_action('ter_site_map_extra_post_types') ?>

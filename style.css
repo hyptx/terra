@@ -1,10 +1,10 @@
 /*
-Theme Name: Expressline
-Theme URI: https://github.com/atrain/expressline
+Theme Name: Terra
+Theme URI: https://github.com/hyptx/terra
 Author: Adam J Nowak
-Author URI: http://atrainmarketing.com
+Author URI: http://adamjnowak.com
 Description: An html5 responsive Wordpress theme built with Twitter Bootstrap 3
-Version: 3.3.7.0
+Version: 3.3.7.1
 License: GNU General Public License
 Tags: html5,core theme,responsive,bootstrap,awesome
 */
@@ -21,6 +21,7 @@ p:empty{margin:0}
 .panel-title a{display: block; padding: 10px 15px;}
 
 /* Header ~~~~> */
+#logo{display: inline-block;}
 #branding h2,#branding h3,#branding .searchform{margin:12px 0}
 #branding h2{font-size:30px; line-height:30px}
 #branding h2 a{color:#666}

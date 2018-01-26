@@ -6,7 +6,7 @@
 		<div id="primary" class="<?php echo TER_FULL_WIDTH_CLASS ?>">
 			<div id="content" role="main">
 				<?php the_post() ?>
-				<?php get_template_part('content','page') ?>
+				<?php get_template_part('template-parts/page/content','page') ?>
 				<?php comments_template('',true) ?>
 			</div><!-- /#content -->
 		</div><!-- /#primary -->

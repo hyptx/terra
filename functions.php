@@ -7,8 +7,7 @@ $ter_dir = get_bloginfo('template_directory');//Parent theme is always 'template
 
 /* Parent Theme Directories ~~> */
 ter_define_constants(array(
-	'TERRA' => 			$ter_dir . '/',
-	'TER_BOOTSTRAP' => 	$ter_dir . '/bootstrap/',
+	'TERRA' => 	$ter_dir . '/',
 	'TER_CSS' => 		$ter_dir . '/css/',
 	'TER_GRAPHICS' => 	$ter_dir . '/graphics/',
 	'TER_INCLUDES' => 	dirname(__FILE__) . '/includes/',
@@ -16,7 +15,7 @@ ter_define_constants(array(
 	'TER_SLIDER' => 	$ter_dir . '/owl/'
 ));
 
-/* Theme Options - See README.md for your release: https://github.com/hyptx/terra/ >~~~~~~~~> */
+/* Theme Options - See README.md for your release: https://github.com/hyptx/terra >~~~~~~~~> */
 ter_define_constants(array(
 	/* System */
 	'TER_ERROR_DISPLAY_ON' => 		false,
@@ -37,22 +36,33 @@ ter_define_constants(array(
 	'TER_ADD_HOME_LINK' => 			false,
 	'TER_ADMIN_BAR' => 				'editor',
 	'TER_ADMIN_BAR_LOGIN' => 		false,
+	'TER_COMMENTS' => 				false,
+	'TER_DISABLE_VISUAL_EDITOR' =>  false,
 	'TER_EXCERPT' => 				false,
 	'TER_EXCERPT_LEN' => 			40,
 	'TER_TITLE_FORMAT_DEFAULT' => 	false,
-	'TER_MAX_IMAGE_SIZE_KB' => 		1024,
+	'TER_MAX_IMAGE_SIZE_KB' => 		640,
 	'TER_WP_POST_FORMATS' => 		false,
 	'TER_GF_BUTTON_CLASS' =>		'btn btn-info',
 	'TER_COPYRIGHT' =>				'&copy; ' . date('Y ') . get_bloginfo('name'),
 	/* Features */
 	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
 	'TER_ACTIVATE_BRANDING' => 		false,
+	'TER_ACTIVATE_BREADCRUMBS' => 	false,
 	'TER_ACTIVATE_CUSTOM_SIDEBAR' =>false,
 	'TER_ACTIVATE_FAVICONS' => 		false,
+	'TER_ACTIVATE_RETINA_JS' => 	false,
 	'TER_ACTIVATE_SITE_MOVED' => 	false,
-	'TER_ACTIVATE_SSL' => 			false,
+	'TER_ACTIVATE_SMTP' => 			false,
 	'TER_ACTIVATE_SLIDER' => 		false,
-	'TER_ACTIVATE_WAYPOINTS' => 	false,	
+	'TER_ACTIVATE_WAYPOINTS' => 	false,
+	/* SMTP TER_ACTIVATE_SMTP - Test: ter_test_email('webmaster@atrainmarketing.com') */
+	'TER_SMTP_HOST' => 				'smtp.gmail.com',
+	'TER_SMTP_PORT' => 				465,
+	'TER_SMTP_USERNAME' => 			'',
+	'TER_SMTP_PASSWORD' => 			'',
+	'TER_SMTP_ENCRYPTION' => 		'ssl',//ssl or tls
+	'TER_SMTP_FROM_NAME' => 		'',
 	/* Experimental */
 	'TER_ACTIVATE_SKROLLR' => 		false
 ));
@@ -67,12 +77,11 @@ require(TER_INCLUDES . 'cookie.php');
 if(TER_ACTIVATE_BRANDING) require(TER_INCLUDES . 'branding.php');
 if(TER_ACTIVATE_CUSTOM_SIDEBAR) require(TER_INCLUDES . 'custom-sidebar.php');
 if(TER_ACTIVATE_SLIDER) require(TER_INCLUDES . 'slider.php');
-if(TER_ACTIVATE_SSL) require(TER_INCLUDES . 'ssl.php');
 //if(TER_ACTIVATE_SKROLLR) require(TER_INCLUDES . 'skrollr.php'); //Experimental
 
 /* Setup ~~> */
-if(!function_exists('terra_setup')): 
-function terra_setup(){
+if(!function_exists('ter_setup')): 
+function ter_setup(){
 	if(TER_ERROR_DISPLAY_ON){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
 	add_theme_support('automatic-feed-links');
 	add_theme_support('post-thumbnails');
@@ -95,7 +104,7 @@ function terra_setup(){
 	if(TER_WP_POST_FORMATS) add_theme_support('post-formats',explode(',',TER_WP_POST_FORMATS));
 }
 endif;
-add_action('after_setup_theme','terra_setup');
+add_action('after_setup_theme','ter_setup');
 
 /* Add Home Link to wp_list_pages ~~> */
 if(!function_exists('ter_add_home_link')):
@@ -135,6 +144,7 @@ add_action('wp_print_styles','ter_add_stylesheet',105);//Add Stylesheet - Add to
 /* Admin Bar System ~~> */
 if(!function_exists('ter_admin_bar')):
 function ter_admin_bar(){
+	$hide_bar = '';
 	if(TER_ADMIN_BAR != 'all') add_action('admin_print_scripts-profile.php','ter_admin_bar_hide');
 	if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) return true;
 	switch(TER_ADMIN_BAR){
@@ -185,14 +195,41 @@ add_action('admin_head','ter_admin_favicon');
 /* Admin Footer ~~> */
 if(!function_exists('ter_admin_footer')):
 function ter_admin_footer(){
-	echo 'Terra Theme by <a href="http://hyperspatial.com" target="_blank">Hyperspatial Design Ltd</a>';
+	echo '<strong>ExpressLine Theme by <a href="http://atrainmarketing.com" target="_blank"><img src="' . TER_GRAPHICS . 'icon-atrain.gif" alt="A-Train" style="vertical-align:text-bottom; margin:0 6px">A-Train Marketing</a></strong>';
 }
 endif;
 add_filter('admin_footer_text','ter_admin_footer');
 
+/* Dashboard Feed ~~~~~~~~~~> */
+if(!function_exists('ter_add_dashboard_meta')):
+function ter_add_dashboard_meta(){ add_meta_box('atrain_feed','A-Train Marketing News','ter_add_dashboard_feed_html','dashboard','side','high'); }
+add_action('wp_dashboard_setup','ter_add_dashboard_meta');
+endif;
+
+if(!function_exists('ter_add_dashboard_feed_html')):
+function ter_add_dashboard_feed_html($post,$callback_args){
+	$rss = fetch_feed('http://atrainmarketing.com/category/marketing-2/feed/');
+	if(!is_wp_error($rss)){
+   		$maxitems = $rss->get_item_quantity(5);
+		$rss_items = $rss->get_items(0,$maxitems);
+	}
+	?>
+	<ul>
+    <?php if($maxitems == 0): ?><li><?php _e('No Feed Items','terra') ?></li>
+	<?php else: ?>
+	<?php foreach($rss_items as $item): ?><li><a href="<?php echo esc_url($item->get_permalink()) ?>" title="<?php printf(__('Posted %s','terra'),$item->get_date('j F Y')) ?>" target="_blank"><?php echo esc_html($item->get_title()) ?></a></li><?php endforeach; ?>
+    <?php endif ?>
+	</ul>
+	<hr style="margin-bottom:10px">
+	<div style="text-align:center"><a href="http://atrainmarketing.com/category/marketing-2/" target="_blank">More Marketing News</a> | <a href="http://atrainmarketing.com/category/marketing-2/feed/" target="_blank">Subscribe to Feed</a></div>
+	<?php
+}
+endif;
+/* <~~~~~~~~~~< END Dashboard Feed */
+
 /* Admin Help Page Menu ~~> */
 if(!function_exists('ter_admin_help_page_menu')):
-function ter_admin_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
+function ter_admin_help_page_menu(){ add_menu_page('Expressline Help','Expressline Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
 endif;
 add_action('admin_menu','ter_admin_help_page_menu');
 
@@ -205,19 +242,55 @@ function ter_admin_remove_dashboard_meta(){
 endif;
 add_action('admin_init','ter_admin_remove_dashboard_meta');
 
+/* Delete Transients - WP will cache file includes in a transient, use this ONCE if you get file_get_contents errors ~~> */
+function ter_delete_transients(){ 
+    global $wpdb; 
+    $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_%"';
+    $wpdb->query($sql); 
+}
+
+/* Disable Visual Editor >~~~~~~~~> */
+function ter_disable_visual_editor(){
+	add_action('add_meta_boxes','ter_disable_visual_editor_add_meta_box',10,2);
+	add_action('save_post','ter_save_page');
+    if(is_admin() && isset($_GET['post'])){
+		if(get_post_meta($_GET['post'],'_ter_disable_visual_editor',true)) add_filter('user_can_richedit','__return_false',50);
+	}
+}
+if(TER_DISABLE_VISUAL_EDITOR) ter_disable_visual_editor();
+
+function ter_disable_visual_editor_add_meta_box( $post_type, $post ) {
+    add_meta_box('ter-disable-ve',__('Disable Visual Editor'),'ter_show_disable_visual_editor_meta_box','page','normal','default');
+}
+
+function ter_show_disable_visual_editor_meta_box($post){
+	$disable_visual_editor = get_post_meta($post->ID,'_ter_disable_visual_editor', true);
+	if($disable_visual_editor) $checked = 'checked="checked"';
+	else $checked = '';
+	wp_nonce_field(plugin_basename(__FILE__),'ter_noncename');
+	echo '<p><label><input type="checkbox" name="_ter_disable_visual_editor" value="1" ' . $checked . '>Disable the visual editor on this page</label></p><p><em>Check this box if this page has complex HTML. Customized pages require advanced HTML and should NOT be edited using the visual editor.</em></p>';
+}
+
+function ter_save_page($post_id){
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+	if($_POST['post_type'] != 'page') return $post_id;
+	if(!wp_verify_nonce($_POST['ter_noncename'],plugin_basename(__FILE__))) return $post_id;
+	if(!current_user_can('edit_post',$post_id)) return $post_id;
+	update_post_meta($post_id,'_ter_disable_visual_editor',$_POST['_ter_disable_visual_editor']);
+} 
+/* <~~~~~~~< END Disable Visual Editor */
+
 /* Enqueue Core Styles ~~> */
 if(!function_exists('ter_enqueue_core_styles')):
 function ter_enqueue_core_styles(){
 	if(is_admin() && !is_404()) return;
-	if(preg_match('/(?i)msie [1-8]/',$_SERVER['HTTP_USER_AGENT'])) $ie8 = true;
 	if(TER_GOOGLE_FONT && preg_match('/Open\+Sans/',TER_GOOGLE_FONT)){
 		wp_deregister_style('open-sans');
 		wp_register_style('open-sans','//fonts.googleapis.com/css?family=' . TER_GOOGLE_FONT);
 		wp_enqueue_style('open-sans');
 	}
-	elseif(TER_GOOGLE_FONT){ wp_enqueue_style('terra_font','//fonts.googleapis.com/css?family=' . TER_GOOGLE_FONT);	}
-	if($ie8) wp_enqueue_style('ter_bootstrap',TER_BOOTSTRAP . 'css/bootstrap.min.css');
-	else wp_enqueue_style('ter_bootstrap',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/css/bootstrap.min.css');
+	elseif(TER_GOOGLE_FONT){ wp_enqueue_style('ter_font','//fonts.googleapis.com/css?family=' . TER_GOOGLE_FONT);	}
+	wp_enqueue_style('ter_bootstrap',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/css/bootstrap.min.css');
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.css');
 	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css_theme',TER_CDN_URL . 'owl-carousel/1.3.2/owl.theme.css');
 }
@@ -233,11 +306,15 @@ function ter_enqueue_scripts(){
 		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY_VERSION . '/jquery.min.js');
 	}
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'));
-	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'));
-	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.29/skrollr.min.js',array('jquery'));
-	if(TER_ACTIVATE_WAYPOINTS) wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/4.0.1/jquery.waypoints.js',array('jquery'));
-	wp_enqueue_script('ter_scripts',TER_JS . 'scripts.js',array('jquery'));
+	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'),false,true);
+	if(TER_ACTIVATE_RETINA_JS) wp_enqueue_script('ter_retina_js',TER_CDN_URL . 'retina.js/2.1.3/retina.min.js',array(),false,true);
+	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'),false,true);
+	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.29/skrollr.min.js',array('jquery'),false,true);
+	if(TER_ACTIVATE_WAYPOINTS){
+		wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/4.0.1/jquery.waypoints.js',array('jquery'),false,true);
+		wp_enqueue_script('ter_waypoints_sticky',TER_CDN_URL . 'waypoints/4.0.1/shortcuts/sticky.min.js',array('jquery'),false,true);
+	}
+	wp_enqueue_script('ter_scripts',TER_JS . 'scripts.js',array('jquery'),false,true);
 }
 endif;
 add_action('wp_print_scripts','ter_enqueue_scripts',100);
@@ -361,6 +438,22 @@ function ter_page_nav_filter($menu){
 endif;
 add_filter('wp_page_menu','ter_page_nav_filter',10);
 
+/* Fix password protect page when using security firewall ~~> */
+if(!function_exists('ter_password_form')):
+function ter_password_form(){
+	global $post;
+	$label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
+	$login_url = basename(wp_login_url());
+	$form = '<form action="' . esc_url(site_url($login_url . '?action=postpass','login_post')) . '" method="post">
+	<p>To view this protected post, enter the password below:</p>
+	<label for="' . $label . '">Password:</label>&nbsp;<input name="post_password" id="' . $label . '" type="password" size="20" maxlength="20" />&nbsp;<input type="submit" name="Submit" value="Enter">
+	</form>
+	';
+	return $form;
+}
+endif;
+add_filter('the_password_form','ter_password_form');
+
 /* Prepend Attachment ~~> */
 if(!function_exists('ter_prepend_attachment')):
 function ter_prepend_attachment($p){ return '<p class="attachment">' . wp_get_attachment_link(0,'full',false) . '</p>'; }
@@ -371,8 +464,10 @@ add_filter('prepend_attachment','ter_prepend_attachment');
 if(!function_exists('ter_register_sidebars')):
 function ter_register_sidebars(){
 	$sidebars = explode(',',TER_SIDEBARS);
+	$i = 1;
 	foreach($sidebars as $sidebar){
-		register_sidebar(array('name'=> $sidebar,'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-inner">','after_widget' => '</div></div>','before_title' => '<h3>','after_title' => '</h3>',));
+		register_sidebar(array('name'=> $sidebar,'id' => 'sidebar-' . $i,'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-inner">','after_widget' => '</div></div>','before_title' => '<h3>','after_title' => '</h3>'));
+		$i++;
 	}
 }
 endif;
@@ -413,15 +508,50 @@ function ter_site_moved_redirect(){
 endif;
 if(TER_ACTIVATE_SITE_MOVED) add_action('ter_redirect','ter_site_moved_redirect',10,1);
 
-/* SSL Content Filter ~~> */
-if(!function_exists('ter_ssl_content_filter')):
-function ter_ssl_content_filter($content){
-	if(isset($_SERVER['HTTPS'])) $content = str_replace('http://' . $_SERVER['SERVER_NAME'],'https://' . $_SERVER['SERVER_NAME'],$content);
-	return $content;
+if(!function_exists('ter_smtp_phpmailer_init')):
+/* SMTP Mailer ~~> */
+function ter_smtp_phpmailer_init($phpmailer){
+	$phpmailer->isSMTP();
+	$phpmailer->Host = TER_SMTP_HOST;
+	$phpmailer->SMTPAuth = true;
+	$phpmailer->Port = TER_SMTP_PORT;
+	$phpmailer->Username = TER_SMTP_USERNAME;
+	$phpmailer->Password = TER_SMTP_PASSWORD;
+	$phpmailer->SMTPSecure = TER_SMTP_ENCRYPTION; // Choose SSL or TLS, if necessary for your server
+	$phpmailer->From = TER_SMTP_USERNAME;
+	$phpmailer->Sender = TER_SMTP_USERNAME;
+	$phpmailer->FromName = TER_SMTP_FROM_NAME;
 }
 endif;
-add_filter('the_content','ter_ssl_content_filter');
+if(TER_ACTIVATE_SMTP) add_action('phpmailer_init','ter_smtp_phpmailer_init');
 
+/* SMTP Test ~~> */
+function ter_test_email($to = 'webmaster@atrainmarketing.com'){
+	global $phpmailer;
+	if(!is_object($phpmailer) || !is_a($phpmailer,'PHPMailer')){
+		require_once ABSPATH . WPINC . '/class-phpmailer.php';
+		require_once ABSPATH . WPINC . '/class-smtp.php';
+		$phpmailer = new PHPMailer(true);
+	}
+	$subject = 'ExpressLine SMTP Test - ' . $to;
+	$message = 'This is a test email from ExpressLine, Yehaaa';
+	$phpmailer->SMTPDebug = true;
+	ob_start();
+	$result = wp_mail($to,$subject,$message,array('Content-Type: text/html; charset=UTF-8'));
+	$smtp_debug = ob_get_clean();
+	?>
+	<div class="alert alert-warning">
+		<h4>SMTP Test</h4>
+		<p><?php echo 'Result:' ?></p>
+		<pre><?php var_dump($result) ?></pre>
+		<p><?php echo 'PHPMailer Debug:' ?></p>
+		<pre><?php var_dump($phpmailer) ?></pre>
+		<p><?php echo 'SMTP Debug:' ?></p>
+		<pre><?php echo $smtp_debug ?></pre>
+	</div>
+	<?php
+	unset($phpmailer);
+}
 
 /* Filters for continuous nav system, all action calls in template-tags.php >~~~~~~~~> */
 

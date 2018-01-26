@@ -10,6 +10,7 @@ $ter_branding_logos = new TerBrandingLogos();
 class TerBranding{
 	private $_logos;
 	public function __construct($tax_query = false,$term = false){
+		$args = '';
 		if($tax_query){
 			$args['tax_query'] = array(
 				array(
@@ -18,8 +19,9 @@ class TerBranding{
 					'field' => 'slug',
 				),
 			);
+			$this->_logos = get_posts(array('post_type' => 'ter_logo','posts_per_page' => -1,'tax_query' => $args['tax_query']));
 		}
-		$this->_logos = get_posts(array('post_type' => 'ter_logo','posts_per_page' => -1,'tax_query' => $args['tax_query'] ));
+		else $this->_logos = get_posts(array('post_type' => 'ter_logo','posts_per_page' => -1));
 	}
 	
 	public function print_logo_quotes(){?>
