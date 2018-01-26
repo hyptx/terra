@@ -1,6 +1,6 @@
 <?php /* Template Name: Home */ ?>
 <?php get_header() ?>
-<?php DDDtemplate_comment(__FILE__) ?>
+<?php ter_template_comment(__FILE__) ?>
 <div id="main" class="container">
 	<div id="main-row" class="row">
 		<div id="primary" class="<?php echo EXL_FULL_WIDTH_CLASS ?>">
