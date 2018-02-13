@@ -62,7 +62,7 @@ p:empty{margin:0}
 #primary,#secondary{padding-top:15px; padding-bottom:15px}
 .page-header{margin-top:0; overflow:hidden}
 .entry-header{margin-bottom:20px; overflow:hidden}
-footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bottom:20px; clear:both}
+footer.entry-meta{border-bottom:1px solid #EEE; padding:16px 0; margin-bottom:20px; clear:both}
 .widget{margin-bottom:20px}
 .widget_search .form-group{margin-bottom:4px}
 
@@ -109,6 +109,7 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:20px; margin-bott
 .comment-heading .comment-links{margin-left:6px}
 .commentlist hr{margin-left:-25px}
 .commentlist .children{list-style-type:none}
+#comment-submit{margin-bottom: 20px}
 
 /* Standard Classes ~~~~> */
 #page .absolute{position:absolute}
