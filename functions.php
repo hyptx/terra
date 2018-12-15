@@ -1,93 +1,97 @@
 <?php /* Parent Theme */
 
 /* Define Constants Function - DO NOT MODIFY >~~~~~~~~> */
-if(!function_exists('ter_define_constants')): function ter_define_constants($constants){ foreach($constants as $key => $value) if(!defined($key)) define($key,$value); } endif;
-$ter_dir = get_bloginfo('template_directory');//Parent theme is always 'template_directory'
+if(!function_exists('terx_define_constants')): function terx_define_constants($constants){ foreach($constants as $key => $value) if(!defined($key)) define($key,$value); } endif;
+$terx_dir = get_bloginfo('template_directory');//Parent theme is always 'template_directory'
 /* <~~~~~~~< END of DO NOT MODIFY */
 
 /* Parent Theme Directories ~~> */
-ter_define_constants(array(
-	'TERRA' => 	$ter_dir . '/',
-	'TER_CSS' => 		$ter_dir . '/css/',
-	'TER_GRAPHICS' => 	$ter_dir . '/graphics/',
-	'TER_INCLUDES' => 	dirname(__FILE__) . '/includes/',
-	'TER_JS' => 		$ter_dir . '/js/',
-	'TER_SLIDER' => 	$ter_dir . '/owl/'
+terx_define_constants(array(
+	'TERRA' => 	$terx_dir . '/',
+	'TERX_CSS' => 		$terx_dir . '/css/',
+	'TERX_GRAPHICS' => 	$terx_dir . '/graphics/',
+	'TERX_INCLUDES' => 	dirname(__FILE__) . '/includes/',
+	'TERX_JS' => 		$terx_dir . '/js/',
+	'TERX_SLIDER' => 	$terx_dir . '/owl/'
 ));
 
 /* Theme Options - See README.md for your release: https://github.com/hyptx/terra >~~~~~~~~> */
-ter_define_constants(array(
+terx_define_constants(array(
 	/* System */
-	'TER_ERROR_DISPLAY_ON' => 		false,
-	'TER_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
-	'TER_JQUERY_VERSION' => 		'1.9.1',//GF Compatibility issue with 3.0
-	'TER_BOOTSTRAP_VERSION' => 		'3.3.7',
-	'TER_BS_IMG_RESPONSIVE' => 		'article img,.widget img',
-	'TER_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',	
+	'TERX_ERROR_DISPLAY_ON' => 		true,
+	'TERX_CDN_URL' => 				'//cdnjs.cloudflare.com/ajax/libs/',
+	'TERX_JQUERY_VERSION' => 		'1.9.1',//GF Compatibility issue with 3.0
+	'TERX_BOOTSTRAP_VERSION' => 		'4.1.3',
+	'TERX_POPPER_VERSION' =>			'1.14.3',
+	'TERX_BS_IMG_RESPONSIVE' => 		'article img,.widget img',
+	'TERX_GOOGLE_FONT' => 			'Open+Sans:400,400italic,600,600italic',
 	/* Layout */
-	'TER_LOGO' => 					$ter_dir . '/graphics/logo.png',
-	'TER_HEADER_HOME_LINK' => 		'title',
-	'TER_FULL_WIDTH_CLASS' => 		'col-sm-12',
-	'TER_PRIMARY_CLASS' => 			'col-sm-8',
-	'TER_SECONDARY_CLASS' => 		'col-sm-4',
-	'TER_SECONDARY' => 				'right',
-	'TER_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',
+	'TERX_LOGO' => 					$terx_dir . '/graphics/logo.png',
+	'TERX_HEADER_HOME_LINK' => 		'title',
+	'TERX_FULL_WIDTH_CLASS' => 		'col-12',
+	'TERX_PRIMARY_CLASS' => 			'col-md-8 col-lg-9',
+	'TERX_SECONDARY_CLASS' => 		'col-md-4 col-lg-3',
+	'TERX_SECONDARY' => 				'right',
+	'TERX_SIDEBARS' => 				'Blog Sidebar,Page Sidebar',
 	/* Wordpress */
-	'TER_ADD_HOME_LINK' => 			false,
-	'TER_ADMIN_BAR' => 				'editor',
-	'TER_ADMIN_BAR_LOGIN' => 		false,
-	'TER_COMMENTS' => 				false,
-	'TER_DISABLE_VISUAL_EDITOR' =>  false,
-	'TER_EXCERPT' => 				false,
-	'TER_EXCERPT_LEN' => 			40,
-	'TER_TITLE_FORMAT_DEFAULT' => 	false,
-	'TER_MAX_IMAGE_SIZE_KB' => 		640,
-	'TER_WP_POST_FORMATS' => 		false,
-	'TER_GF_BUTTON_CLASS' =>		'btn btn-info',
-	'TER_COPYRIGHT' =>				'&copy; ' . date('Y ') . get_bloginfo('name'),
+	'TERX_ADD_HOME_LINK' => 			false,
+	'TERX_ADMIN_BAR' => 				'editor',
+	'TERX_ADMIN_BAR_LOGIN' => 		false,
+	'TERX_COMMENTS' => 				false,
+	'TERX_DISABLE_VISUAL_EDITOR' =>  false,
+	'TERX_EXCERPT' => 				false,
+	'TERX_EXCERPT_LEN' => 			40,
+	'TERX_TITLE_FORMAT_DEFAULT' => 	false,
+	'TERX_MAX_IMAGE_SIZE_KB' => 		640,
+	'TERX_WP_POST_FORMATS' => 		false,
+	'TERX_GF_BUTTON_CLASS' =>		'btn btn-info',
+	'TERX_COPYRIGHT' =>				'&copy; ' . date('Y ') . get_bloginfo('name') . ' - ' . 'Design by <a target="_blank" href="https://hyperspatial.com">Hyperspatial Design Ltd</a>',
+	/* Google - Entering a value will create the google snippets dynamically */
+	'TERX_GOOGLE_ANALYTICS_UA_NO' => '',
+	'TERX_GOOGLE_ADWORDS_CONV_ID' => '',
+	'TERX_GTM_CONTAINER_ID' => 		'',
 	/* Features */
-	'TER_ACTIVATE_BACK_TO_TOP' => 	false,
-	'TER_ACTIVATE_BRANDING' => 		false,
-	'TER_ACTIVATE_BREADCRUMBS' => 	false,
-	'TER_ACTIVATE_CUSTOM_SIDEBAR' =>false,
-	'TER_ACTIVATE_FAVICONS' => 		false,
-	'TER_ACTIVATE_RETINA_JS' => 	false,
-	'TER_ACTIVATE_SITE_MOVED' => 	false,
-	'TER_ACTIVATE_SMTP' => 			false,
-	'TER_ACTIVATE_SLIDER' => 		false,
-	'TER_ACTIVATE_WAYPOINTS' => 	false,
-	/* SMTP TER_ACTIVATE_SMTP - Test: ter_test_email('webmaster@atrainmarketing.com') */
-	'TER_SMTP_HOST' => 				'smtp.gmail.com',
-	'TER_SMTP_PORT' => 				465,
-	'TER_SMTP_USERNAME' => 			'',
-	'TER_SMTP_PASSWORD' => 			'',
-	'TER_SMTP_ENCRYPTION' => 		'ssl',//ssl or tls
-	'TER_SMTP_FROM_NAME' => 		'',
+	'TERX_ACTIVATE_BACK_TO_TOP' => 	false,
+	'TERX_ACTIVATE_BRANDING' => 		false,
+	'TERX_ACTIVATE_BREADCRUMBS' => 	false,
+	'TERX_ACTIVATE_CUSTOM_SIDEBAR' =>false,
+	'TERX_ACTIVATE_FAVICONS' => 		false,
+	'TERX_ACTIVATE_RETINA_JS' => 	false,
+	'TERX_ACTIVATE_SITE_MOVED' => 	false,
+	'TERX_ACTIVATE_SMTP' => 			false,
+	'TERX_ACTIVATE_SLIDER' => 		false,
+	'TERX_ACTIVATE_WAYPOINTS' => 	false,
+	/* SMTP TERX_ACTIVATE_SMTP - Use Google API for Gmail - Test: terx_test_email('adam@hyperspatial.com') */
+	'TERX_SMTP_HOST' => 				'smtp.gmail.com',
+	'TERX_SMTP_PORT' => 				465,
+	'TERX_SMTP_USERNAME' => 			'',
+	'TERX_SMTP_PASSWORD' => 			'',
+	'TERX_SMTP_ENCRYPTION' => 		'ssl',//ssl or tls
+	'TERX_SMTP_FROM_NAME' => 		'',
 	/* Experimental */
-	'TER_ACTIVATE_SKROLLR' => 		false
+	'TERX_ACTIVATE_SKROLLR' => 		false
 ));
 /* END <~~~~~~~~< Theme Options */
 
 /* Includes ~~~~> */
-require(TER_INCLUDES . 'template-tags.php');
-require(TER_INCLUDES . 'walkers.php');
-require(TER_INCLUDES . 'admin.php');
-require(TER_INCLUDES . 'shortcode.php');
-require(TER_INCLUDES . 'cookie.php');
-if(TER_ACTIVATE_BRANDING) require(TER_INCLUDES . 'branding.php');
-if(TER_ACTIVATE_CUSTOM_SIDEBAR) require(TER_INCLUDES . 'custom-sidebar.php');
-if(TER_ACTIVATE_SLIDER) require(TER_INCLUDES . 'slider.php');
-//if(TER_ACTIVATE_SKROLLR) require(TER_INCLUDES . 'skrollr.php'); //Experimental
+require(TERX_INCLUDES . 'template-tags.php');
+require(TERX_INCLUDES . 'walkers.php');
+require(TERX_INCLUDES . 'admin.php');
+require(TERX_INCLUDES . 'shortcode.php');
+require(TERX_INCLUDES . 'cookie.php');
+if(TERX_ACTIVATE_BRANDING) require(TERX_INCLUDES . 'branding.php');
+if(TERX_ACTIVATE_CUSTOM_SIDEBAR) require(TERX_INCLUDES . 'custom-sidebar.php');
+if(TERX_ACTIVATE_SLIDER) require(TERX_INCLUDES . 'slider.php');
+//if(TERX_ACTIVATE_SKROLLR) require(TERX_INCLUDES . 'skrollr.php'); //Experimental
 
 /* Setup ~~> */
-if(!function_exists('ter_setup')): 
-function ter_setup(){
-	if(TER_ERROR_DISPLAY_ON){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
+if(!function_exists('terx_setup')): 
+function terx_setup(){
+	if(TERX_ERROR_DISPLAY_ON){ error_reporting(E_ALL ^ E_NOTICE); ini_set('display_errors','1'); }
 	add_theme_support('automatic-feed-links');
 	add_theme_support('post-thumbnails');
 	register_nav_menu('header',__('Header Menu','terra'));
 	register_nav_menu('primary',__('Primary Menu','terra'));
-	register_nav_menu('footer',__('Footer Menu','terra'));
 	remove_action('wp_head','rsd_link');
 	remove_action('wp_head','wp_generator');
 	remove_action('wp_head','feed_links',2);
@@ -101,53 +105,53 @@ function ter_setup(){
 	remove_filter('the_title','wptexturize');
 	remove_filter('comment_text','wptexturize');
 	remove_filter('the_excerpt','wptexturize');
-	if(TER_WP_POST_FORMATS) add_theme_support('post-formats',explode(',',TER_WP_POST_FORMATS));
+	if(TERX_WP_POST_FORMATS) add_theme_support('post-formats',explode(',',TERX_WP_POST_FORMATS));
 }
 endif;
-add_action('after_setup_theme','ter_setup');
+add_action('after_setup_theme','terx_setup');
 
 /* Add Home Link to wp_list_pages ~~> */
-if(!function_exists('ter_add_home_link')):
-function ter_add_home_link($items){
+if(!function_exists('terx_add_home_link')):
+function terx_add_home_link($items){
 	if(is_front_page()) $current = ' current_page_item';
     $link = '<li class="menu-item-home' . $current . '"><a href="' . home_url( '/' ) . '">' . __('Home') . '</a></li>';
     $items = $link . $items;
     return $items;
 }
 endif;
-if(TER_ADD_HOME_LINK) add_filter('wp_list_pages','ter_add_home_link');
+if(TERX_ADD_HOME_LINK) add_filter('wp_list_pages','terx_add_home_link');
 
 /* Add Script
-*  Add to top of any page template-> $ter_add_script = array('test'); ~~> */
-if(!function_exists('ter_add_script')):
-function ter_add_script(){
+*  Add to top of any page template-> $terx_add_script = array('test'); ~~> */
+if(!function_exists('terx_add_script')):
+function terx_add_script(){
 	if(is_admin() && !is_404()) return;
-	global $ter_add_script;
-	if(!$ter_add_script) return;
-    foreach($ter_add_script as $script)	wp_enqueue_script('ter_script_' . $script, TER_JS . $script . '.js');
+	global $terx_add_script;
+	if(!$terx_add_script) return;
+    foreach($terx_add_script as $script)	wp_enqueue_script('terx_script_' . $script, TERX_JS . $script . '.js');
 }
 endif;
-add_action('wp_print_scripts','ter_add_script',105);
+add_action('wp_print_scripts','terx_add_script',105);
 
 /* Add Stylesheet
-*  Add to top of any page template-> $ter_add_stylesheet = array('test'); ~~> */
-if(!function_exists('ter_add_stylesheet')):
-function ter_add_stylesheet(){
+*  Add to top of any page template-> $terx_add_stylesheet = array('test'); ~~> */
+if(!function_exists('terx_add_stylesheet')):
+function terx_add_stylesheet(){
 	if(is_admin() && !is_404()) return;
-	global $ter_add_stylesheet;
-	if(!$ter_add_stylesheet) return;
-    foreach($ter_add_stylesheet as $stylesheet)	wp_enqueue_style('ter_style_' . $stylesheet, TER_CSS . $stylesheet . '.css');
+	global $terx_add_stylesheet;
+	if(!$terx_add_stylesheet) return;
+    foreach($terx_add_stylesheet as $stylesheet)	wp_enqueue_style('terx_style_' . $stylesheet, TERX_CSS . $stylesheet . '.css');
 }
 endif;
-add_action('wp_print_styles','ter_add_stylesheet',105);//Add Stylesheet - Add to top of page template-> $ter_add_stylesheet = array('test'); 
+add_action('wp_print_styles','terx_add_stylesheet',105);//Add Stylesheet - Add to top of page template-> $terx_add_stylesheet = array('test'); 
 
 /* Admin Bar System ~~> */
-if(!function_exists('ter_admin_bar')):
-function ter_admin_bar(){
+if(!function_exists('terx_admin_bar')):
+function terx_admin_bar(){
 	$hide_bar = '';
-	if(TER_ADMIN_BAR != 'all') add_action('admin_print_scripts-profile.php','ter_admin_bar_hide');
-	if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) return true;
-	switch(TER_ADMIN_BAR){
+	if(TERX_ADMIN_BAR != 'all') add_action('admin_print_scripts-profile.php','terx_admin_bar_hide');
+	if(!is_user_logged_in() && TERX_ADMIN_BAR_LOGIN == true) return true;
+	switch(TERX_ADMIN_BAR){
 		case 'all': $hide_bar = false; break;
 		case 'admin': if(!current_user_can('edit_plugins')) $hide_bar = true; break;
 		case 'editor': if(!current_user_can('edit_pages')) $hide_bar = true; break;
@@ -157,290 +161,321 @@ function ter_admin_bar(){
 	if($hide_bar) return false;
 	else return true;
 }
-add_filter('show_admin_bar','ter_admin_bar');
+add_filter('show_admin_bar','terx_admin_bar');
 
 /* Admin Bar Hide ~~> */
-function ter_admin_bar_hide(){
+function terx_admin_bar_hide(){
 	echo '<style type="text/css">.show-admin-bar{display:none;}</style>';
 }
 endif;
-//Action call in ter_admin_bar()
+//Action call in terx_admin_bar()
 
 /* Admin Bar Login Link ~~> */
-if(!function_exists('ter_admin_bar_login_link')):
-function ter_admin_bar_login_link($wp_admin_bar){
-	if(!is_user_logged_in() && TER_ADMIN_BAR_LOGIN == true) $wp_admin_bar->add_menu(array('title' => __('Log In'),'href' => wp_login_url()));
+if(!function_exists('terx_admin_bar_login_link')):
+function terx_admin_bar_login_link($wp_admin_bar){
+	if(!is_user_logged_in() && TERX_ADMIN_BAR_LOGIN == true) $wp_admin_bar->add_menu(array('title' => __('Log In'),'href' => wp_login_url()));
 }
 endif;
-add_action('admin_bar_menu','ter_admin_bar_login_link');
+add_action('admin_bar_menu','terx_admin_bar_login_link');
 
 /* Admin Bar Remove WP Logo ~~> */
-if(!function_exists('ter_admin_bar_remove_wp')):
-function ter_admin_bar_remove_wp(){
+if(!function_exists('terx_admin_bar_remove_wp')):
+function terx_admin_bar_remove_wp(){
 	global $wp_admin_bar;
 	$wp_admin_bar->remove_menu('wp-logo');
 }
 endif;
-add_action('wp_before_admin_bar_render','ter_admin_bar_remove_wp');
+add_action('wp_before_admin_bar_render','terx_admin_bar_remove_wp');
 
 /* Admin Favicon ~~> */
-if(!function_exists('ter_admin_favicon')):
-function ter_admin_favicon(){
-	echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">';
+if(!function_exists('terx_admin_favicon')):
+function terx_admin_favicon(){
+	echo '<link rel="shortcut icon" href="' . TERX_GRAPHICS . 'favicon-32x32.png">';
 }
 endif;
-add_action('login_head','ter_admin_favicon');
-add_action('admin_head','ter_admin_favicon');
+add_action('login_head','terx_admin_favicon');
+add_action('admin_head','terx_admin_favicon');
 
 /* Admin Footer ~~> */
-if(!function_exists('ter_admin_footer')):
-function ter_admin_footer(){
-	echo '<strong>ExpressLine Theme by <a href="http://atrainmarketing.com" target="_blank"><img src="' . TER_GRAPHICS . 'icon-atrain.gif" alt="A-Train" style="vertical-align:text-bottom; margin:0 6px">A-Train Marketing</a></strong>';
+if(!function_exists('terx_admin_footer')):
+function terx_admin_footer(){
+	echo '<strong>Terra Theme by <a href="https://hyperspatial.com" target="_blank"><img src="' . TERX_GRAPHICS . 'favicon-16x16.png" alt="Terra" style="vertical-align:text-bottom; margin:0 6px">Hyperspatial Design Ltd</a></strong>';
 }
 endif;
-add_filter('admin_footer_text','ter_admin_footer');
-
-/* Dashboard Feed ~~~~~~~~~~> */
-if(!function_exists('ter_add_dashboard_meta')):
-function ter_add_dashboard_meta(){ add_meta_box('atrain_feed','A-Train Marketing News','ter_add_dashboard_feed_html','dashboard','side','high'); }
-add_action('wp_dashboard_setup','ter_add_dashboard_meta');
-endif;
-
-if(!function_exists('ter_add_dashboard_feed_html')):
-function ter_add_dashboard_feed_html($post,$callback_args){
-	$rss = fetch_feed('http://atrainmarketing.com/category/marketing-2/feed/');
-	if(!is_wp_error($rss)){
-   		$maxitems = $rss->get_item_quantity(5);
-		$rss_items = $rss->get_items(0,$maxitems);
-	}
-	?>
-	<ul>
-    <?php if($maxitems == 0): ?><li><?php _e('No Feed Items','terra') ?></li>
-	<?php else: ?>
-	<?php foreach($rss_items as $item): ?><li><a href="<?php echo esc_url($item->get_permalink()) ?>" title="<?php printf(__('Posted %s','terra'),$item->get_date('j F Y')) ?>" target="_blank"><?php echo esc_html($item->get_title()) ?></a></li><?php endforeach; ?>
-    <?php endif ?>
-	</ul>
-	<hr style="margin-bottom:10px">
-	<div style="text-align:center"><a href="http://atrainmarketing.com/category/marketing-2/" target="_blank">More Marketing News</a> | <a href="http://atrainmarketing.com/category/marketing-2/feed/" target="_blank">Subscribe to Feed</a></div>
-	<?php
-}
-endif;
-/* <~~~~~~~~~~< END Dashboard Feed */
+add_filter('admin_footer_text','terx_admin_footer');
 
 /* Admin Help Page Menu ~~> */
-if(!function_exists('ter_admin_help_page_menu')):
-function ter_admin_help_page_menu(){ add_menu_page('Expressline Help','Expressline Help','edit_pages','ter_help','ter_help_page_html', TER_GRAPHICS . 'favicon-16x16.png'); }
+if(!function_exists('terx_admin_help_page_menu')):
+function terx_admin_help_page_menu(){ add_menu_page('Terra Help','Terra Help','edit_pages','terx_help','terx_help_page_html', TERX_GRAPHICS . 'favicon-16x16.png'); }
 endif;
-add_action('admin_menu','ter_admin_help_page_menu');
+add_action('admin_menu','terx_admin_help_page_menu');
 
 /* Admin Remove Dashboard Meta ~~> */
-if(!function_exists('ter_admin_remove_dashboard_meta')):
-function ter_admin_remove_dashboard_meta(){
+if(!function_exists('terx_admin_remove_dashboard_meta')):
+function terx_admin_remove_dashboard_meta(){
 	remove_meta_box('dashboard_primary','dashboard','normal'); 
 	remove_meta_box('dashboard_quick_press','dashboard','side');
 }
 endif;
-add_action('admin_init','ter_admin_remove_dashboard_meta');
+add_action('admin_init','terx_admin_remove_dashboard_meta');
 
 /* Delete Transients - WP will cache file includes in a transient, use this ONCE if you get file_get_contents errors ~~> */
-function ter_delete_transients(){ 
+function terx_delete_transients(){ 
     global $wpdb; 
     $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_%"';
     $wpdb->query($sql); 
 }
 
 /* Disable Visual Editor >~~~~~~~~> */
-function ter_disable_visual_editor(){
-	add_action('add_meta_boxes','ter_disable_visual_editor_add_meta_box',10,2);
-	add_action('save_post','ter_save_page');
+function terx_disable_visual_editor(){
+	add_action('add_meta_boxes','terx_disable_visual_editor_add_meta_box',10,2);
+	add_action('save_post','terx_save_page');
     if(is_admin() && isset($_GET['post'])){
-		if(get_post_meta($_GET['post'],'_ter_disable_visual_editor',true)) add_filter('user_can_richedit','__return_false',50);
+		if(get_post_meta($_GET['post'],'_terx_disable_visual_editor',true)) add_filter('user_can_richedit','__return_false',50);
 	}
 }
-if(TER_DISABLE_VISUAL_EDITOR) ter_disable_visual_editor();
+if(TERX_DISABLE_VISUAL_EDITOR) terx_disable_visual_editor();
 
-function ter_disable_visual_editor_add_meta_box( $post_type, $post ) {
-    add_meta_box('ter-disable-ve',__('Disable Visual Editor'),'ter_show_disable_visual_editor_meta_box','page','normal','default');
+function terx_disable_visual_editor_add_meta_box( $post_type, $post ) {
+    add_meta_box('terx-disable-ve',__('Disable Visual Editor'),'terx_show_disable_visual_editor_meta_box','page','normal','default');
 }
 
-function ter_show_disable_visual_editor_meta_box($post){
-	$disable_visual_editor = get_post_meta($post->ID,'_ter_disable_visual_editor', true);
+function terx_show_disable_visual_editor_meta_box($post){
+	$disable_visual_editor = get_post_meta($post->ID,'_terx_disable_visual_editor', true);
 	if($disable_visual_editor) $checked = 'checked="checked"';
 	else $checked = '';
-	wp_nonce_field(plugin_basename(__FILE__),'ter_noncename');
-	echo '<p><label><input type="checkbox" name="_ter_disable_visual_editor" value="1" ' . $checked . '>Disable the visual editor on this page</label></p><p><em>Check this box if this page has complex HTML. Customized pages require advanced HTML and should NOT be edited using the visual editor.</em></p>';
+	wp_nonce_field(plugin_basename(__FILE__),'terx_noncename');
+	echo '<p><label><input type="checkbox" name="_terx_disable_visual_editor" value="1" ' . $checked . '>Disable the visual editor on this page</label></p><p><em>Check this box if this page has complex HTML. Customized pages require advanced HTML and should NOT be edited using the visual editor.</em></p>';
 }
 
-function ter_save_page($post_id){
+function terx_save_page($post_id){
 	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 	if($_POST['post_type'] != 'page') return $post_id;
-	if(!wp_verify_nonce($_POST['ter_noncename'],plugin_basename(__FILE__))) return $post_id;
+	if(!wp_verify_nonce($_POST['terx_noncename'],plugin_basename(__FILE__))) return $post_id;
 	if(!current_user_can('edit_post',$post_id)) return $post_id;
-	update_post_meta($post_id,'_ter_disable_visual_editor',$_POST['_ter_disable_visual_editor']);
+	update_post_meta($post_id,'_terx_disable_visual_editor',$_POST['_terx_disable_visual_editor']);
 } 
 /* <~~~~~~~< END Disable Visual Editor */
 
+/* Experimental, include JS file for use in modifying Gutenberg Blocks ~~> */
+if(!function_exists('terx_filter_previous_post_where')):
+function terx_enqueue_blocks(){
+	wp_enqueue_script('terx-blocks',TERX_JS . 'blocks.js',array('wp-blocks', 'wp-element'));
+}
+//add_action('enqueue_block_editor_assets','terx_enqueue_blocks'); //Uncomment to load JS file
+endif;
+
 /* Enqueue Core Styles ~~> */
-if(!function_exists('ter_enqueue_core_styles')):
-function ter_enqueue_core_styles(){
+if(!function_exists('terx_enqueue_core_styles')):
+function terx_enqueue_core_styles(){
 	if(is_admin() && !is_404()) return;
-	if(TER_GOOGLE_FONT && preg_match('/Open\+Sans/',TER_GOOGLE_FONT)){
+	if(TERX_GOOGLE_FONT && preg_match('/Open\+Sans/',TERX_GOOGLE_FONT)){
 		wp_deregister_style('open-sans');
-		wp_register_style('open-sans','//fonts.googleapis.com/css?family=' . TER_GOOGLE_FONT);
+		wp_register_style('open-sans','//fonts.googleapis.com/css?family=' . TERX_GOOGLE_FONT);
 		wp_enqueue_style('open-sans');
 	}
-	elseif(TER_GOOGLE_FONT){ wp_enqueue_style('ter_font','//fonts.googleapis.com/css?family=' . TER_GOOGLE_FONT);	}
-	wp_enqueue_style('ter_bootstrap',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/css/bootstrap.min.css');
-	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.css');
-	if(TER_ACTIVATE_SLIDER) wp_enqueue_style('ter_slider_css_theme',TER_CDN_URL . 'owl-carousel/1.3.2/owl.theme.css');
+	elseif(TERX_GOOGLE_FONT){ wp_enqueue_style('terx_font','//fonts.googleapis.com/css?family=' . TERX_GOOGLE_FONT);	}
+	wp_enqueue_style('terx_bootstrap',TERX_CDN_URL . 'twitter-bootstrap/' . TERX_BOOTSTRAP_VERSION . '/css/bootstrap.min.css');
+	if(TERX_ACTIVATE_SLIDER) wp_enqueue_style('terx_slider_css',TERX_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.css');
+	if(TERX_ACTIVATE_SLIDER) wp_enqueue_style('terx_slider_css_theme',TERX_CDN_URL . 'owl-carousel/1.3.2/owl.theme.css');
 }
 endif;
-add_action('wp_print_styles','ter_enqueue_core_styles',100);
+add_action('wp_print_styles','terx_enqueue_core_styles',100);
 
 /* Enqueue Javascript ~~> */
-if(!function_exists('ter_enqueue_scripts')):
-function ter_enqueue_scripts(){
+if(!function_exists('terx_enqueue_scripts')):
+function terx_enqueue_scripts(){
 	if(is_admin() && !is_404()) return;
-	if(TER_JQUERY_VERSION){
+	if(is_singular() && get_option('thread_comments')) wp_enqueue_script('comment-reply');
+	if(TERX_JQUERY_VERSION){
 		wp_deregister_script('jquery');
-		wp_register_script('jquery',TER_CDN_URL . 'jquery/' . TER_JQUERY_VERSION . '/jquery.min.js');
+		wp_register_script('jquery',TERX_CDN_URL . 'jquery/' . TERX_JQUERY_VERSION . '/jquery.min.js');
 	}
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('ter_bootstrap_js',TER_CDN_URL . 'twitter-bootstrap/' . TER_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'),false,true);
-	if(TER_ACTIVATE_RETINA_JS) wp_enqueue_script('ter_retina_js',TER_CDN_URL . 'retina.js/2.1.3/retina.min.js',array(),false,true);
-	if(TER_ACTIVATE_SLIDER) wp_enqueue_script('ter_slider_js',TER_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'),false,true);
-	if(TER_ACTIVATE_SKROLLR) wp_enqueue_script('ter_skrollr_js',TER_CDN_URL . 'skrollr/0.6.29/skrollr.min.js',array('jquery'),false,true);
-	if(TER_ACTIVATE_WAYPOINTS){
-		wp_enqueue_script('ter_waypoints',TER_CDN_URL . 'waypoints/4.0.1/jquery.waypoints.js',array('jquery'),false,true);
-		wp_enqueue_script('ter_waypoints_sticky',TER_CDN_URL . 'waypoints/4.0.1/shortcuts/sticky.min.js',array('jquery'),false,true);
+	wp_enqueue_script('terx_popper_js',TERX_CDN_URL . 'popper.js/' . TERX_POPPER_VERSION . '/umd/popper.min.js',array('jquery'),false,true);
+	wp_enqueue_script('terx_bootstrap_js',TERX_CDN_URL . 'twitter-bootstrap/' . TERX_BOOTSTRAP_VERSION . '/js/bootstrap.min.js',array('jquery'),false,true);
+	if(TERX_ACTIVATE_RETINA_JS) wp_enqueue_script('terx_retina_js',TERX_CDN_URL . 'retina.js/2.1.3/retina.min.js',array(),false,true);
+	if(TERX_ACTIVATE_SLIDER) wp_enqueue_script('terx_slider_js',TERX_CDN_URL . 'owl-carousel/1.3.2/owl.carousel.min.js',array('jquery'),false,true);
+	if(TERX_ACTIVATE_SKROLLR) wp_enqueue_script('terx_skrollr_js',TERX_CDN_URL . 'skrollr/0.6.29/skrollr.min.js',array('jquery'),false,true);
+	if(TERX_ACTIVATE_WAYPOINTS){
+		wp_enqueue_script('terx_waypoints',TERX_CDN_URL . 'waypoints/4.0.1/jquery.waypoints.js',array('jquery'),false,true);
+		wp_enqueue_script('terx_waypoints_sticky',TERX_CDN_URL . 'waypoints/4.0.1/shortcuts/sticky.min.js',array('jquery'),false,true);
 	}
-	wp_enqueue_script('ter_scripts',TER_JS . 'scripts.js',array('jquery'),false,true);
+	wp_enqueue_script('terx_scripts',TERX_JS . 'scripts.js',array('jquery'),false,true);
 }
 endif;
-add_action('wp_print_scripts','ter_enqueue_scripts',100);
+add_action('wp_print_scripts','terx_enqueue_scripts',100);
 
 
 /* Enqueue Styles ~~> */
-if(!function_exists('ter_enqueue_styles')):
-function ter_enqueue_styles(){
+if(!function_exists('terx_enqueue_styles')):
+function terx_enqueue_styles(){
 	if(is_admin() && !is_404()) return;	
-	wp_enqueue_style('ter_styles',TERRA . 'style.css',array('ter_bootstrap'));
+	wp_enqueue_style('terx_styles',TERRA . 'style.css',array('terx_bootstrap'));
 }
 endif;
-add_action('wp_print_styles','ter_enqueue_styles',101);
+add_action('wp_print_styles','terx_enqueue_styles',101);
 
 /* Excerpt Length ~~> */
-if(!function_exists('ter_excerpt_length')):
-function ter_excerpt_length($length){
-	return TER_EXCERPT_LEN;
+if(!function_exists('terx_excerpt_length')):
+function terx_excerpt_length($length){
+	return TERX_EXCERPT_LEN;
 }
 endif;
-add_filter('excerpt_length','ter_excerpt_length');
+add_filter('excerpt_length','terx_excerpt_length');
 
 /* Excerpt More ~~> */
-if(!function_exists('ter_excerpt_more')):
-function ter_excerpt_more($output){
-	if(has_excerpt() && ! is_attachment()) $output .= ter_continue_reading_link();
+if(!function_exists('terx_excerpt_more')):
+function terx_excerpt_more($output){
+	if(has_excerpt() && ! is_attachment()) $output .= terx_continue_reading_link();
 	return $output;
 }
 endif;
-add_filter('get_the_excerpt','ter_excerpt_more');
+add_filter('get_the_excerpt','terx_excerpt_more');
 
 /* Excerpt More Auto ~~> */
-if(!function_exists('ter_excerpt_more_auto')):
-function ter_excerpt_more_auto($more){
-	return ' &hellip;' . ter_continue_reading_link();
+if(!function_exists('terx_excerpt_more_auto')):
+function terx_excerpt_more_auto($more){
+	return ' &hellip;' . terx_continue_reading_link();
 }
 endif;
-add_filter('excerpt_more','ter_excerpt_more_auto');
+add_filter('excerpt_more','terx_excerpt_more_auto');
 
 /* Favicons ~~> */
-if(!function_exists('ter_favicons')): 
-function ter_favicons(){
-	if(TER_ACTIVATE_FAVICONS) require('favicon.php');
-	else echo '<link rel="shortcut icon" href="' . TER_GRAPHICS . 'favicon-32x32.png">';
+if(!function_exists('terx_favicons')): 
+function terx_favicons(){
+	if(TERX_ACTIVATE_FAVICONS) require('favicon.php');
+	else echo '<link rel="shortcut icon" href="' . TERX_GRAPHICS . 'favicon-32x32.png">';
 }
 endif;
-add_action('ter_head','ter_favicons');
+add_action('terx_head','terx_favicons');
+
+/* Global Site Tag/Analytics ~~> */
+if(!function_exists('terx_global_site_tag')): 
+function terx_global_site_tag(){
+	if(!TERX_GOOGLE_ANALYTICS_UA_NO) return;
+	?>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo TERX_GOOGLE_ANALYTICS_UA_NO ?>"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', '<?php echo TERX_GOOGLE_ANALYTICS_UA_NO ?>');
+	  <?php if(TERX_GOOGLE_ADWORDS_CONV_ID) echo "gtag('config','" . TERX_GOOGLE_ADWORDS_CONV_ID . "');"; ?>
+	</script>
+	<?php
+}
+endif;
+
+/* Google Tag Manager Head ~~> */
+if(!function_exists('terx_gtm_head')): 
+function terx_gtm_head(){
+	if(!TERX_GTM_CONTAINER_ID) return;
+	?>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','<?php echo TERX_GTM_CONTAINER_ID ?>');</script>
+	<!-- End Google Tag Manager -->
+	<?php
+}
+endif;
+
+/* Google Tag Manager Head ~~> */
+if(!function_exists('terx_gtm_body')): 
+function terx_gtm_body(){
+	if(!TERX_GTM_CONTAINER_ID) return;
+	?>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo TERX_GTM_CONTAINER_ID ?>"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<?php
+}
+endif;
 
 /* Gravity Forms Button Class ~~> */
-if(!function_exists('ter_gravity_forms_button_class')):
-function ter_gravity_forms_button_class(){
-	if(!TER_GF_BUTTON_CLASS) return;
-	echo '<script type="text/javascript">jQuery(".gform_wrapper .button").addClass("' . TER_GF_BUTTON_CLASS . '");</script>';
+if(!function_exists('terx_gravity_forms_button_class')):
+function terx_gravity_forms_button_class(){
+	if(!TERX_GF_BUTTON_CLASS) return;
+	echo '<script>jQuery(".gform_wrapper .button").addClass("' . TERX_GF_BUTTON_CLASS . '");</script>';
 }
 endif;
-add_action('ter_footer','ter_gravity_forms_button_class');
+add_action('terx_footer','terx_gravity_forms_button_class');
 
 /* Img Responsive Class ~~> */
-if(!function_exists('ter_img_responsive')): 
-function ter_img_responsive(){
-	if(!TER_BS_IMG_RESPONSIVE) return;
-	echo '<script type="text/javascript">jQuery("' . TER_BS_IMG_RESPONSIVE . '").addClass("img-responsive");</script>';
+if(!function_exists('terx_img_responsive')): 
+function terx_img_responsive(){
+	if(!TERX_BS_IMG_RESPONSIVE) return;
+	echo '<script>jQuery("' . TERX_BS_IMG_RESPONSIVE . '").addClass("img-fluid");</script>';
 }
 endif;
-add_action('ter_footer','ter_img_responsive');
+add_action('terx_footer','terx_img_responsive');
 
 /* Limit Image Uploads ~~> */
-if(!function_exists('ter_limit_image_uploads')):
-function ter_limit_image_uploads($file){
-	$error_message = 'KB is to large. Please reduce the file size of your image to ' . TER_MAX_IMAGE_SIZE_KB . 'KB or less. Hosting space is limited and uploading large images will slow down your page loads. Use a tool such as http://toki-woki.net/p/Shrink-O-Matic/ to help you to resize your images. Target size: Width 1024px, file size 100KB-200KB';
+if(!function_exists('terx_limit_image_uploads')):
+function terx_limit_image_uploads($file){
+	$error_message = 'KB is to large. Please reduce the file size of your image to ' . TERX_MAX_IMAGE_SIZE_KB . 'KB or less. Hosting space is limited and uploading large images will slow down your page loads. Use a tool such as https://www.photoresizer.com/ to help you to resize your images. Target size: Width 1024px, file size 100KB-200KB';
 	$size_in_kb = $file['size'] / 1024;
-	if(preg_match('/image/',$file['type'])) if($size_in_kb > TER_MAX_IMAGE_SIZE_KB) $file['error'] = round($size_in_kb,2) . $error_message;
+	if(preg_match('/image/',$file['type'])) if($size_in_kb > TERX_MAX_IMAGE_SIZE_KB) $file['error'] = round($size_in_kb,2) . $error_message;
 	return $file;	
 }
 endif;
-add_filter('wp_handle_upload_prefilter','ter_limit_image_uploads');
+add_filter('wp_handle_upload_prefilter','terx_limit_image_uploads');
 
 /* Login Logo Title ~~> */
-if(!function_exists('ter_login_logo_title')):
-function ter_login_logo_title(){
+if(!function_exists('terx_login_logo_title')):
+function terx_login_logo_title(){
 	return get_bloginfo('site');
 }
 endif;
-add_filter('login_headertitle','ter_login_logo_title');
+add_filter('login_headertitle','terx_login_logo_title');
 
 /* Login Logo URL ~~> */
-if(!function_exists('ter_login_logo_url')):
-function ter_login_logo_url(){
+if(!function_exists('terx_login_logo_url')):
+function terx_login_logo_url(){
 	return get_bloginfo('url');
 }
 endif;
-add_filter('login_headerurl','ter_login_logo_url');
+add_filter('login_headerurl','terx_login_logo_url');
 
 /* Login Styles ~~> */
-if(!function_exists('ter_login_styles')):
-function ter_login_styles(){
-	wp_enqueue_style('ter_login_css',TER_CSS . 'login.css');
+if(!function_exists('terx_login_styles')):
+function terx_login_styles(){
+	wp_enqueue_style('terx_login_css',TERX_CSS . 'login.css');
 	//Inline Option to save a CSS file load:
-	//echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TER_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>';
+	//echo '<style type="text/css">body.login div#login h1 a{background-image:url('. TERX_GRAPHICS .'logo.png); width:154px; height:44px!important; background-size:auto}</style>';
 }
 endif;
-add_action('login_enqueue_scripts','ter_login_styles');
+add_action('login_enqueue_scripts','terx_login_styles');
 
 /* Modals Render ~~> */  
-if(!function_exists('ter_modals_render')):
-function ter_modals_render(){
-	global $ter_modals;
-	if(!$ter_modals) return;
-	foreach($ter_modals as $modal) echo $modal;
+if(!function_exists('terx_modals_render')):
+function terx_modals_render(){
+	global $terx_modals;
+	if(!$terx_modals) return;
+	foreach($terx_modals as $modal) echo $modal;
 }
 endif;
-add_action('ter_footer','ter_modals_render');
+add_action('terx_footer','terx_modals_render');
 
 /* Page Nav Filter ~~> */
-if(!function_exists('ter_page_nav_filter')):
-function ter_page_nav_filter($menu){
+if(!function_exists('terx_page_nav_filter')):
+function terx_page_nav_filter($menu){
 	$replace = array('<div class="menu">','</div>','<ul>','</ul>');
 	$menu = str_replace($replace,'',$menu); 
 	return $menu;
 }
 endif;
-add_filter('wp_page_menu','ter_page_nav_filter',10);
+add_filter('wp_page_menu','terx_page_nav_filter',10);
 
 /* Fix password protect page when using security firewall ~~> */
-if(!function_exists('ter_password_form')):
-function ter_password_form(){
+if(!function_exists('terx_password_form')):
+function terx_password_form(){
 	global $post;
 	$label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
 	$login_url = basename(wp_login_url());
@@ -452,18 +487,18 @@ function ter_password_form(){
 	return $form;
 }
 endif;
-add_filter('the_password_form','ter_password_form');
+add_filter('the_password_form','terx_password_form');
 
 /* Prepend Attachment ~~> */
-if(!function_exists('ter_prepend_attachment')):
-function ter_prepend_attachment($p){ return '<p class="attachment">' . wp_get_attachment_link(0,'full',false) . '</p>'; }
+if(!function_exists('terx_prepend_attachment')):
+function terx_prepend_attachment($p){ return '<p class="attachment">' . wp_get_attachment_link(0,'full',false) . '</p>'; }
 endif;
-add_filter('prepend_attachment','ter_prepend_attachment');
+add_filter('prepend_attachment','terx_prepend_attachment');
 
 /* Register Sidebars ~~> */
-if(!function_exists('ter_register_sidebars')):
-function ter_register_sidebars(){
-	$sidebars = explode(',',TER_SIDEBARS);
+if(!function_exists('terx_register_sidebars')):
+function terx_register_sidebars(){
+	$sidebars = explode(',',TERX_SIDEBARS);
 	$i = 1;
 	foreach($sidebars as $sidebar){
 		register_sidebar(array('name'=> $sidebar,'id' => 'sidebar-' . $i,'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-inner">','after_widget' => '</div></div>','before_title' => '<h3>','after_title' => '</h3>'));
@@ -471,11 +506,19 @@ function ter_register_sidebars(){
 	}
 }
 endif;
-add_action('widgets_init','ter_register_sidebars');
+add_action('widgets_init','terx_register_sidebars');
+
+/* Remove script tag ~~> */
+function terx_remove_script_tag($input){
+    $input = str_replace("type='text/javascript'",'',$input);
+    $input = str_replace('type="text/javascript"','',$input);
+    return $input;
+}
+add_filter('script_loader_tag','terx_remove_script_tag');
 
 /* Site Map Add Post Types ~~> */
-if(!function_exists('ter_site_map_add_post_types')):
-function ter_site_map_add_post_types(){	
+if(!function_exists('terx_site_map_add_post_types')):
+function terx_site_map_add_post_types(){	
 	$post_types = get_post_types(array('public' => true,'_builtin' => false));
 	foreach($post_types as $post_type){
 		$post_type_object = get_post_type_object($post_type);
@@ -486,55 +529,55 @@ function ter_site_map_add_post_types(){
 	}
 }
 endif;
-add_action('ter_site_map_extra_post_types','ter_site_map_add_post_types');
+add_action('terx_site_map_extra_post_types','terx_site_map_add_post_types');
 
 /* Site Moved Notice ~~> */
-if(!function_exists('ter_site_moved_notice')):
-function ter_site_moved_notice(){
+if(!function_exists('terx_site_moved_notice')):
+function terx_site_moved_notice(){
     echo '<div class="error"><p><strong>Site Moved: ' . get_bloginfo('url') .' has moved to a new location, new IP address and or a new web server. Any edits made to posts here will not be reflected in the current/live website.</strong></p></div>';
 }
 endif;
-if(TER_ACTIVATE_SITE_MOVED) add_action('admin_notices','ter_site_moved_notice');
+if(TERX_ACTIVATE_SITE_MOVED) add_action('admin_notices','terx_site_moved_notice');
 
 /* Site Moved Redirect ~~> */
-if(!function_exists('ter_site_moved_redirect')):
-function ter_site_moved_redirect(){
+if(!function_exists('terx_site_moved_redirect')):
+function terx_site_moved_redirect(){
 	global $post;
-	if($post->ID == TER_ACTIVATE_SITE_MOVED) return;
-	$redirect_url = get_permalink(TER_ACTIVATE_SITE_MOVED);
+	if($post->ID == TERX_ACTIVATE_SITE_MOVED) return;
+	$redirect_url = get_permalink(TERX_ACTIVATE_SITE_MOVED);
 	wp_redirect($redirect_url,301);
 	exit;
 }
 endif;
-if(TER_ACTIVATE_SITE_MOVED) add_action('ter_redirect','ter_site_moved_redirect',10,1);
+if(TERX_ACTIVATE_SITE_MOVED) add_action('terx_redirect','terx_site_moved_redirect',10,1);
 
-if(!function_exists('ter_smtp_phpmailer_init')):
 /* SMTP Mailer ~~> */
-function ter_smtp_phpmailer_init($phpmailer){
+if(!function_exists('terx_smtp_phpmailer_init')):
+function terx_smtp_phpmailer_init($phpmailer){
 	$phpmailer->isSMTP();
-	$phpmailer->Host = TER_SMTP_HOST;
+	$phpmailer->Host = TERX_SMTP_HOST;
 	$phpmailer->SMTPAuth = true;
-	$phpmailer->Port = TER_SMTP_PORT;
-	$phpmailer->Username = TER_SMTP_USERNAME;
-	$phpmailer->Password = TER_SMTP_PASSWORD;
-	$phpmailer->SMTPSecure = TER_SMTP_ENCRYPTION; // Choose SSL or TLS, if necessary for your server
-	$phpmailer->From = TER_SMTP_USERNAME;
-	$phpmailer->Sender = TER_SMTP_USERNAME;
-	$phpmailer->FromName = TER_SMTP_FROM_NAME;
+	$phpmailer->Port = TERX_SMTP_PORT;
+	$phpmailer->Username = TERX_SMTP_USERNAME;
+	$phpmailer->Password = TERX_SMTP_PASSWORD;
+	$phpmailer->SMTPSecure = TERX_SMTP_ENCRYPTION; // Choose SSL or TLS, if necessary for your server
+	$phpmailer->From = TERX_SMTP_USERNAME;
+	$phpmailer->Sender = TERX_SMTP_USERNAME;
+	$phpmailer->FromName = TERX_SMTP_FROM_NAME;
 }
 endif;
-if(TER_ACTIVATE_SMTP) add_action('phpmailer_init','ter_smtp_phpmailer_init');
+if(TERX_ACTIVATE_SMTP) add_action('phpmailer_init','terx_smtp_phpmailer_init');
 
 /* SMTP Test ~~> */
-function ter_test_email($to = 'webmaster@atrainmarketing.com'){
+function terx_test_email($to = 'adam@hyperspatial.com'){
 	global $phpmailer;
 	if(!is_object($phpmailer) || !is_a($phpmailer,'PHPMailer')){
 		require_once ABSPATH . WPINC . '/class-phpmailer.php';
 		require_once ABSPATH . WPINC . '/class-smtp.php';
 		$phpmailer = new PHPMailer(true);
 	}
-	$subject = 'ExpressLine SMTP Test - ' . $to;
-	$message = 'This is a test email from ExpressLine, Yehaaa';
+	$subject = 'Terra SMTP Test - ' . $to;
+	$message = 'This is a test email from Terra, Yehaaa';
 	$phpmailer->SMTPDebug = true;
 	ob_start();
 	$result = wp_mail($to,$subject,$message,array('Content-Type: text/html; charset=UTF-8'));
@@ -556,32 +599,32 @@ function ter_test_email($to = 'webmaster@atrainmarketing.com'){
 /* Filters for continuous nav system, all action calls in template-tags.php >~~~~~~~~> */
 
 /* Filter Next Post Sort ~~> */
-if(!function_exists('ter_filter_next_post_sort')):
-function ter_filter_next_post_sort($sort){
+if(!function_exists('terx_filter_next_post_sort')):
+function terx_filter_next_post_sort($sort){
 	$sort = "ORDER BY p.post_title ASC LIMIT 1";
 	return $sort;
 }
 endif;
 
 /* Filter Next Post Where ~~> */
-if(!function_exists('ter_filter_next_post_where')):
-function ter_filter_next_post_where($where){
+if(!function_exists('terx_filter_next_post_where')):
+function terx_filter_next_post_where($where){
 	global $post,$wpdb;
 	return $wpdb->prepare("WHERE p.post_title > '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
 }
 endif;
 
 /* Filter Previous Post Sort ~~> */
-if(!function_exists('ter_filter_previous_post_sort')):
-function ter_filter_previous_post_sort($sort){
+if(!function_exists('terx_filter_previous_post_sort')):
+function terx_filter_previous_post_sort($sort){
 	$sort = "ORDER BY p.post_title DESC LIMIT 1";
 	return $sort;
 }
 endif;
 
 /* Filter Previous Post Where ~~> */
-if(!function_exists('ter_filter_previous_post_where')):
-function ter_filter_previous_post_where($where){
+if(!function_exists('terx_filter_previous_post_where')):
+function terx_filter_previous_post_where($where){
 	global $post,$wpdb;
 	return $wpdb->prepare("WHERE p.post_title < '%s' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'",$post->post_title);
 }

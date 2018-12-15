@@ -1,6 +1,6 @@
 <?php /* Template Name: Full Page Containerless */ ?>
 <?php get_header() ?>
-<?php ter_template_comment(__FILE__) ?>
+<?php terx_template_comment(__FILE__) ?>
 <div id="main">
 	<div id="main-row">
 		<div id="primary">

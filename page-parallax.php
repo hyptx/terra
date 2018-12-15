@@ -198,7 +198,7 @@
 	</div>
 
 	
-	<script type="text/javascript">
+	<script>
 	skrollr.init({
 		smoothScrolling: false,
 		mobileDeceleration: 0.004

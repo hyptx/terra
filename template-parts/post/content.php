@@ -1,4 +1,4 @@
-<?php ter_template_comment(__FILE__) ?>
+<?php terx_template_comment(__FILE__) ?>
 <article id="post-<?php the_ID() ?>" <?php post_class() ?>>
     <header class="entry-header">
         <h1 class="entry-title">
@@ -15,7 +15,7 @@
         </div>
         <?php endif ?>
     </header><!-- .entry-header -->
-    <?php if(!is_single() && TER_EXCERPT): ?>
+    <?php if(!is_single() && TERX_EXCERPT): ?>
     <div class="entry-summary">
         <?php the_excerpt() ?>
     </div><!-- .entry-summary -->
@@ -26,9 +26,9 @@
     </div><!-- .entry-content -->
     <?php endif ?>
     <footer class="entry-meta">
-        <?php if(TER_COMMENTS && comments_open() && !is_single()): ?>
+        <?php if(TERX_COMMENTS && comments_open() && !is_single()): ?>
         <span class="comments-link"><?php comments_popup_link('<span class="leave-reply">' . __('Post a Comment', 'terra') . '</span>',__('<b>1</b> Comment','terra'),__('<b>%</b> Comments','terra')) ?>&nbsp;&nbsp;</span>
         <?php endif ?>
-		<?php ter_tags() ?>
+		<?php terx_tags() ?>
     </footer><!-- #entry-meta --> 
 </article><!-- #post-<?php the_ID() ?> -->

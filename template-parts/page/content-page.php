@@ -1,4 +1,4 @@
-<?php ter_template_comment(__FILE__) ?>
+<?php terx_template_comment(__FILE__) ?>
 <article id="post-<?php the_ID() ?>" <?php post_class() ?>>
 	<header class="page-header">
 		<?php the_title('<h1 class="page-title">','</h1>') ?>

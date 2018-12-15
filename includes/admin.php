@@ -1,5 +1,5 @@
 <?php /* ~~~~~~~~~~~ Admin Page ~~~~~~~~~~~ */
-function ter_help_page_html(){?>
+function terx_help_page_html(){?>
 	<style type="text/css">
 	pre {
 	 white-space: pre-wrap;       /* css-3 */
@@ -10,11 +10,11 @@ function ter_help_page_html(){?>
 	}
 	</style>
 	<div class="wrap">
-    	<h2>Theme Help</h2>
+    	<h2>Terra Help</h2>
 
-		<?php global $ter_child_help ?>
-		<?php if($ter_child_help): ?>
-			<?php foreach($ter_child_help as $key=>$value): ?>
+		<?php global $terx_child_help ?>
+		<?php if($terx_child_help): ?>
+			<?php foreach($terx_child_help as $key=>$value): ?>
 			<br><h3><?php echo $key ?></h3><hr>
 			<?php echo $value ?>
 			<?php endforeach ?>
@@ -23,10 +23,10 @@ function ter_help_page_html(){?>
 		<br>  	
 <h3>Custom Shortcodes</h3><hr>
 <p>These shortcodes are created by your child theme. Simply wrap your html in the tags: <code>[shortcode-tag]your html is here[/shortcode-tag]</code><br>Make sure to paste it into the HTML editor, not the Visual editor when editing your content.</p>
-		<?php global $ter_child_shortcodes ?>
-		<?php if($ter_child_shortcodes): ?>
+		<?php global $terx_child_shortcodes ?>
+		<?php if($terx_child_shortcodes): ?>
 		<ul>
-			<?php foreach($ter_child_shortcodes as $key=>$value): ?>
+			<?php foreach($terx_child_shortcodes as $key=>$value): ?>
 			<li><code><?php echo $key ?><?php echo str_replace('[','[/',$key) ?></code> - <?php echo $value ?></li>
 			<?php endforeach ?>
 		</ul>
@@ -100,13 +100,13 @@ This is the content for Item Two. Always maintain an empty line above and below 
 <p>Use these shortcodes to create a bootstrap modal box. Each box must have a corresponding trigger. Choose a unique id name to use to tie the box to its trigger. Remove the title or close_btn attributes if you want to hide those elements.</p>
 <ul>
 	<li><code>[modal id="testmodal" title="Test Modal" close_btn="true"]Modal HTML Content Here[/modal]</code> - This creates the modal box itself. </li>
-	<li><code>[modal-trigger id="testmodal" class="btn btn-ter"]Open Test Modal[/modal-trigger]</code> - Remove class attribute to use a plain link. </li>
+	<li><code>[modal-trigger id="testmodal" class="btn btn-terx"]Open Test Modal[/modal-trigger]</code> - Remove class attribute to use a plain link. </li>
 </ul>
 <br>
 <h3>PDF Embed Shortcode</h3><hr>
 <p>Shorcode specifically meant for embedding a .pdf file. Height defaults to 500 and must be set to a pixel height.</p>
 <ul>
-	<li><code>[embed-pdf url="http://terra.hyptx.com/wp-content/uploads/2014/11/pdf-sample.pdf" height="500"]</code> - Enter the url of your .pdf document. </li>
+	<li><code>[embed-pdf url="http://domain/pdf-sample.pdf" height="500"]</code> - Enter the url of your .pdf document. </li>
 </ul>
 <br>
 <h3>Layout Shortcodes</h3><hr>
@@ -120,6 +120,13 @@ This is the content for Item Two. Always maintain an empty line above and below 
 			<li><code>[grid col="#"][/grid]</code> - Enter a value from 1-12 for col, make sure items in a row add up to 12</li>
 			<li><code>[/row]</code> - End a row.</li>
         </ul>
+        <h4>Custom Classes:</h4>
+        <p>If you need to target any layout shortcode elements with a custom classname, just add a class attribute as follows:</p>
+        <ul>
+            <li><code>[row class="my-important-row"]</code> - Start a row with the extra class of my-important-row</li>
+            <li><code>[one-third class="my-important-column"][/one-third]</code> - One third width element with the extra class of my-important-column</li>
+        </ul>
+
 <br>		
         <h4>Example 1 - Three one-third elements</h4>
 <pre style="border:1px solid #888; padding:1em; background:#eee">

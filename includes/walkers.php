@@ -1,15 +1,14 @@
 <?php /* ~~~~~~~~~~~ Walkers ~~~~~~~~~~~ */
 
-/* TerWalkerNavMenu
+/* EXLWalkerNavMenu
 *  Use with wp_nav_menu */
-class TerWalkerNavMenu extends Walker_Nav_Menu{
-	public function start_lvl(&$output, $depth = 0, $args = array()){
-		$dropdown_menu = '';
+class EXLWalkerNavMenu extends Walker_Nav_Menu{
+	public function start_lvl(&$output,$depth){
 		$indent = str_repeat("\t",$depth);
 		if($depth < 1) $dropdown_menu = ' dropdown-menu';
 		$output .= "\n$indent<ul class=\"sub-menu$dropdown_menu level-" . ($depth + 1) . "\">\n";
 	}
-	public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0){
+	public function start_el(&$output,$item,$depth,$args){
 		global $wp_query;
 		$indent = ($depth) ? str_repeat("\t",$depth) : '';
 		$class_names = $value = '';
@@ -18,7 +17,7 @@ class TerWalkerNavMenu extends Walker_Nav_Menu{
 		if(in_array('current-menu-item',$classes)) $classes[] = 'active';
 		if($args->has_children && (integer)$depth < 1) $classes[] = 'dropdown';
 		$class_names = join(' ',apply_filters('nav_menu_css_class',array_filter($classes),$item,$args));
-		$class_names = ' class="' . esc_attr($class_names) . '"';
+		$class_names = ' class="nav-item ' . esc_attr($class_names) . '"';
 		$id = apply_filters('nav_menu_item_id','menu-item-' . $item->ID,$item,$args);
 		$id = strlen($id) ? ' id="' . esc_attr($id) . '"' : '';
 		$output .= $indent . '<li' . $id . $value . $class_names .'>';
@@ -26,11 +25,12 @@ class TerWalkerNavMenu extends Walker_Nav_Menu{
 		$attributes .= ! empty($item->target) ? ' target="' . esc_attr($item->target) .'"' : '';
 		$attributes .= ! empty($item->xfn) ? ' rel="' . esc_attr($item->xfn) .'"' : '';
 		$attributes .= ! empty($item->url) ? ' href="' . esc_attr($item->url) .'"' : '';
+		$attributes .= ($args->has_children && (integer)$depth < 1) ? ' class="nav-link dropdown-toggle"' : ' class="nav-link"';
 		$item_output = $args->before;
 		$dropdown_data = ($args->has_children && (integer)$depth < 1) ? ' data-toggle="dropdown" ' : ''; //Remove for caret dropdown
 		$item_output .= '<a'. $attributes . $dropdown_data . '>';
 		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-		$item_output .= ($args->has_children && (integer)$depth < 1) ? '<b class="caret"></b>' : '';
+		//$item_output .= ($args->has_children && (integer)$depth < 1) ? '<b class="caret"></b>' : '';
 		$item_output .= '</a>';
 		//$item_output .= ($args->has_children && (integer)$depth < 1) ? '<b data-toggle="dropdown" class="caret" title="Open Menu"></b>' : ''; //Uncomment for caret dropdown
 		$item_output .= $args->after;
@@ -64,16 +64,15 @@ class TerWalkerNavMenu extends Walker_Nav_Menu{
 	}
 }
 
-/* TerWalkerPage
+/* EXLWalkerPage
 *  Fallback, use with wp_list_pages */
-class TerWalkerPage extends Walker_Page{
-	function start_lvl(&$output, $depth = 0, $args = array()){
+class EXLWalkerPage extends Walker_Page{
+	function start_lvl(&$output,$depth){
 		$indent = str_repeat("\t",$depth);
 		if($depth < 1) $dropdown_menu = ' dropdown-menu';
 		$output .= "\n$indent<ul class=\"sub-menu$dropdown_menu\">\n";
 	}
-
-	function start_el(&$output,$page,$depth = 0,$args = array(),$current_page = 0){
+	function start_el(&$output,$page,$depth,$args,$current_page){
 		if($depth) $indent = str_repeat("\t", $depth);
 		else $indent = '';
 		extract($args, EXTR_SKIP);
@@ -92,7 +91,7 @@ class TerWalkerPage extends Walker_Page{
 			$dropdown_data = ' data-toggle="dropdown" '; //Remove for caret dropdown
 			$caret = '<b class="caret"></b>';
 		}
-		$output .= $indent . '<li class="' . $css_class . '"><a href="' . get_permalink($page->ID) . '"' . $dropdown_data . '>' . $link_before . apply_filters('the_title',$page->post_title,$page->ID ) . $link_after . $caret . '</a>';
+		$output .= $indent . '<li class="nav-item ' . $css_class . '"><a href="' . get_permalink($page->ID) . '"' . $dropdown_data . ' class="nav-link">' . $link_before . apply_filters('the_title',$page->post_title,$page->ID ) . $link_after . $caret . '</a>';
 		if(!empty($show_date)){
 			if('modified' == $show_date) $time = $page->post_modified;
 			else $time = $page->post_date;

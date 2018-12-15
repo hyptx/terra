@@ -1,4 +1,4 @@
-<?php ter_template_comment(__FILE__) ?>
+<?php terx_template_comment(__FILE__) ?>
 <article id="post-<?php the_ID() ?>" <?php post_class() ?>>
     <header class="entry-header">
         <h1 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf(esc_attr__('Permalink to %s','terra'),the_title_attribute('echo=0')) ?>" rel="bookmark"><?php the_title() ?></a></h1>
@@ -22,9 +22,9 @@
     </div><!-- .entry-content -->
     <?php endif ?>
     <footer class="entry-meta">
-        <?php if(TER_COMMENTS && comments_open() && !is_single()): ?>
+        <?php if(TERX_COMMENTS && comments_open() && !is_single()): ?>
         <span class="comments-link"><?php comments_popup_link('<span class="leave-reply">' . __('Post a Comment', 'terra') . '</span>',__('<b>1</b> Comment','terra'),__('<b>%</b> Comments','terra')) ?>&nbsp;&nbsp;</span>
         <?php endif ?>
-		<?php ter_tags() ?>
+		<?php terx_tags() ?>
     </footer><!-- #entry-meta --> 
 </article><!-- #post-<?php the_ID() ?> -->

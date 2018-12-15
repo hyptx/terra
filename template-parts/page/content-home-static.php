@@ -1,4 +1,4 @@
-<?php ter_template_comment(__FILE__) ?>
+<?php terx_template_comment(__FILE__) ?>
 <article id="post-0" class="page type-page hentry">
 	<div class="entry-content">
 		<div class="row">

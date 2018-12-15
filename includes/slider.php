@@ -6,7 +6,7 @@
 //Owl Slider
 function owl_slider($shortcode = false,$options = false){
 	if($shortcode) ob_start();
-	$terra_owl_slider = new TerraOwlSlider($options);
+	$terx_owl_slider = new EXPOwlSlider($options);
 	if($shortcode){
 		$main_function_output = ob_get_contents();
 		ob_end_clean();
@@ -21,9 +21,9 @@ function run_owl_slider_shortcode($atts){
 }
 add_shortcode('owl_slider','run_owl_slider_shortcode');
 
-/* ~~~~~~~~~~~ TerraOwlSlider ~~~~~~~~~~~ */
+/* ~~~~~~~~~~~ EXPOwlSlider ~~~~~~~~~~~ */
 
-class TerraOwlSlider{
+class EXPOwlSlider{
 	private $_options,$_slides;
 	private static $instance_id;
 	public function __construct($options){
@@ -35,7 +35,7 @@ class TerraOwlSlider{
 	
 	private function get_slides(){
 		if($this->_options['tag']) $tax_query = array(array('taxonomy' => 'slide_tags','field' => 'slug','terms' => $this->_options['tag']));
-		$args = array('post_type' => 'terra_slides','showposts' => -1,'order' => 'DESC','tax_query' => $tax_query);
+		$args = array('post_type' => 'terx_slides','showposts' => -1,'order' => 'DESC','tax_query' => $tax_query);
 		$this->_slides = get_posts($args);
 		
 		if(!$this->_slides && $this->_options['tag']) echo '<div class="alert alert-warning">No slides found under ' . $this->_options['tag'] . '</div>';
@@ -45,9 +45,9 @@ class TerraOwlSlider{
 	
 	private function add_meta(){
 		foreach($this->_slides as $slide){
-			$slide->_terra_slide_url = get_post_meta($slide->ID,'_terra_slide_url',1);
-			$slide->_terra_slide_img_url = wp_get_attachment_url(get_post_thumbnail_id($slide->ID));
-			if(!$slide->_terra_slide_img_url) $slide->_terra_slide_img_url = get_post_meta($slide->ID,'_terra_slide_src', true);
+			$slide->_terx_slide_url = get_post_meta($slide->ID,'_terx_slide_url',1);
+			$slide->_terx_slide_img_url = wp_get_attachment_url(get_post_thumbnail_id($slide->ID));
+			if(!$slide->_terx_slide_img_url) $slide->_terx_slide_img_url = get_post_meta($slide->ID,'_terx_slide_src', true);
 		}
 		$this->print_slider();
 	}
@@ -57,7 +57,7 @@ class TerraOwlSlider{
 		else $slider_div_id = 'owl-slider-' . self::$instance_id;
 		echo '<div id="' . $slider_div_id . '">';
 		foreach($this->_slides as $slide){
-			if($slide->_terra_slide_url) $this->wrap_slide($slide);
+			if($slide->_terx_slide_url) $this->wrap_slide($slide);
 			else $this->print_slide($slide);			
 		}
 		echo '</div><!-- /#owl-slider -->';
@@ -65,17 +65,17 @@ class TerraOwlSlider{
 	}
 	
 	private function wrap_slide($slide){
-		echo '<div><a href="' . $slide->_terra_slide_url . '"><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '"></a>' . $this->print_slide_html($slide) . '</div>';
+		echo '<div><a href="' . $slide->_terx_slide_url . '"><img src="' . $slide->_terx_slide_img_url . '" alt="' . $slide->post_title . '"></a>' . $this->print_slide_html($slide) . '</div>';
 	}
 	
 	private function print_slide($slide){
-		echo '<div><img src="' . $slide->_terra_slide_img_url . '" alt="' . $slide->post_title . '">' . $this->print_slide_html($slide) . '</div>';
+		echo '<div><img src="' . $slide->_terx_slide_img_url . '" alt="' . $slide->post_title . '">' . $this->print_slide_html($slide) . '</div>';
 	}
 
 	private function print_slide_html($slide){ if($slide->post_content) return '<div class="owl-html">' . $slide->post_content . '</div>'; }
 	
 	private function print_slider_js($slider_div_id){?>
-		<script type="text/javascript">
+		<script>
 		jQuery(document).ready(function() {
 			jQuery("#<?php echo $slider_div_id ?>").owlCarousel({
 				navigation : true,
@@ -103,7 +103,7 @@ class owl_slider_widget extends WP_Widget{
 		<?php echo $before_widget; ?>
         <?php if($title) echo $before_title . $title . $after_title ?>
 		
-		<?php $terra_owl_slider = new TerraOwlSlider(array('tag' => $tag)) ?>
+		<?php $terx_owl_slider = new EXPOwlSlider(array('tag' => $tag)) ?>
 		
         <?php echo $after_widget; ?>
         <?php
@@ -134,11 +134,11 @@ class owl_slider_widget extends WP_Widget{
 }//END owl_slider_widget
 add_action('widgets_init', create_function('', 'return register_widget("owl_slider_widget");'));
 
-/* ~~~~~~~~~~~ TerraSlides ~~~~~~~~~~~ */
+/* ~~~~~~~~~~~ EXLSlides ~~~~~~~~~~~ */
 
-$terra_slides = new TerraSlides();
+$terx_slides = new EXLSlides();
 
-class TerraSlides{
+class EXLSlides{
 	public function __construct(){
 		add_action('init',array(&$this,'init'));
 		add_filter('post_updated_messages',array(&$this,'updated_messages'));
@@ -172,10 +172,10 @@ class TerraSlides{
 			'has_archive' => true,
 			'hierarchical' => true,
 			'menu_position' => null,
-			'menu_icon' => TER_GRAPHICS . 'icon-slider.png',
+			'menu_icon' => TERX_GRAPHICS . 'icon-slider.png',
 			'supports' => array('title','editor','thumbnail'/*,'author','excerpt','custom-fields'*/)
 		);
-		register_post_type('terra_slides',$args);
+		register_post_type('terx_slides',$args);
 		
 		//Taxonomy
 		$labels = array(
@@ -198,7 +198,7 @@ class TerraSlides{
 			'show_admin_column' => true,
 			'query_var'         => true
 		);
-		register_taxonomy('slide_tags','terra_slides',$args);
+		register_taxonomy('slide_tags','terx_slides',$args);
 	}
 	
 	/* Updated Messages */
@@ -223,10 +223,10 @@ class TerraSlides{
 	 
 	public function add_meta_boxes(){
 		add_meta_box(
-			'terra_slide_extras',
+			'terx_slide_extras',
 			'Slide Extras',
 			array(&$this,'meta_box_1'),
-			'terra_slides',
+			'terx_slides',
 			'advanced',
 			'high'
 		);
@@ -234,26 +234,26 @@ class TerraSlides{
 
 	/* Meta box content */
     public function meta_box_1($post){
-		wp_nonce_field(plugin_basename(__FILE__),'terra_noncename');
-		$value = get_post_meta($post->ID,'_terra_slide_url', true);
-		$slide_src_value = get_post_meta($post->ID,'_terra_slide_src', true);
+		wp_nonce_field(plugin_basename(__FILE__),'terx_noncename');
+		$value = get_post_meta($post->ID,'_terx_slide_url', true);
+		$slide_src_value = get_post_meta($post->ID,'_terx_slide_src', true);
 		echo '<p><label for="slide_url"><strong>Hyperlink for slide:</strong></label><br>';
-		echo '<input type="text" id="slide_url" name="terra_slide_url" value="' . esc_attr( $value ) . '" style="width:60%" /><br>';
+		echo '<input type="text" id="slide_url" name="terx_slide_url" value="' . esc_attr( $value ) . '" style="width:60%" /><br>';
 		echo '&nbsp;<em>Format: http://website.com</em></p>';
 		
 		echo '<p><label for="slide_url"><strong>Slide source url:</strong></label><br>';
-		echo '<input type="text" id="slide_src_url" name="_terra_slide_src" value="' . esc_attr( $slide_src_value ) . '" style="width:60%" /><br>';
+		echo '<input type="text" id="slide_src_url" name="_terx_slide_src" value="' . esc_attr( $slide_src_value ) . '" style="width:60%" /><br>';
 		echo '&nbsp;<em>Use if your image is not hosted on the site. Format: http://website.com/myimage.jpg</em></p>';
     }
 
 	/* Save Postdata */
 	public function save_post($post_id){
 		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-		if($_POST['post_type'] != 'terra_slides') return $post_id;
-		if(!wp_verify_nonce($_POST['terra_noncename'],plugin_basename(__FILE__))) return $post_id;
+		if($_POST['post_type'] != 'terx_slides') return $post_id;
+		if(!wp_verify_nonce($_POST['terx_noncename'],plugin_basename(__FILE__))) return $post_id;
 		if(!current_user_can('edit_post',$post_id)) return $post_id;
-		update_post_meta($post_id,'_terra_slide_url',$_POST['terra_slide_url']);
-		update_post_meta($post_id,'_terra_slide_src',$_POST['_terra_slide_src']);
+		update_post_meta($post_id,'_terx_slide_url',$_POST['terx_slide_url']);
+		update_post_meta($post_id,'_terx_slide_src',$_POST['_terx_slide_src']);
 	}
-}//END TerraSlides
+}//END EXLSlides
 ?>

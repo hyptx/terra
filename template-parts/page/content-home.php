@@ -1,7 +1,7 @@
-<?php ter_template_comment(__FILE__) ?>
+<?php terx_template_comment(__FILE__) ?>
 <article id="post-0" class="page type-page hentry">
 	<div class="entry-content">
-		<?php the_content() ?>
+		<?php the_content() ?>		
 		<div class="row">
 			<div class="col-sm-12">
 				<h3><em>/template-parts/page/content-home.php</em></h3>

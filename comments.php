@@ -37,7 +37,7 @@ if(post_password_required()): ?>
         <?php endif ?>
     </div>
     <?php if(have_comments()): ?>
-        <ol class="commentlist"><?php wp_list_comments('callback=ter_com_callback&reverse_top_level=true&reverse_children=true') ?></ol>
+        <ol class="commentlist"><?php wp_list_comments('callback=terx_com_callback&reverse_top_level=true&reverse_children=true') ?></ol>
     <?php else: //no comments ?>
         <?php if(comments_open()): ?>
          <?php else: //closed ?>

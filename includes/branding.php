@@ -1,81 +1,81 @@
 <?php /* ~~~~~~~~~~~ Branding ~~~~~~~~~~~*/
 
 // Thumbnails
-add_image_size('ter-branding-logo',9999,50); //third argument is the height to crop logos to
+add_image_size('terx-branding-logo',9999,50); //third argument is the height to crop logos to
 
 //Instantiate Class */
-$ter_branding_logos = new TerBrandingLogos();
+$terx_branding_logos = new EXLBrandingLogos();
 
-//TerBranding
-class TerBranding{
+//EXLBranding
+class EXLBranding{
 	private $_logos;
 	public function __construct($tax_query = false,$term = false){
 		$args = '';
 		if($tax_query){
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' => 'ter_branding_logo_tags',
+					'taxonomy' => 'terx_branding_logo_tags',
 					'terms' => array($term),
 					'field' => 'slug',
 				),
 			);
-			$this->_logos = get_posts(array('post_type' => 'ter_logo','posts_per_page' => -1,'tax_query' => $args['tax_query']));
+			$this->_logos = get_posts(array('post_type' => 'terx_logo','posts_per_page' => -1,'tax_query' => $args['tax_query']));
 		}
-		else $this->_logos = get_posts(array('post_type' => 'ter_logo','posts_per_page' => -1));
+		else $this->_logos = get_posts(array('post_type' => 'terx_logo','posts_per_page' => -1));
 	}
 	
 	public function print_logo_quotes(){?>
-		<div class="ter-branding-quotes">
+		<div class="terx-branding-quotes">
 			<?php $i=1; foreach($this->_logos as $logo) : ?>
 				<?php if($i == 1): ?>
-					<script type="text/javascript">currentQuote = '#ter-branding-quote-item-<?php echo $logo->ID ?>';</script>
+					<script>currentQuote = '#terx-branding-quote-item-<?php echo $logo->ID ?>';</script>
 				<?php endif ?>
 				<?php if($i > 1) $display_class = ' none'; ?>				
-				<div id="ter-branding-quote-item-<?php echo $logo->ID ?>" class="ter-branding-quote-item<?php echo $display_class ?> pad"><?php echo $logo->post_content ?></div>
+				<div id="terx-branding-quote-item-<?php echo $logo->ID ?>" class="terx-branding-quote-item<?php echo $display_class ?> pad"><?php echo $logo->post_content ?></div>
 			<?php $i++; endforeach ?> 
 		</div>
 		<?php
 	}
 	
 	public function print_logo_quotes_with_message($message = 'This is the branding area of the theme. Hover over logos to rotate the information related to the logo itself.'){?>
-		<div class="ter-branding-quotes">
-			<div id="ter-branding-quote-item-0" class="ter-branding-quote-item pad"><?php echo $message ?></div>
+		<div class="terx-branding-quotes">
+			<div id="terx-branding-quote-item-0" class="terx-branding-quote-item pad"><?php echo $message ?></div>
 			<?php $i=1; foreach($this->_logos as $logo) : ?>
 				<?php if($i == 1): ?>
-					<script type="text/javascript">currentQuote = '#ter-branding-quote-item-0';</script>
+					<script>currentQuote = '#terx-branding-quote-item-0';</script>
 				<?php endif ?>		
-				<div id="ter-branding-quote-item-<?php echo $logo->ID ?>" class="ter-branding-quote-item none pad"><?php echo $logo->post_content ?></div>
+				<div id="terx-branding-quote-item-<?php echo $logo->ID ?>" class="terx-branding-quote-item none pad"><?php echo $logo->post_content ?></div>
 			<?php $i++; endforeach ?> 
 		</div>
 		<?php
 	}
 	
 	public function print_logos(){?>
-		<div class="ter-branding-inline margin">
+		<div class="terx-branding-inline margin">
 			<?php foreach($this->_logos as $logo) : ?>
-				<?php $hyperlink = get_post_meta($logo->ID,'ter_branding_hyperlink',1) ?>
+				<?php $hyperlink = get_post_meta($logo->ID,'terx_branding_hyperlink',1) ?>
 				<?php if(has_post_thumbnail($logo->ID)): ?>
-					<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($logo->ID),'ter-branding-logo') //Gif's do not work ?>
-					<div class="ter-branding-item inline-block pad"><a href="<?php echo $hyperlink ?>" target="_blank" ><img src="<?php echo $image[0] ?>" width="<?php echo $image[1] ?>" height="<?php echo $image[2] ?>" alt="<?php echo $logo->post_title ?>" onmouseover="terBrandingRotateQuote(<?php echo $logo->ID ?>);"></a></div>
+					<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($logo->ID),'terx-branding-logo') //Gif's do not work ?>
+					<div class="terx-branding-item inline-block pad"><a href="<?php echo $hyperlink ?>" target="_blank" ><img src="<?php echo $image[0] ?>" width="<?php echo $image[1] ?>" height="<?php echo $image[2] ?>" alt="<?php echo $logo->post_title ?>" onmouseover="terxBrandingRotateQuote(<?php echo $logo->ID ?>);"></a></div>
 				<?php endif; ?>
 			<?php endforeach ?> 
 		</div>
-		<script type="text/javascript">
-		function terBrandingRotateQuote(id){
-			if(currentQuote == '#ter-branding-quote-item-' + id) return;			
+		<script>
+		function terxBrandingRotateQuote(id){
+			if(currentQuote == '#terx-branding-quote-item-' + id) return;			
     		jQuery(currentQuote).stop(true).fadeOut(function(){
-				currentQuote = '#ter-branding-quote-item-' + id;
+				currentQuote = '#terx-branding-quote-item-' + id;
         		jQuery(currentQuote).fadeIn(function(){ currentlyFading = null; });				
     		});
 		}
 		</script>
 		<?php
 	}	
-}//END TerBranding
+}//END EXLBranding
 
 
-//TerBrandingLogos
-class TerBrandingLogos{
+//EXLBrandingLogos
+class EXLBrandingLogos{
 	public function __construct(){
 		add_action('init',array(&$this,'init'));
 		add_filter('post_updated_messages',array(&$this,'updated_messages'));
@@ -109,10 +109,10 @@ class TerBrandingLogos{
 			'has_archive' => true,
 			'hierarchical' => true,
 			'menu_position' => null,
-			'menu_icon' => TER_GRAPHICS . 'icon-branding.png',
+			'menu_icon' => TERX_GRAPHICS . 'icon-branding.png',
 			'supports' => array('title','editor','author','thumbnail','revisions')
 		);
-		register_post_type('ter_logo',$args);
+		register_post_type('terx_logo',$args);
 		
 		//Taxonomy
 		$labels = array(
@@ -135,7 +135,7 @@ class TerBrandingLogos{
 			'show_admin_column' => true,
 			'query_var'         => true,
 		);
-		register_taxonomy('ter_branding_logo_tags','ter_logo',$args);
+		register_taxonomy('terx_branding_logo_tags','terx_logo',$args);
 	}
 	
 	/* Updated Messages */
@@ -161,10 +161,10 @@ class TerBrandingLogos{
 	/* Add meta box */
     public function add_meta_boxes(){
 		add_meta_box(
-			'ter_branding_hyperlink',
+			'terx_branding_hyperlink',
 			'Hyperlink for Logo',
 			array(&$this,'meta_box_1'),
-			'ter_logo',
+			'terx_logo',
 			'advanced',
 			'high'
 		);
@@ -172,9 +172,9 @@ class TerBrandingLogos{
 
 	/* Meta box content */
     public function meta_box_1($post){
-		wp_nonce_field(plugin_basename(__FILE__),'hyp_noncename');
+		wp_nonce_field(plugin_basename(__FILE__),'terx_noncename');
 		?>
-		<input type="text" name="ter_branding_hyperlink" size="40" value="<?php echo get_post_meta($post->ID,'ter_branding_hyperlink',1) ?>">
+		<input type="text" name="terx_branding_hyperlink" size="40" value="<?php echo get_post_meta($post->ID,'terx_branding_hyperlink',1) ?>">
 		<small><em>Enter full url. EX: http://google.com</em></small>
 		<?php		
     }
@@ -182,10 +182,10 @@ class TerBrandingLogos{
 	/* Save Postdata */
 	public function save_post($post_id){
 		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-		if($_POST['post_type'] != 'ter_logo') return $post_id;
-		if(!wp_verify_nonce($_POST['hyp_noncename'],plugin_basename(__FILE__))) return $post_id;
+		if($_POST['post_type'] != 'terx_logo') return $post_id;
+		if(!wp_verify_nonce($_POST['terx_noncename'],plugin_basename(__FILE__))) return $post_id;
 		if(!current_user_can('edit_post',$post_id)) return $post_id;
-		update_post_meta($post_id,'ter_branding_hyperlink',$_POST['ter_branding_hyperlink']);
+		update_post_meta($post_id,'terx_branding_hyperlink',$_POST['terx_branding_hyperlink']);
 	}
-}//END TerBrandingLogos
+}//END EXLBrandingLogos
 ?>
