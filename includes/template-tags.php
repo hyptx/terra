@@ -144,7 +144,7 @@ endif;
 if(!function_exists('terx_header_home_link')): 
 function terx_header_home_link(){?>
 	<?php if(TERX_HEADER_HOME_LINK == 'logo'): ?>
-	<div id="site-logo"><a id="logo" href="<?php echo home_url() ?>/"><img class="img-responsive inline-block" src="<?php echo TERX_LOGO ?>" alt="<?php bloginfo('name') ?>" title="Return to Home Page"></a></div>
+	<div id="site-logo"><a id="logo" href="<?php echo home_url() ?>/"><img class="img-fluid inline-block" src="<?php echo TERX_LOGO ?>" alt="<?php bloginfo('name') ?>" title="Return to Home Page"></a></div>
     <?php elseif(TERX_HEADER_HOME_LINK == 'title'): ?>
     <h2 id="site-title"><a href="<?php echo esc_url(home_url('/')) ?>" title="<?php echo esc_attr(get_bloginfo('name','display')) ?>" rel="home"><?php bloginfo('name') ?></a></h2>
 	<?php elseif(TERX_HEADER_HOME_LINK == 'title-desc'): ?>
