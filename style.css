@@ -55,11 +55,6 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:1.2rem; margin-bo
 .widget{margin-bottom:1.3rem}
 .widget_search .form-group{margin-bottom:.3rem}
 
-/* Gutenberg Columns Set Desktop view to happen at 768 Media Query ~~~~> */
-#main .wp-block-column{flex-basis: 100%;}
-#main .wp-block-column:not(:first-child){margin-left: 0;}/* Gutenberg Fix */
-#main .wp-block-column:not(:last-child){margin-right: 0;}
-
 /* Footer ~~~~> */
 #colophon{background:#f8f8f8; margin:0; padding:0; overflow: hidden;}
 .footer-nav-row{margin-top:.8rem; margin-bottom:.8rem}
@@ -188,16 +183,6 @@ footer.entry-meta{border-bottom:1px solid #EEE; padding-bottom:1.2rem; margin-bo
 	#primary,#secondary{padding-top:1.8rem; padding-bottom:1.8rem}
 	article{margin-bottom:2rem}
 
-	/* Gutenberg Columns Set Desktop view to happen at 768 Media Query ~~~~> */
-	#main .wp-block-column{flex-basis: 50%; flex-grow: 0;}
-	#main .wp-block-column:not(:first-child){margin-left: 32px;}
-	#main .wp-block-column:not(:last-child){margin-right: 32px;}
-
-	/* Gutenberg 1/3 & 2/3 Custom Columns ~~~~> */
-	#main .gb-one-third .wp-block-column:first-child{flex-basis: 33.3%}
-	#main .gb-one-third .wp-block-column:last-child{flex-basis: 66.6%}
-	#main .gb-two-third .wp-block-column:first-child{flex-basis: 66.6%}
-	#main .gb-two-third .wp-block-column:last-child{flex-basis: 33.3%}
 }
 
 @media (min-width: 992px){
