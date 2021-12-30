@@ -1,8 +1,8 @@
 <?php /* ~~~~~~~~~~~ Walkers ~~~~~~~~~~~ */
 
-/* EXLWalkerNavMenu
+/* TERXWalkerNavMenu
 *  Use with wp_nav_menu */
-class EXLWalkerNavMenu extends Walker_Nav_Menu{
+class TERXWalkerNavMenu extends Walker_Nav_Menu{
 	public function start_lvl(&$output, $depth = 0, $args = array()){
 		$indent = str_repeat("\t",$depth);
 		if($depth < 1) $dropdown_menu = ' dropdown-menu';
@@ -64,9 +64,9 @@ class EXLWalkerNavMenu extends Walker_Nav_Menu{
 	}
 }
 
-/* EXLWalkerPage
+/* TERXWalkerPage
 *  Fallback, use with wp_list_pages */
-class EXLWalkerPage extends Walker_Page{
+class TERXWalkerPage extends Walker_Page{
 	function start_lvl(&$output, $depth = 0, $args = array()){
 		$indent = str_repeat("\t",$depth);
 		if($depth < 1) $dropdown_menu = ' dropdown-menu';

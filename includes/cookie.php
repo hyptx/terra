@@ -3,10 +3,10 @@
 //Usage
 //global $terx_cookie; $terx_cookie->print_form('test',30,'true','submit','/');
 
-$terx_cookie = new EXLCookie();
+$terx_cookie = new TERXCookie();
 //$terx_cookie->delete_cookie('cta');
 
-class EXLCookie{
+class TERXCookie{
 	private $_set_cookie_url;
 	public function __construct(){ $this->_set_cookie_url = get_bloginfo('template_directory') . '/set-cookie.php';	}
 	

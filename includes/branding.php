@@ -4,10 +4,10 @@
 add_image_size('terx-branding-logo',9999,50); //third argument is the height to crop logos to
 
 //Instantiate Class */
-$terx_branding_logos = new EXLBrandingLogos();
+$terx_branding_logos = new TERXBrandingLogos();
 
-//EXLBranding
-class EXLBranding{
+//TERXBranding
+class TERXBranding{
 	private $_logos;
 	public function __construct($tax_query = false,$term = false){
 		$args = '';
@@ -71,11 +71,11 @@ class EXLBranding{
 		</script>
 		<?php
 	}	
-}//END EXLBranding
+}//END TERXBranding
 
 
-//EXLBrandingLogos
-class EXLBrandingLogos{
+//TERXBrandingLogos
+class TERXBrandingLogos{
 	public function __construct(){
 		add_action('init',array(&$this,'init'));
 		add_filter('post_updated_messages',array(&$this,'updated_messages'));
@@ -187,5 +187,5 @@ class EXLBrandingLogos{
 		if(!current_user_can('edit_post',$post_id)) return $post_id;
 		update_post_meta($post_id,'terx_branding_hyperlink',$_POST['terx_branding_hyperlink']);
 	}
-}//END EXLBrandingLogos
+}//END TERXBrandingLogos
 ?>

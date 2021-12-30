@@ -134,11 +134,11 @@ class owl_slider_widget extends WP_Widget{
 }//END owl_slider_widget
 add_action('widgets_init', create_function('', 'return register_widget("owl_slider_widget");'));
 
-/* ~~~~~~~~~~~ EXLSlides ~~~~~~~~~~~ */
+/* ~~~~~~~~~~~ TERXSlides ~~~~~~~~~~~ */
 
-$terx_slides = new EXLSlides();
+$terx_slides = new TERXSlides();
 
-class EXLSlides{
+class TERXSlides{
 	public function __construct(){
 		add_action('init',array(&$this,'init'));
 		add_filter('post_updated_messages',array(&$this,'updated_messages'));
@@ -255,5 +255,5 @@ class EXLSlides{
 		update_post_meta($post_id,'_terx_slide_url',$_POST['terx_slide_url']);
 		update_post_meta($post_id,'_terx_slide_src',$_POST['_terx_slide_src']);
 	}
-}//END EXLSlides
+}//END TERXSlides
 ?>

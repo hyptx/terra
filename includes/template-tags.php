@@ -29,7 +29,7 @@ endif;
 if(!function_exists('terx_branding')):
 function terx_branding(){
 	if(!TERX_ACTIVATE_BRANDING) return;
-	$terx_branding = new EXLBranding();
+	$terx_branding = new TERXBranding();
 	?>
 	<div id="terx-branding-quotes" class="text-center">
 		<div class="container">
@@ -221,7 +221,7 @@ function terx_navbar($location,$nav_class,$fallback){
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#<?php echo $location ?>-collapse" aria-controls="<?php echo $location ?>-collapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 			<div id="<?php echo $location ?>-collapse" class="navbar-collapse collapse" role="navigation">
 				<ul id="<?php echo $location ?>-nav-ul" class="nav navbar-nav">
-					<?php wp_nav_menu(array('fallback_cb' => 'terx_navbar_fallback','theme_location' => $location,'container' => false,'items_wrap' => '%3$s','walker' => new EXLWalkerNavMenu())) ?>
+					<?php wp_nav_menu(array('fallback_cb' => 'terx_navbar_fallback','theme_location' => $location,'container' => false,'items_wrap' => '%3$s','walker' => new TERXWalkerNavMenu())) ?>
 				</ul>
 			</div>
 		</div>
@@ -240,7 +240,7 @@ function terx_navbar_slide($location,$nav_class,$fallback){
 			<div id="<?php echo $location ?>-slide-collapse" class="slide-collapse" role="navigation">
 				<ul id="<?php echo $location ?>-nav-ul" class="nav navbar-nav slide-collapse-ul">
 				    <li class="d-none d-md-block"><a href="/" id="desktop-logo" class="inline-block"><img src="<?php echo TERX_LOGO ?>" class="logo" alt="Home"></a></li>
-					<?php wp_nav_menu(array('fallback_cb' => 'terx_navbar_fallback','theme_location' => $location,'container' => false,'items_wrap' => '%3$s','walker' => new EXLWalkerNavMenu())) ?>
+					<?php wp_nav_menu(array('fallback_cb' => 'terx_navbar_fallback','theme_location' => $location,'container' => false,'items_wrap' => '%3$s','walker' => new TERXWalkerNavMenu())) ?>
 				</ul>
 			</div>			
 			<div class="text-center relative d-md-none fullwidth">				
@@ -254,7 +254,7 @@ function terx_navbar_slide($location,$nav_class,$fallback){
 endif;
 
 /* Nav Bar Fallback */
-if(!function_exists('terx_navbar_fallback')): function terx_navbar_fallback(){ wp_list_pages(array('title_li' => '','walker' => new EXLWalkerPage())); } endif;
+if(!function_exists('terx_navbar_fallback')): function terx_navbar_fallback(){ wp_list_pages(array('title_li' => '','walker' => new TERXWalkerPage())); } endif;
 
 /* Page Nav
 *  Prev and next page links */

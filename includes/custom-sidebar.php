@@ -16,14 +16,14 @@
 </aside><!-- #secondary -->
 */
 
-function terx_create_custom_sidebar_meta_box(){ new EXLCustomSidebarMetaBox(); }
+function terx_create_custom_sidebar_meta_box(){ new TERXCustomSidebarMetaBox(); }
 
 if(is_admin()){
     add_action('load-post.php','terx_create_custom_sidebar_meta_box');
     add_action('load-post-new.php','terx_create_custom_sidebar_meta_box');
 }
 
-class EXLCustomSidebarMetaBox{
+class TERXCustomSidebarMetaBox{
 	private $_enabled_post_types = array('page');//Add more CPT's here
 	public function __construct(){
 		add_action('add_meta_boxes',array($this,'add_meta_box'));
